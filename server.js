@@ -1,5 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const {MongoClient} = require('mongodb');
+
+const uri = "mongodb+srv://db:Dima1995@cluster0.hvkh2.mongodb.net/db?retryWrites=true&w=majority"
+const client = new MongoClient(uri);
+
 
 const app = express();
 const port = process.env.PORT || 5000;
