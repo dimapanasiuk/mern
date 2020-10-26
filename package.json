@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "config": "^3.3.2",
     "express": "^4.16.4",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.9"

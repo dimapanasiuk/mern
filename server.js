@@ -1,30 +1,36 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+const config = require("config");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const PORT = config.get('port') || 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-async function start() {
-  const url =
-    "mongodb+srv://dbUser:Dima1995@cluster0.tnb5z.mongodb.net/dbUser?retryWrites=true&w=majority";
-  try {
-    await mongoose.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
-    console.log("db connect");
-  } catch (e) {
-    console.log("server error", e.message);
-    process.exit(1);
-  }
-}
+// async function start() {
+//   const url =
+//     "mongodb+srv://dbUser:Dima1995@cluster0.tnb5z.mongodb.net/dbUser?retryWrites=true&w=majority";
+//   try {
+//     await mongoose.connect(url, {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//       useCreateIndex: true,
+//     });
+//     console.log("db connect");
+//   } catch (e) {
+//     console.log("server error", e.message);
+//     process.exit(1);
+//   }
+// }
 
-start();
+// start();
+
+
+app.get("/test", (req, res) => {
+  res.send({ express: "test" });
+});
 
 app.get("/api/hello", (req, res) => {
   res.send({ express: "Hello From Express" });
@@ -37,4 +43,4 @@ app.post("/api/world", (req, res) => {
   );
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
