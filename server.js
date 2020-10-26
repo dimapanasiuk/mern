@@ -35,6 +35,24 @@ app.get("/api/hello", (req, res) => {
 });
 
 app.post("/api/world", (req, res) => {
+  const Schema = mongoose.Schema;
+  const userScheme = new Schema({
+    name: String,
+    age: Number,
+  });
+
+  const User = mongoose.model("User", userScheme);
+  const user = new User({
+    name: req.body.post,
+  });
+
+  user.save(function (err) {
+    mongoose.disconnect(); // отключение от базы данных
+
+    if (err) return console.log(err);
+    console.log("Сохранен объект", user);
+  });
+
   console.log(req.body);
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`
