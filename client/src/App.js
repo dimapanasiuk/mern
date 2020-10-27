@@ -23,9 +23,9 @@ const App = () => {
     callApi()
       .then((res) => setResponse(res.express))
       .catch((err) => console.log(err));
-  });
+  }, []);
 
-  console.log('our response', response);
+  console.log("our response", response);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,38 +43,36 @@ const App = () => {
   const handleDelete = async (e) => {
     e.preventDefault();
 
-    console.log("test submit");
+    console.log("test submit", deleteId);
     await fetch("/api/remove", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: "deleteId" }),
+      body: JSON.stringify({ id: deleteId }),
     });
   };
 
-  // let users;
-  // if (response.length) {
-  //   users = response.map((i) => {
-  //     return (
-  //       <div key={i._id} style={{ display: "flex" }}>
-  //         <p> {i.name}</p>
-  //         {/* <button onClick={(e) => setDeleteId(e.target.id)} id={i._id}>
-  //           delete{" "}
-  //         </button> */}
-  //       </div>
-  //     );
-  //   });
-  // }
+  let users;
+  if (response.length) {
+    users = response.map((i) => {
+      return (
+        <div key={i._id} style={{ display: "flex" }}>
+          <p> {i.name}</p>
+          <button onClick={(e) => setDeleteId(e.target.id)} id={i._id}>
+            delete{" "}
+          </button>
+        </div>
+      );
+    });
+  }
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <form onSubmit={handleDelete}>
-        <button onClick={(e) => setDeleteId(e.target)}>delete button</button>
-      </form>
+      <form onSubmit={handleDelete}>{users}</form>
       <form onSubmit={handleSubmit}>
         <p>
           <strong>Post to Server:</strong>

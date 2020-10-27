@@ -32,18 +32,16 @@ app.get("/api/users", (req, res) => {
     if (err) return console.log(err);
 
     console.log("users", docs);
+    res.send({ express: docs });
   });
-
-  res.send({ express: "users" });
 });
 
 app.delete("/api/remove", (req, res) => {
-  User.remove({ name: "test" }, function (err, result) {
+  User.remove({ _id: req.body.id }, function (err, result) {
     if (err) return console.log("remove error", err);
 
     console.log("result for delete", result);
   });
-  console.log("after delete", req.body);
 });
 
 app.post("/api/create", (req, res) => {
