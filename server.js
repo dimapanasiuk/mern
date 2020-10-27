@@ -2,9 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const config = require("config");
-const User = require("./scheme/user");
 const app = express();
 const PORT = config.get("port") || 5000;
+
+const User = require("./scheme/user");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
