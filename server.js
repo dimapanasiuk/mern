@@ -27,42 +27,42 @@ async function start() {
 
 start();
 
-app.get("/api/hello", (req, res) => {
-  User.find({}, function (err, users) {
-    mongoose.disconnect();
+app.get("/api/users", (req, res) => {
+  // User.find({}, function (err, users) {
+  //   mongoose.disconnect();
 
-    if (err) return console.log(err);
+  //   if (err) return console.log(err);
 
-    // console.log("my users", users);
-    res.send({ express: users });
-  });
+  //   res.send({ express: users });
+  // }); //work don't good
+
+  res.send({ express: "users" });
 });
 
-app.post("/api/remove", (req, res) => {
-  User.remove({ _id: req.body.id }, function (err, result) {
+app.delete("/api/remove", (req, res) => {
+  console.log("after delete", req.body);
+
+  User.remove({ name: "test" }, function (err, result) {
     mongoose.disconnect();
 
     if (err) return console.log("remove error", err);
 
     console.log("result for delete", result);
   });
-
-  console.log("after delete ", req.body.id);
 });
 
-app.post("/api/world", (req, res) => {
+app.post("/api/create", (req, res) => {
   const user = new User({
     name: req.body.post,
   });
 
   user.save(function (err) {
-    mongoose.disconnect(); // отключение от базы данных
+    mongoose.disconnect();
 
-    if (err) return console.log("saveverrror", err);
+    if (err) return console.log(err);
     console.log("Сохранен объект", user);
   });
-
-  console.log("after save", req.body.post);
+  console.log("after save", req.body);
 
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`
