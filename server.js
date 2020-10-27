@@ -28,21 +28,17 @@ async function start() {
 start();
 
 app.get("/api/users", (req, res) => {
-  // User.find({}, function (err, users) {
-  //   mongoose.disconnect();
+  User.find({}, function (err, docs) {
+    if (err) return console.log(err);
 
-  //   if (err) return console.log(err);
-
-  //   res.send({ express: users });
-  // }); //work don't good
+    console.log("users", docs);
+  });
 
   res.send({ express: "users" });
 });
 
 app.delete("/api/remove", (req, res) => {
   User.remove({ name: "test" }, function (err, result) {
-    mongoose.disconnect();
-
     if (err) return console.log("remove error", err);
 
     console.log("result for delete", result);
@@ -56,8 +52,6 @@ app.post("/api/create", (req, res) => {
   });
 
   user.save(function (err) {
-    mongoose.disconnect();
-
     if (err) return console.log(err);
     console.log("Сохранен объект", user);
   });

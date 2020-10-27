@@ -25,6 +25,8 @@ const App = () => {
       .catch((err) => console.log(err));
   });
 
+  console.log('our response', response);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
