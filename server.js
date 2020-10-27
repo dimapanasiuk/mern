@@ -28,13 +28,13 @@ async function start() {
 start();
 
 app.get("/api/hello", (req, res) => {
-  User.find({}, function (err, docs) {
+  User.find({}, function (err, users) {
     mongoose.disconnect();
 
     if (err) return console.log(err);
 
-    console.log("my users", docs);
-    res.send({ express: `${docs}` });
+    console.log("my users", users);
+    res.send({ express: users });
   });
 });
 
@@ -50,7 +50,7 @@ app.post("/api/world", (req, res) => {
     console.log("Сохранен объект", user);
   });
 
-  console.log(req.body);
+  // console.log(req.body);
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`
   );

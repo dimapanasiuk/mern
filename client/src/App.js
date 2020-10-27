@@ -37,12 +37,17 @@ const App = () => {
     setResponseToPost(body);
   };
 
+  let users;
+  if (response.length) {
+    users = response.map((i) => <p key={i._id}> {i.name}</p>);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <p>{response}</p>
+      {users}
       <form onSubmit={handleSubmit}>
         <p>
           <strong>Post to Server:</strong>
