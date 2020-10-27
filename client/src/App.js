@@ -47,7 +47,7 @@ const App = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: 'deleteId' }),
+      body: JSON.stringify({ id: "deleteId" }),
     });
   };
 

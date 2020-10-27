@@ -40,8 +40,6 @@ app.get("/api/users", (req, res) => {
 });
 
 app.delete("/api/remove", (req, res) => {
-  console.log("after delete", req.body);
-
   User.remove({ name: "test" }, function (err, result) {
     mongoose.disconnect();
 
@@ -49,6 +47,7 @@ app.delete("/api/remove", (req, res) => {
 
     console.log("result for delete", result);
   });
+  console.log("after delete", req.body);
 });
 
 app.post("/api/create", (req, res) => {
