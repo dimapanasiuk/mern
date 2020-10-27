@@ -8,6 +8,7 @@ const App = () => {
   let [response, setResponse] = useState("");
   let [post, setPost] = useState("");
   let [responseToPost, setResponseToPost] = useState("");
+  let [deleteId, setDeleteId] = useState("");
 
   const callApi = async () => {
     const response = await fetch("/api/hello");
@@ -37,9 +38,32 @@ const App = () => {
     setResponseToPost(body);
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const response = await fetch("/api/remove", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: deleteId }),
+    });
+    const body = await response.text();
+
+    setResponseToPost(body);
+  };
+
   let users;
   if (response.length) {
-    users = response.map((i) => <p key={i._id}> {i.name}</p>);
+    users = response.map((i) => {
+      return (
+        <div key={i._id} style={{ display: "flex" }}>
+          <p> {i.name}</p>
+          <button onClick={(e) => setDeleteId(e.target.id)} id={i._id}>
+            delete{" "}
+          </button>
+        </div>
+      );
+    });
   }
 
   return (
@@ -47,7 +71,8 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      {users}
+
+      <form onSubmit={handleDelete}>{users}</form>
       <form onSubmit={handleSubmit}>
         <p>
           <strong>Post to Server:</strong>
