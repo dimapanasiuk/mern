@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const config = require("config");
-
+const User = require("./scheme/user");
 const app = express();
 const PORT = config.get("port") || 5000;
 
@@ -35,13 +35,6 @@ app.get("/api/hello", (req, res) => {
 });
 
 app.post("/api/world", (req, res) => {
-  const Schema = mongoose.Schema;
-  const userScheme = new Schema({
-    name: String,
-    age: Number,
-  });
-
-  const User = mongoose.model("User", userScheme);
   const user = new User({
     name: req.body.post,
   });
