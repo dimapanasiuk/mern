@@ -27,12 +27,15 @@ async function start() {
 
 start();
 
-app.get("/test", (req, res) => {
-  res.send({ express: "test" });
-});
-
 app.get("/api/hello", (req, res) => {
-  res.send({ express: "Hello From Express" });
+  User.find({}, function (err, docs) {
+    mongoose.disconnect();
+
+    if (err) return console.log(err);
+
+    console.log("my users", docs);
+    res.send({ express: `${docs}` });
+  });
 });
 
 app.post("/api/world", (req, res) => {
