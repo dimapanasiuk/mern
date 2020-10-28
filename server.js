@@ -53,11 +53,25 @@ app.post("/api/create", (req, res) => {
     if (err) return console.log(err);
     console.log("Сохранен объект", user);
   });
+
   console.log("after save", req.body);
 
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`
   );
+});
+
+app.put("/api/update", (req, res) => {
+  // console.log("get id", req.body.id);
+  // console.log("get data", req.body.data);
+
+  User.updateOne({ name: "Tom" }, { name: "Tom Smith" }, function (
+    err,
+    result
+  ) {
+    if (err) return console.log(err);
+    console.log("update result", result);
+  });
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

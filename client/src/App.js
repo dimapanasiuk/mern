@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import logo from "./logo.svg";
-
 import "./App.css";
+
+import { Button, Input } from "antd";
 
 const App = () => {
   let [response, setResponse] = useState("");
   let [post, setPost] = useState("");
   let [responseToPost, setResponseToPost] = useState("");
   let [deleteId, setDeleteId] = useState("");
+  let [inputEdit, setInputEdit] = useState(false);
+  // let [updateInput, setUpdateInput] = useState("");
 
   const callApi = async () => {
     const response = await fetch("api/users");
@@ -24,8 +27,6 @@ const App = () => {
       .then((res) => setResponse(res.express))
       .catch((err) => console.log(err));
   }, []);
-
-  console.log("our response", response);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +44,6 @@ const App = () => {
   const handleDelete = async (e) => {
     e.preventDefault();
 
-    console.log("test submit", deleteId);
     await fetch("/api/remove", {
       method: "DELETE",
       headers: {
@@ -53,15 +53,67 @@ const App = () => {
     });
   };
 
+  const saveDataInputHandler = async (e) => {
+    setInputEdit(!inputEdit);
+    console.log("click");
+    const res = await axios.put("/api/update", {
+      id: "5f983c2b2539ae1764da2e3f",
+      data: "update",
+    });
+
+    console.log(res.data.json);
+  };
+
+  const changeDataInputHandler = (e) => {
+    setInputEdit(!inputEdit);
+  };
+
   let users;
   if (response.length) {
     users = response.map((i) => {
       return (
         <div key={i._id} style={{ display: "flex" }}>
-          <p> {i.name}</p>
-          <button onClick={(e) => setDeleteId(e.target.id)} id={i._id}>
-            delete{" "}
-          </button>
+          {(() => {
+            if (inputEdit) {
+              return (
+                <>
+                  <Input
+                    placeholder="Borderless"
+                    bordered={false}
+                    defaultValue={i.name}
+                  />
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    onClick={saveDataInputHandler}
+                  >
+                    S
+                  </Button>
+                </>
+              );
+            } else {
+              return (
+                <>
+                  <p> {i.name}</p>
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    onClick={changeDataInputHandler}
+                  >
+                    E
+                  </Button>
+                </>
+              );
+            }
+          })()}
+
+          <Button
+            type="primary"
+            onClick={(e) => setDeleteId(e.target.id)}
+            id={i._id}
+          >
+            delete
+          </Button>
         </div>
       );
     });
