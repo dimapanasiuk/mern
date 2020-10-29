@@ -62,10 +62,9 @@ app.post("/api/create", (req, res) => {
 });
 
 app.put("/api/update", (req, res) => {
-  // console.log("get id", req.body.id);
-  // console.log("get data", req.body.data);
+  const { id, prevVal, newVal } = req.body;
 
-  User.updateOne({ name: "Tom" }, { name: "Tom Smith" }, function (
+  User.updateOne({ _id: id, name: prevVal }, { name: newVal }, function (
     err,
     result
   ) {

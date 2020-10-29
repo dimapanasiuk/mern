@@ -12,7 +12,10 @@ const App = () => {
   let [responseToPost, setResponseToPost] = useState("");
   let [deleteId, setDeleteId] = useState("");
   let [inputEdit, setInputEdit] = useState(false);
-  // let [updateInput, setUpdateInput] = useState("");
+
+  let [defaultInputVal, setDefaultInputVal] = useState("");
+  let [editInputVal, setEditInputVal] = useState("");
+  let [editInputId, setEditInputId] = useState("");
 
   const callApi = async () => {
     const response = await fetch("api/users");
@@ -55,17 +58,27 @@ const App = () => {
 
   const saveDataInputHandler = async (e) => {
     setInputEdit(!inputEdit);
-    console.log("click");
     const res = await axios.put("/api/update", {
-      id: "5f983c2b2539ae1764da2e3f",
-      data: "update",
+      id: editInputId,
+      prevVal: defaultInputVal,
+      newVal: editInputVal,
     });
 
     console.log(res.data.json);
   };
 
+  const onChangeHandler = (e) => {
+    const { id } = e.target;
+    const { value } = e.target;
+    setEditInputId(id);
+    setEditInputVal(value);
+  };
+
   const changeDataInputHandler = (e) => {
+    const defaultValue = e.target.previousElementSibling.innerText;
+    // console.log(e.target.previousElementSibling.innerText);
     setInputEdit(!inputEdit);
+    setDefaultInputVal(defaultValue);
   };
 
   let users;
@@ -78,9 +91,11 @@ const App = () => {
               return (
                 <>
                   <Input
+                    id={i._id}
                     placeholder="Borderless"
                     bordered={false}
                     defaultValue={i.name}
+                    onChange={onChangeHandler}
                   />
                   <Button
                     type="primary"
