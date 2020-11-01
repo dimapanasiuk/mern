@@ -1,18 +1,9 @@
 import React from "react";
 
 const Login = () => {
-  //   const formSubmitHandler = (e) => {
-  //     e.preventDefault();
-  //     console.log(e.target);
-  //   };
-
   return (
     <>
-      <form
-        action="/login"
-        //   onSubmit={formSubmitHandler}
-        method="post"
-      >
+      <form action="/login" method="post">
         <div>
           <label>Username:</label>
           <input type="text" name="username" />
