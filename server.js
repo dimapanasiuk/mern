@@ -27,6 +27,12 @@ async function start() {
 
 start();
 
+
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
+
+/*
+
 app.get("/api/users", (req, res) => {
   User.find({}, function (err, docs) {
     if (err) return console.log(err);
@@ -72,5 +78,4 @@ app.put("/api/update", (req, res) => {
     console.log("update result", result);
   });
 });
-
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+*/
