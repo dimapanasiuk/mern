@@ -71,7 +71,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/home", function (req, res) {
-  console.log("--------------------home");
   res.send({ user: req.user });
 });
 
@@ -83,6 +82,19 @@ app.post(
     res.redirect("/home");
   }
 );
+
+app.get("/logout", function (req, res) {
+  req.logout();
+  res.redirect("/home");
+});
+
+app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function (
+  req,
+  res
+) {
+  // res.render("profile", { user: req.user });
+  res.send({ user: req.user });
+});
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
