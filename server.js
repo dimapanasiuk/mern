@@ -92,8 +92,23 @@ app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function (
   req,
   res
 ) {
-  // res.render("profile", { user: req.user });
   res.send({ user: req.user });
+});
+
+app.post("/registration", (req, res) => {
+  console.log("req.user", req.username);
+  // const user = new User({
+  //   name: req.body.post,
+  // });
+
+  // user.save(function (err) {
+  //   if (err) return console.log(err);
+  //   console.log("Сохранен объект", user);
+  // });
+
+  // res.send(
+  //   `I received your POST request. This is what you sent me: ${req.body.post}`
+  // );
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
