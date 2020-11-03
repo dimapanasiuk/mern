@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+
+import { Button } from "reactstrap";
 import axios from "axios";
 
 const Home = () => {
@@ -35,6 +37,7 @@ const Home = () => {
   return (
     <>
       <h1> Home</h1>
+      <Button color="danger">Danger!</Button>
       {userData()}
     </>
   );
