@@ -18,6 +18,7 @@ const DashCard = styled(Card)`
 let options = [];
 
 const FavoriteTeam = () => {
+  const [choosesTeams, setChoosesTeams] = useState([]);
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
@@ -32,9 +33,16 @@ const FavoriteTeam = () => {
   }, []);
 
   if (teams.length) {
-    const res = teams.map((i) => ({ value: i.name, label: i.name }));
+    const res = teams.map((i) => ({ value: i.name, label: i.name, id: i.id }));
     options = res;
   }
+
+  const choosesItems = (a) => {
+    setChoosesTeams(a);
+  };
+
+  console.log(teams);
+  console.log(choosesTeams);
 
   return (
     <>
@@ -45,6 +53,7 @@ const FavoriteTeam = () => {
           components={makeAnimated()}
           isMulti
           options={options}
+          onChange={choosesItems}
         />
       </DashCard>
     </>
