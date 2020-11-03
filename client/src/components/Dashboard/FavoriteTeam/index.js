@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
+import { connect, useDispatch } from "react-redux";
 
 import { Card, CardTitle } from "reactstrap";
 
 import styled from "styled-components";
+import INCREMENT from "../../../store/actions";
 
 const Multiselect = styled(Select)`
   max-width: 50%;
@@ -18,6 +20,8 @@ const DashCard = styled(Card)`
 let options = [];
 
 const FavoriteTeam = () => {
+  const dispatch = useDispatch();
+
   const [choosesTeams, setChoosesTeams] = useState([]);
   const [teams, setTeams] = useState([]);
 
@@ -37,8 +41,13 @@ const FavoriteTeam = () => {
     options = res;
   }
 
+  const increment = () => {
+    dispatch({ type: INCREMENT });
+  };
+
   const choosesItems = (a) => {
     setChoosesTeams(a);
+    increment();
   };
 
   console.log(teams);
@@ -60,4 +69,10 @@ const FavoriteTeam = () => {
   );
 };
 
-export default FavoriteTeam;
+const mapStateToProps = (state) => {
+  return {
+    count: state.count,
+  };
+};
+
+export default connect(mapStateToProps)(FavoriteTeam);
