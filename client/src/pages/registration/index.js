@@ -10,20 +10,22 @@ const Registration = () => {
 
     axios
       .post("/registration", { user: "test" })
-      .then(function (response) {
+      .then((response) => {
         console.log("response", response.data);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
 
   return (
     <>
-      <h1>Registration</h1>
+      <h1>
+        Registration {userName} / {password}
+      </h1>
       <form action="/registration" method="post" onSubmit={submitHandler}>
         <div>
-          <label>Username:</label>
+          <p>Username:</p>
           <input
             type="text"
             name="username"
@@ -32,7 +34,7 @@ const Registration = () => {
           <br />
         </div>
         <div>
-          <label>Password:</label>
+          <p>Password:</p>
           <input
             type="password"
             name="password"

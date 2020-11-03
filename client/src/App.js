@@ -1,10 +1,10 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/login";
 import Home from "./pages/home";
 import Header from "./components/Header";
 import Cabinet from "./pages/cabinet";
 import Registration from "./pages/registration";
-import { Switch, Route } from "react-router-dom";
 
 const App = () => {
   return (
