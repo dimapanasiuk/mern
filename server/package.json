@@ -2,9 +2,9 @@
   "name": "mern",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && yarn run start",
+    "client": "cd .. && cd client && yarn run start",
     "server": "nodemon server.js",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "yarn start"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
