@@ -3,10 +3,16 @@ import axios from "axios";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 
+import { Card, CardTitle } from "reactstrap";
+
 import styled from "styled-components";
 
 const Multiselect = styled(Select)`
   max-width: 50%;
+`;
+
+const DashCard = styled(Card)`
+  margin: 20px;
 `;
 
 let options = [];
@@ -32,14 +38,15 @@ const FavoriteTeam = () => {
 
   return (
     <>
-      <Multiselect
-        closeMenuOnSelect={false}
-        components={makeAnimated()}
-        isMulti
-        options={options}
-      />
-      <h1>FavoriteTeam</h1>
-      <h1>FavoriteTeam</h1>
+      <DashCard body>
+        <CardTitle>Please choose your favorite teams</CardTitle>
+        <Multiselect
+          closeMenuOnSelect={false}
+          components={makeAnimated()}
+          isMulti
+          options={options}
+        />
+      </DashCard>
     </>
   );
 };

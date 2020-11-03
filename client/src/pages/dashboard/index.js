@@ -8,7 +8,6 @@ const DashBoard = () => {
   return (
     <>
       <DashSettings child={[component]} />
-      <FavoriteTeam />
     </>
   );
 };
