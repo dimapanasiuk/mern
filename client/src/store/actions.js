@@ -1,3 +1,7 @@
-const INCREMENT = "INCREMENT";
+export const CHOOSETEAM = "CHOOSETEAM";
 
-export default INCREMENT;
+function chooseTeam(teams) {
+  return { type: CHOOSETEAM, data: teams };
+}
+
+export default chooseTeam;

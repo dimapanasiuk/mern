@@ -7,9 +7,9 @@ import { connect, useDispatch } from "react-redux";
 import { Card, CardTitle } from "reactstrap";
 
 import styled from "styled-components";
-import INCREMENT from "../../../store/actions";
+import chooseTeam from "../../../store/actions";
 
-const Multiselect = styled(Select)`
+const MultiSelect = styled(Select)`
   max-width: 50%;
 `;
 
@@ -22,7 +22,6 @@ let options = [];
 const FavoriteTeam = () => {
   const dispatch = useDispatch();
 
-  const [choosesTeams, setChoosesTeams] = useState([]);
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
@@ -41,23 +40,15 @@ const FavoriteTeam = () => {
     options = res;
   }
 
-  const increment = () => {
-    dispatch({ type: INCREMENT });
-  };
-
   const choosesItems = (a) => {
-    setChoosesTeams(a);
-    increment();
+    dispatch(chooseTeam(a));
   };
-
-  console.log(teams);
-  console.log(choosesTeams);
 
   return (
     <>
       <DashCard body>
         <CardTitle>Please choose your favorite teams</CardTitle>
-        <Multiselect
+        <MultiSelect
           closeMenuOnSelect={false}
           components={makeAnimated()}
           isMulti
