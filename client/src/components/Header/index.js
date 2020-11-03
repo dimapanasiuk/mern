@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Collapse, Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
+import { Collapse, Navbar, Nav, NavItem } from "reactstrap";
 
 const RouterLink = styled(Link)`
   color: white;
@@ -18,11 +18,12 @@ const Header = () => {
   return (
     <div>
       <Navbar color="dark" light expand="md">
-        <NavbarBrand>
-          <RouterLink to="/">Home</RouterLink>
-        </NavbarBrand>
+        <RouterLink to="/">Home</RouterLink>
         <Collapse navbar>
           <Nav className="mr-auto" navbar>
+            <NavItem>
+              <RouterLink to="/dashboard">Dashboard</RouterLink>
+            </NavItem>
             <NavItem>
               <RouterLink to="/login">Login</RouterLink>
             </NavItem>
