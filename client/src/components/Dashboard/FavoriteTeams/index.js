@@ -7,7 +7,7 @@ import { connect, useDispatch } from "react-redux";
 import { Card, CardTitle } from "reactstrap";
 
 import styled from "styled-components";
-import chooseTeam from "../../../store/actions";
+import chooseTeam from "../../../store/choseTeams/actions";
 
 const MultiSelect = styled(Select)`
   max-width: 50%;
@@ -62,7 +62,7 @@ const FavoriteTeams = () => {
 
 const mapStateToProps = (state) => {
   return {
-    count: state.count,
+    count: state.choseTeamsReducer,
   };
 };
 
