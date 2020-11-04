@@ -6,6 +6,11 @@
     "server": "nodemon server.js",
     "dev": "yarn start"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "config": "^3.3.2",
@@ -21,6 +26,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.0.1",
-    "eslint": "^7.12.1"
+    "eslint": "^7.12.1",
+    "husky": "^4.3.0"
   }
 }
