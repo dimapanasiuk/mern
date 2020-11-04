@@ -1,16 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Button } from "reactstrap";
 import { string } from "prop-types";
 import axios from "axios";
+import styled from "styled-components";
+import Roster from "../Roster";
+
+const CircleButton = styled(Button)`
+  border-radius: 1000px;
+`;
 
 const DetailPage = ({ teamId }) => {
+  const [roster, setRoster] = useState([]);
   useEffect(() => {
     axios
       .get(
         `https://statsapi.web.nhl.com/api/v1/teams/${teamId}?expand=team.roster`
       )
       .then((response) => {
-        console.log(response.data.teams[0].roster);
+        setRoster(response.data.teams[0].roster.roster);
       })
       .catch((error) => {
         console.log(error);
@@ -19,9 +28,11 @@ const DetailPage = ({ teamId }) => {
 
   return (
     <>
+      <Link to="/dashboard">
+        <CircleButton color="primary">🠔</CircleButton>
+      </Link>
       <h1>DetailPage</h1>
-      <b>teamId</b>
-      <p>{teamId}</p>
+      <Roster roster={roster} />
     </>
   );
 };
