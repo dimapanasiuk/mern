@@ -40,7 +40,9 @@ const Teams = ({ ids }) => {
   return (
     <>
       <h1 style={{ paddingBottom: "20px" }}>Teams</h1>
-      <Row>{cards}</Row>
+      <Row xs="6" sm="12">
+        {cards}
+      </Row>
     </>
   );
 };
