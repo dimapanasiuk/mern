@@ -11,7 +11,7 @@ const DashSettings = ({ child }) => {
 };
 
 DashSettings.propTypes = {
-  child: any, // eslint-disable-line
+  child: any, 
 };
 
 export default DashSettings;

@@ -14,12 +14,12 @@ const MultiSelect = styled(Select)`
 `;
 
 const DashCard = styled(Card)`
-  margin: 20px;
+  margin: 20px 0;
 `;
 
 let options = [];
 
-const FavoriteTeam = () => {
+const FavoriteTeams = () => {
   const dispatch = useDispatch();
 
   const [teams, setTeams] = useState([]);
@@ -66,4 +66,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(FavoriteTeam);
+export default connect(mapStateToProps)(FavoriteTeams);

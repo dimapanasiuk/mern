@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import uuid from "react-uuid";
+import { Row, Col } from "reactstrap";
 import TeamCard from "../TeamCard";
 
 const Teams = () => {
@@ -7,7 +9,7 @@ const Teams = () => {
 
   useEffect(() => {
     axios
-      .get("http://statsapi.web.nhl.com/api/v1/teams/?teamId=4,5,29")
+      .get("http://statsapi.web.nhl.com/api/v1/teams/?teamId=4,5,29,2")
       .then((response) => {
         setTeams(response.data.teams);
         console.log("response.data", response.data);
@@ -20,14 +22,22 @@ const Teams = () => {
   let cards = "Loading ...";
 
   if (teams.length > 0) {
-    cards = teams.map((i) => <h1>{i.name}</h1>);
+    cards = teams.map((i) => (
+      <Col key={uuid()}>
+        <TeamCard
+          name={i.teamName}
+          conf={i.conference.name}
+          division={i.division.name}
+        />
+      </Col>
+    ));
   }
 
   return (
     <>
-      <TeamCard />
-      {cards}
-      <h1>Teams</h1>
+      <h1 style={{ paddingBottom: "20px" }}>Teams</h1>
+
+      <Row>{cards}</Row>
     </>
   );
 };
