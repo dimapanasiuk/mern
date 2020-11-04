@@ -11,17 +11,20 @@ const Content = styled.div`
   margin-bottom: 20px;
 `;
 
+const CardItem = styled(Card)`
+  margin-bottom: 20px;
+`;
+
 const TeamCard = ({ teamId, name, conf, division }) => {
   const dispatch = useDispatch();
 
   const clickHandler = (e) => {
     const { id } = e.target;
-    console.log("id", id);
     dispatch(choseTeamId(id));
   };
 
   return (
-    <Card body>
+    <CardItem body size="lg">
       <CardTitle tag="h3">{name}</CardTitle>
       <Content>
         <b>Conference</b>
@@ -32,7 +35,7 @@ const TeamCard = ({ teamId, name, conf, division }) => {
       <Link id={teamId} onClick={clickHandler} to={`/dashboard/${name}`}>
         More information
       </Link>
-    </Card>
+    </CardItem>
   );
 };
 

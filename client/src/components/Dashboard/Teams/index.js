@@ -2,23 +2,27 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import uuid from "react-uuid";
 import { Row, Col } from "reactstrap";
+import { connect } from "react-redux";
+import { string } from "prop-types";
 import TeamCard from "../TeamCard";
 
-const Teams = () => {
+const Teams = ({ ids }) => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://statsapi.web.nhl.com/api/v1/teams/?teamId=4,5,29,2")
-      .then((response) => {
-        setTeams(response.data.teams);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    if (ids.length > 0) {
+      axios
+        .get(`http://statsapi.web.nhl.com/api/v1/teams/?teamId=${ids}`)
+        .then((response) => {
+          setTeams(response.data.teams);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [ids]);
 
-  let cards = "Loading ...";
+  let cards = <p>please choose favorite teams</p>;
 
   if (teams.length > 0) {
     cards = teams.map((i) => (
@@ -41,4 +45,17 @@ const Teams = () => {
   );
 };
 
-export default Teams;
+Teams.propTypes = {
+  ids: string,
+};
+
+const mapDispatchToProps = (state) => {
+  const { teams } = state.choseTeamsReducer;
+  const t = teams.map((i) => i.id).join();
+
+  return {
+    ids: t,
+  };
+};
+
+export default connect(mapDispatchToProps)(Teams);
