@@ -12,7 +12,6 @@ const Teams = () => {
       .get("http://statsapi.web.nhl.com/api/v1/teams/?teamId=4,5,29,2")
       .then((response) => {
         setTeams(response.data.teams);
-        console.log("response.data", response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -25,6 +24,7 @@ const Teams = () => {
     cards = teams.map((i) => (
       <Col key={uuid()}>
         <TeamCard
+          teamId={i.id}
           name={i.teamName}
           conf={i.conference.name}
           division={i.division.name}
@@ -36,7 +36,6 @@ const Teams = () => {
   return (
     <>
       <h1 style={{ paddingBottom: "20px" }}>Teams</h1>
-
       <Row>{cards}</Row>
     </>
   );

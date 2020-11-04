@@ -1,4 +1,4 @@
-import { CHOOSETEAM } from "./actions";
+import { CHOSETEAMS } from "./actions";
 
 const initialState = {
   teams: [],
@@ -6,7 +6,7 @@ const initialState = {
 
 function choseTeamsReducer(state = initialState, action) {
   switch (action.type) {
-    case CHOOSETEAM:
+    case CHOSETEAMS:
       return {
         teams: action.data,
       };

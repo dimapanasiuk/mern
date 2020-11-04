@@ -8,6 +8,7 @@ import DashBoard from "./pages/dashboard";
 import LoginPage from "./pages/login";
 import Cabinet from "./pages/cabinet";
 import Registration from "./pages/registration";
+import DetailPage from "./components/Dashboard/DetailPage";
 
 const App = () => {
   return (
@@ -17,6 +18,9 @@ const App = () => {
         <Switch>
           <Route path="/login">
             <LoginPage />
+          </Route>
+          <Route path="/dashboard/:name">
+            <DetailPage />
           </Route>
           <Route path="/dashboard">
             <DashBoard />
