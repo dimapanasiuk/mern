@@ -4,7 +4,8 @@
   "scripts": {
     "client": "cd .. && cd client && yarn run start",
     "server": "nodemon server.js",
-    "dev": "yarn start"
+    "dev": "yarn start",
+    "lint": "eslint ."
   },
   "husky": {
     "hooks": {
