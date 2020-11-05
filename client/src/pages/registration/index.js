@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
-const Registration = () => {
-  const [userName, setUserName] = useState();
-  const [password, setPassword] = useState();
+export default function Registration() {
+  const { register, handleSubmit, errors } = useForm();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-
+  const submitHandler = (requestData) => {
     axios
-      .post("/registration", { user: "test" })
+      .post("/", requestData)
       .then((response) => {
         console.log("response", response.data);
       })
@@ -19,34 +17,12 @@ const Registration = () => {
   };
 
   return (
-    <>
-      <h1>
-        Registration {userName} / {password}
-      </h1>
-      <form action="/registration" method="post" onSubmit={submitHandler}>
-        <div>
-          <p>Username:</p>
-          <input
-            type="text"
-            name="username"
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <br />
-        </div>
-        <div>
-          <p>Password:</p>
-          <input
-            type="password"
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <input type="submit" value="Submit" />
-        </div>
-      </form>
-    </>
-  );
-};
+    <form onSubmit={handleSubmit(submitHandler)}>
+      <input name="userName" defaultValue="test" ref={register} />
+      <input name="password" ref={register({ required: true })} />
+      {errors.password && <span>This field is required</span>}
 
-export default Registration;
+      <input type="submit" />
+    </form>
+  );
+}
