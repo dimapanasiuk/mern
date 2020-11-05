@@ -8,7 +8,7 @@ import DashBoard from "./pages/dashboard";
 import LoginPage from "./pages/login";
 import Cabinet from "./pages/cabinet";
 import Registration from "./pages/registration";
-import DetailPage from "./components/Dashboard/DetailPage";
+import DetailPage from "./pages/dashboard/components/DetailPage";
 
 const App = () => {
   return (

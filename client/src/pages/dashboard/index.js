@@ -1,7 +1,7 @@
 import React from "react";
-import FavoriteTeams from "../../components/Dashboard/FavoriteTeams";
-import DashSettings from "../../components/Dashboard/Settings";
-import DashShow from "../../components/Dashboard/Show";
+import FavoriteTeams from "./components/FavoriteTeams";
+import DashSettings from "./components/Settings";
+import Show from "./components/Show";
 
 const DashBoard = () => {
   const component = () => <FavoriteTeams />;
@@ -9,7 +9,7 @@ const DashBoard = () => {
   return (
     <>
       <DashSettings child={[component]} />
-      <DashShow />
+      <Show />
     </>
   );
 };

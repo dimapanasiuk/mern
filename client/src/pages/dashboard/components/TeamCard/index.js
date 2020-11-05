@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { connect, useDispatch } from "react-redux";
-import choseTeamId from "../../../store/choseTeamId/actions";
+import choseTeamId from "../../../../store/choseTeamId/actions";
 
 const Content = styled.div`
   margin-bottom: 20px;

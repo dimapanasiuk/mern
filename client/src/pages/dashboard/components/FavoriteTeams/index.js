@@ -7,7 +7,7 @@ import { connect, useDispatch } from "react-redux";
 import { Card, CardTitle } from "reactstrap";
 
 import styled from "styled-components";
-import choseTeams from "../../../store/choseTeams/actions";
+import choseTeams from "../../../../store/choseTeams/actions";
 
 const MultiSelect = styled(Select)`
   max-width: 50%;
