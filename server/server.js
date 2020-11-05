@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const config = require("config");
 const app = express();
 const PORT = config.get("port") || 5000;
+var cors = require("cors");
 
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
@@ -26,6 +27,8 @@ async function start() {
 }
 
 start();
+
+app.use(cors());
 
 passport.use(
   new Strategy(function (username, password, cb) {
@@ -58,7 +61,7 @@ passport.deserializeUser(function (id, cb) {
 });
 
 app.use(require("morgan")("combined"));
-app.use(require("body-parser").urlencoded({ extended: true }));
+app.use(require("body-parser").json());
 app.use(
   require("express-session")({
     secret: "keyboard cat",
@@ -95,22 +98,9 @@ app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function (
   res.send({ user: req.user });
 });
 
-app.post("/registration", (req, res) => {
-  console.log("req.user", req.username);
-  // const user = new User({
-  //   name: req.body.post,
-  // });
-
-  // user.save(function (err) {
-  //   if (err) return console.log(err);
-  //   console.log("Сохранен объект", user);
-  // });
-
-  // res.send(
-  //   `I received your POST request. This is what you sent me: ${req.body.post}`
-  // );
+app.post("/", (req, res) => {
+  console.log("req.user", req.body);
+  res.send({ user: req.body });
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
-

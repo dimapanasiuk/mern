@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.0.1",
+    "cors": "^2.8.5",
     "eslint": "^7.12.1",
     "husky": "^4.3.0"
   }
