@@ -100,7 +100,7 @@ app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function (
 
 app.post("/", (req, res) => {
   console.log("req.user", req.body);
-  res.send({ user: req.body });
+  res.send(req.body);
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
