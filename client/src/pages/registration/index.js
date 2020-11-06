@@ -10,7 +10,7 @@ const Registration = () => {
     const { password, password2 } = requestData;
     if (password === password2) {
       axios
-        .post("/", requestData)
+        .post("/registration", requestData)
         .then((response) => {
           console.log("response", response.data);
           if (response.data === "err") {
