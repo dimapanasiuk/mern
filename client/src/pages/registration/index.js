@@ -7,14 +7,20 @@ const Registration = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const submitHandler = (requestData) => {
-    axios
-      .post("/", requestData)
-      .then((response) => {
-        console.log("response", response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const { password, password2 } = requestData;
+    if (password === password2) {
+      axios
+        .post("/", requestData)
+        .then((response) => {
+          console.log("response", response.data);
+          if (response.data === "err") {
+            console.log("not work validate in the server");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const STR = "please enter";
@@ -31,12 +37,35 @@ const Registration = () => {
         />
       </FormGroup>
       <FormGroup>
-        <Label for="pas">Password</Label>
+        <Label>Password</Label>
         <StrapInput
-          id="pas"
           placeholder={`${STR} password`}
           name="password"
-          innerRef={register({ required: true })}
+          type="password"
+          innerRef={register({
+            required: true,
+            minLength: {
+              value: 5,
+              message: "error message min", // <p>error message</p>
+            },
+          })}
+        />
+
+        {errors.password && <span>This field is required</span>}
+      </FormGroup>
+      <FormGroup>
+        <Label>Password</Label>
+        <StrapInput
+          placeholder={`${STR} password`}
+          name="password2"
+          type="password"
+          innerRef={register({
+            required: true,
+            minLength: {
+              value: 5,
+              message: "error message min", // <p>error message</p>
+            },
+          })}
         />
 
         {errors.password && <span>This field is required</span>}
