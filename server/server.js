@@ -85,7 +85,7 @@ app.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
   (req, res) => {
-    console.log("post login", req.user  );
+    console.log("post login", req.user);
     res.redirect("/home");
   }
 );
@@ -102,7 +102,7 @@ app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function (
   res.send({ user: req.user });
 });
 
-app.post("/", (req, res) => {
+app.post("/registration", (req, res) => {
   const { password, password2 } = req.body;
 
   if (password === password2 && password.length > 4) {
@@ -114,8 +114,9 @@ app.post("/", (req, res) => {
     user.save(function (err) {
       if (err) return console.log(err);
       console.log("Сохранен объект", user);
-      res.send({ data: "work" });
     });
+    
+    res.send({ data: "work" });
   }
 
   res.send({ data: "err" });
