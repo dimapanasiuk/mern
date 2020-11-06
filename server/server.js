@@ -114,8 +114,8 @@ app.post("/", (req, res) => {
     user.save(function (err) {
       if (err) return console.log(err);
       console.log("Сохранен объект", user);
+      res.send({ data: "work" });
     });
-    res.send({ data: "work" });
   }
 
   res.send({ data: "err" });
