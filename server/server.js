@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const config = require("config");
 const app = express();
 const PORT = config.get("port") || 5000;
-var cors = require("cors");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
@@ -61,7 +62,10 @@ passport.deserializeUser(function (id, cb) {
 });
 
 app.use(require("morgan")("combined"));
-app.use(require("body-parser").json());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
   require("express-session")({
     secret: "keyboard cat",
