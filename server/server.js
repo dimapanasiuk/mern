@@ -84,8 +84,8 @@ app.get("/home", function (req, res) {
 app.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
-  function (req, res) {
-    console.log("post login", req.user);
+  (req, res) => {
+    console.log("post login", req.user  );
     res.redirect("/home");
   }
 );
