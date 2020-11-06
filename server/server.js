@@ -103,8 +103,22 @@ app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function (
 });
 
 app.post("/", (req, res) => {
-  console.log("req.user", req.body);
-  res.send(req.body);
+  const { password, password2 } = req.body;
+
+  if (password === password2 && password.length > 4) {
+    const user = new User({
+      name: req.body.userName,
+      password: req.body.password,
+    });
+
+    user.save(function (err) {
+      if (err) return console.log(err);
+      console.log("Сохранен объект", user);
+    });
+    res.send({ data: "work" });
+  }
+
+  res.send({ data: "err" });
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
