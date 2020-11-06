@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
 
-export default function Registration() {
+const Registration = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const submitHandler = (requestData) => {
@@ -16,13 +17,33 @@ export default function Registration() {
       });
   };
 
+  const STR = "please enter";
+
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
-      <input name="userName" defaultValue="test" ref={register} />
-      <input name="password" ref={register({ required: true })} />
-      {errors.password && <span>This field is required</span>}
+      <FormGroup>
+        <Label for="login">Login</Label>
+        <StrapInput
+          id="login"
+          placeholder={`${STR} login`}
+          name="userName"
+          innerRef={register}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label for="pas">Password</Label>
+        <StrapInput
+          id="pas"
+          placeholder={`${STR} password`}
+          name="password"
+          innerRef={register({ required: true })}
+        />
 
-      <input type="submit" />
+        {errors.password && <span>This field is required</span>}
+      </FormGroup>
+      <Button type="submit"> Submit</Button>
     </form>
   );
-}
+};
+
+export default Registration;
