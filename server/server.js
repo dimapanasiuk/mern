@@ -121,4 +121,13 @@ app.post("/registration", (req, res) => {
   res.send({ data: "err" });
 });
 
+app.put("/save", (req, res) => {
+  const { teams } = req.body;
+
+  User.updateOne({ name: "dima" }, { nhlTeams: teams }, function (err, result) {
+    if (err) return console.log(err);
+  });
+
+  res.send(req.body.teams);
+});
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
