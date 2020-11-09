@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
+import { connect } from "react-redux";
+import { string } from "prop-types";
 import { Collapse, Navbar, Nav, NavItem } from "reactstrap";
 
 const RouterLink = styled(Link)`
@@ -14,7 +15,8 @@ const RouterLink = styled(Link)`
   }
 `;
 
-const Header = () => {
+const Header = ({ id }) => {
+  console.log("id", id);
   return (
     <div>
       <Navbar color="dark" light expand="md">
@@ -30,9 +32,16 @@ const Header = () => {
             <NavItem>
               <RouterLink to="/registration">Registration</RouterLink>
             </NavItem>
-            <NavItem>
-              <RouterLink to="/cabinet">Cabinet</RouterLink>
-            </NavItem>
+            {(() => {
+              if (id) {
+                return (
+                  <NavItem>
+                    <RouterLink to="/cabinet">Cabinet</RouterLink>
+                  </NavItem>
+                );
+              }
+              return null;
+            })()}
           </Nav>
         </Collapse>
       </Navbar>
@@ -40,4 +49,14 @@ const Header = () => {
   );
 };
 
-export default Header;
+Header.propTypes = {
+  id: string,
+};
+
+const mapDispatchToProps = (state) => {
+  return {
+    id: state.enterCabinetReducer.userId,
+  };
+};
+
+export default connect(mapDispatchToProps)(Header);
