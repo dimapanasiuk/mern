@@ -45,7 +45,6 @@ const FavoriteTeams = () => {
   };
 
   return (
-    <>
       <DashCard body>
         <CardTitle>Please choose your favorite teams</CardTitle>
         <MultiSelect
@@ -56,7 +55,6 @@ const FavoriteTeams = () => {
           onChange={choosesItems}
         />
       </DashCard>
-    </>
   );
 };
 
