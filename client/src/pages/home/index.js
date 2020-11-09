@@ -8,6 +8,7 @@ const Home = () => {
     axios
       .get("home")
       .then((response) => {
+        console.log(response.data.user);
         setUser(response.data.user);
       })
       .catch((error) => {
@@ -25,7 +26,7 @@ const Home = () => {
     } else {
       return (
         <p>
-          Hello, {user.username}. View your <a href="/profile">profile</a>.
+          Hello, <b>{user.name}.</b> View your <a href="/profile">profile</a>.
         </p>
       );
     }

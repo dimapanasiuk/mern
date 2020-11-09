@@ -49,12 +49,10 @@ passport.use(
 );
 
 passport.serializeUser(function (user, cb) {
-  console.log("serializeUser", user);
   cb(null, user._id);
 });
 
 passport.deserializeUser(function (id, cb) {
-  console.log("deserializeUser", id);
   db.users.findById(id, function (err, user) {
     if (err) {
       return cb(err);
@@ -87,7 +85,6 @@ app.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
   (req, res) => {
-    console.log("post login", req.user);
     res.redirect("/home");
   }
 );
@@ -115,7 +112,7 @@ app.post("/registration", (req, res) => {
 
     user.save(function (err) {
       if (err) return console.log(err);
-      // console.log("Сохранен объект", user);
+      console.log("Saved object", user);
     });
 
     res.send({ data: "work" });

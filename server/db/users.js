@@ -6,7 +6,6 @@ exports.findById = function (id, cb) {
       console.log("err", err);
       return new Error("User " + id + " does not exist");
     }
-    console.log("docs find", docs[0]);
     return cb(null, docs[0]);
   });
 };
@@ -17,7 +16,6 @@ exports.findByUsername = function (username, cb) {
       console.log("err", err);
       return cb(null, null);
     }
-    console.log("findByUsername", docs[0]);
     return cb(null, docs[0]);
   });
 };

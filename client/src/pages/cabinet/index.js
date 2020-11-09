@@ -27,14 +27,16 @@ const Cabinet = () => {
       });
   };
 
+  const ID = "_id";
+
   return (
     <>
       <p>
-        ID: {user.id}
+        ID: {user[ID]}
         <br />
-        Username: {user.username}
+        Username: {user.name}
         <br />
-        Name: {user.displayName} <br />
+        Password: {user.password} <br />
       </p>
       <a href="/logout" onClick={logOutHandler}>
         Log out
