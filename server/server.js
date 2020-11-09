@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
+const connectEnsureLogin = require("connect-ensure-login");
 const db = require("./db");
 
 const User = require("./scheme/user");
@@ -94,10 +95,7 @@ app.get("/logout", function (req, res) {
   res.redirect("/home");
 });
 
-app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function (
-  req,
-  res
-) {
+app.get("/profile", connectEnsureLogin.ensureLoggedIn(), function (req, res) {
   res.send({ user: req.user });
 });
 
