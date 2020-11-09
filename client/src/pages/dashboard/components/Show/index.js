@@ -1,5 +1,5 @@
 import React from "react";
-import Teams from "../Teams";
+import Teams from "../Nhl/Teams";
 
 const Show = () => {
   return <Teams />;
