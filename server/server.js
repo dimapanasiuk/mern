@@ -33,6 +33,9 @@ app.use(cors());
 
 passport.use(
   new Strategy(function (username, password, cb) {
+    console.log("username", username);
+    console.log("password", password);
+
     db.users.findByUsername(username, function (err, user) {
       if (err) {
         return cb(err);
@@ -40,19 +43,21 @@ passport.use(
       if (!user) {
         return cb(null, false);
       }
-      if (user.password != password) {
-        return cb(null, false);
-      }
+      // if (user.password != password) {
+      //   return cb(null, false);
+      // }
       return cb(null, user);
     });
   })
 );
 
 passport.serializeUser(function (user, cb) {
-  cb(null, user.id);
+  console.log("serializeUser", user);
+  cb(null, user._id);
 });
 
 passport.deserializeUser(function (id, cb) {
+  console.log("deserializeUser", id);
   db.users.findById(id, function (err, user) {
     if (err) {
       return cb(err);
@@ -113,7 +118,7 @@ app.post("/registration", (req, res) => {
 
     user.save(function (err) {
       if (err) return console.log(err);
-      console.log("Сохранен объект", user);
+      // console.log("Сохранен объект", user);
     });
 
     res.send({ data: "work" });
