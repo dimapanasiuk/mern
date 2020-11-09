@@ -3,24 +3,28 @@ import axios from "axios";
 import uuid from "react-uuid";
 import { Row, Col } from "reactstrap";
 import { connect } from "react-redux";
-import { string } from "prop-types";
 import TeamCard from "../TeamCard";
 
-const Teams = ({ ids }) => {
+const Teams = () => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    if (ids.length > 0) {
-      axios
-        .get(`http://statsapi.web.nhl.com/api/v1/teams/?teamId=${ids}`)
-        .then((response) => {
-          setTeams(response.data.teams);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    async function fetchMyAPI() {
+      const response = await axios.get("/home");
+      const user = await response.data;
+
+      const { nhlTeams } = user.user;
+      const t = nhlTeams.map((i) => i.id);
+
+      const responseNhl = await axios.get(
+        `http://statsapi.web.nhl.com/api/v1/teams/?teamId=${t}`
+      );
+      const teamsData = await responseNhl.data;
+      setTeams(teamsData.teams);
     }
-  }, [ids]);
+
+    fetchMyAPI();
+  }, []);
 
   let cards = <p>please choose favorite teams</p>;
 
@@ -47,17 +51,4 @@ const Teams = ({ ids }) => {
   );
 };
 
-Teams.propTypes = {
-  ids: string,
-};
-
-const mapDispatchToProps = (state) => {
-  const { teams } = state.choseTeamsReducer;
-  const t = teams.map((i) => i.id).join();
-
-  return {
-    ids: t,
-  };
-};
-
-export default connect(mapDispatchToProps)(Teams);
+export default connect()(Teams);
