@@ -16,7 +16,6 @@ const RouterLink = styled(Link)`
 `;
 
 const Header = ({ id }) => {
-  console.log("id", id);
   return (
     <div>
       <Navbar color="dark" light expand="md">
@@ -54,6 +53,8 @@ Header.propTypes = {
 };
 
 const mapDispatchToProps = (state) => {
+  console.log(state.enterCabinetReducer);
+
   return {
     id: state.enterCabinetReducer.userId,
   };

@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import uuid from "react-uuid";
+import { string } from "prop-types";
 import { Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 import TeamCard from "../TeamCard";
 
-const Teams = () => {
+const Teams = ({ id }) => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
+    console.log("user id", id);
+
     const fetchMyAPI = async () => {
       const response = await axios.get("/home");
       const user = await response.data;
@@ -51,4 +54,16 @@ const Teams = () => {
   );
 };
 
-export default connect()(Teams);
+Teams.propTypes = {
+  id: string,
+};
+
+const mapDispatchToProps = (state) => {
+  console.log("teams", state.enterCabinetReducer.userId);
+
+  return {
+    id: state.enterCabinetReducer.userId,
+  };
+};
+
+export default connect(mapDispatchToProps)(Teams);
