@@ -10,11 +10,11 @@ const Column = styled(Col)`
 `;
 
 const Roster = ({ roster }) => {
-  const ros = roster.map((i) => {
+  const ros = roster.map((item) => {
     return (
       <Column sm="6" key={uuid()}>
         <Card body>
-          <CardTitle tag="h5">{i.person.fullName}</CardTitle>
+          <CardTitle tag="h5">{item.person.fullName}</CardTitle>
           <CardText>
             With supporting text below as a natural lead-in to additional
             content.

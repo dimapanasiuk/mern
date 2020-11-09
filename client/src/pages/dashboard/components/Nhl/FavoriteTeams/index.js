@@ -36,7 +36,11 @@ const FavoriteTeams = () => {
   }, []);
 
   if (teams.length) {
-    const res = teams.map((i) => ({ value: i.name, label: i.name, id: i.id }));
+    const res = teams.map((team) => ({
+      value: team.name,
+      label: team.name,
+      id: team.id,
+    }));
     options = res;
   }
 
@@ -45,16 +49,16 @@ const FavoriteTeams = () => {
   };
 
   return (
-      <DashCard body>
-        <CardTitle>Please choose your favorite teams</CardTitle>
-        <MultiSelect
-          closeMenuOnSelect={false}
-          components={makeAnimated()}
-          isMulti
-          options={options}
-          onChange={choosesItems}
-        />
-      </DashCard>
+    <DashCard body>
+      <CardTitle>Please choose your favorite teams</CardTitle>
+      <MultiSelect
+        closeMenuOnSelect={false}
+        components={makeAnimated()}
+        isMulti
+        options={options}
+        onChange={choosesItems}
+      />
+    </DashCard>
   );
 };
 

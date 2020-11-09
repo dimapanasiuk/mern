@@ -14,7 +14,7 @@ const Teams = () => {
       const user = await response.data;
 
       const { nhlTeams } = user.user;
-      const t = nhlTeams.map((i) => i.id);
+      const t = nhlTeams.map((team) => team.id);
 
       const responseNhl = await axios.get(
         `http://statsapi.web.nhl.com/api/v1/teams/?teamId=${t}`
@@ -29,13 +29,13 @@ const Teams = () => {
   let cards = <p>please choose favorite teams</p>;
 
   if (teams.length > 0) {
-    cards = teams.map((i) => (
+    cards = teams.map((team) => (
       <Col key={uuid()}>
         <TeamCard
-          teamId={i.id}
-          name={i.teamName}
-          conf={i.conference.name}
-          division={i.division.name}
+          teamId={team.id}
+          name={team.teamName}
+          conf={team.conference.name}
+          division={team.division.name}
         />
       </Col>
     ));
