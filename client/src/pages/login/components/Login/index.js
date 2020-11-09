@@ -50,10 +50,7 @@ const Login = () => {
             type="password"
             innerRef={register({
               required: true,
-              minLength: {
-                value: 5,
-                message: "error message min", // <p>error message</p>
-              },
+              minLength: { value: 5 },
             })}
           />
 

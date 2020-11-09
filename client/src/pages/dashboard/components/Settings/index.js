@@ -32,9 +32,8 @@ DashSettings.propTypes = {
   saveTeams: array,
 };
 
-const mapDispatchToProps = (state) => {
-  console.log("Teams component", state.choseTeamsReducer.teams);
-  return { saveTeams: state.choseTeamsReducer.teams };
-};
+const mapDispatchToProps = (state) => ({
+  saveTeams: state.choseTeamsReducer.teams,
+});
 
 export default connect(mapDispatchToProps)(DashSettings);

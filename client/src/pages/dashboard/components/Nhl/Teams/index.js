@@ -9,7 +9,7 @@ const Teams = () => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    async function fetchMyAPI() {
+    const fetchMyAPI = async () => {
       const response = await axios.get("/home");
       const user = await response.data;
 
@@ -21,7 +21,7 @@ const Teams = () => {
       );
       const teamsData = await responseNhl.data;
       setTeams(teamsData.teams);
-    }
+    };
 
     fetchMyAPI();
   }, []);
