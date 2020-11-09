@@ -5,7 +5,7 @@ const app = express();
 const PORT = config.get("port") || 5000;
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
+const morgan = require("morgan");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 const db = require("./db");
@@ -61,7 +61,7 @@ passport.deserializeUser(function (id, cb) {
   });
 });
 
-app.use(require("morgan")("combined"));
+app.use(morgan("combined"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -115,7 +115,7 @@ app.post("/registration", (req, res) => {
       if (err) return console.log(err);
       console.log("Сохранен объект", user);
     });
-    
+
     res.send({ data: "work" });
   }
 
