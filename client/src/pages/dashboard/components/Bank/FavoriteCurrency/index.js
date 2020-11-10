@@ -1,31 +1,14 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { useEffect, useState } from "react";
 import Creatable from "react-select/creatable";
-import { components } from "react-select";
 import { Card, CardTitle, FormGroup, Label } from "reactstrap";
 import { connect, useDispatch } from "react-redux";
 import DatePicker from "reactstrap-date-picker";
 import axios from "axios";
 
+import Menu from "./Menu";
 import choseCurrenciesId from "../../../../../store/chooseCurrenciesId/actions";
 
 let options = [];
-
-const Menu = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const optionSelectedLength = props.getValue().length || 0;
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <components.Menu {...props}>
-      {optionSelectedLength < 5 ? (
-        // eslint-disable-next-line react/prop-types
-        props.children
-      ) : (
-        <div style={{ margin: 15 }}>Max limit achieved</div>
-      )}
-    </components.Menu>
-  );
-};
 
 const FavoriteCurrency = () => {
   const dispatch = useDispatch();
@@ -58,7 +41,7 @@ const FavoriteCurrency = () => {
       <CardTitle> FavoriteCurrency</CardTitle>
 
       <Creatable
-        components={Menu}
+        components={{ Menu }}
         isMulti
         isValidNewOption={isValidNewOption}
         options={options}
