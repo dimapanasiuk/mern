@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Container } from "reactstrap";
-import axios from "axios";
-import { connect, useDispatch } from "react-redux";
 
-import userID from "./store/login/action";
 import Header from "./components/Header";
 import Home from "./pages/home";
 import DashBoard from "./pages/dashboard";
@@ -12,21 +9,8 @@ import LoginPage from "./pages/login";
 import Cabinet from "./pages/cabinet";
 import Registration from "./pages/registration";
 import DetailPage from "./pages/dashboard/components/Nhl/DetailPage";
-import { ID } from "./utils";
 
 const App = () => {
-  const dispatch = useDispatch();
-  
-  useEffect(() => {
-    const fetchMyAPI = async () => {
-      const response = await axios.get("/home");
-      const user = await response.data;
-
-      dispatch(userID(user.user[ID]));
-    };
-    fetchMyAPI();
-  }, []);
-
   return (
     <>
       <Header />
@@ -59,4 +43,4 @@ const App = () => {
   );
 };
 
-export default connect()(App);
+export default App;

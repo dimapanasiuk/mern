@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 import Creatable from "react-select/creatable";
 
-import makeAnimated from "react-select/animated";
 import { components } from "react-select";
 
 import { Card, CardTitle, FormGroup, Label } from "reactstrap";
@@ -34,16 +33,19 @@ const Menu = (props) => {
 
 const FavoriteCurrency = () => {
   const dispatch = useDispatch();
-  const [currencies, setCurrencies] = useState([]);
+  const [
+    currencies,
+    //  setCurrencies
+  ] = useState([]);
 
   useEffect(() => {
     const fetchMyAPI = async () => {
       const response = await axios.get(
-        "https://www.nbrb.by/api/exrates/currencies"
+        "https://belarusbank.by/api/kursExchange"
       );
-      setCurrencies(response.data);
+      const user = await response.data;
+      console.log("user", user);
     };
-
     fetchMyAPI();
   }, []);
 
@@ -68,7 +70,7 @@ const FavoriteCurrency = () => {
       <CardTitle> FavoriteCurrency</CardTitle>
 
       <Creatable
-        components={makeAnimated(Menu)}
+        components={Menu}
         isMulti
         isValidNewOption={isValidNewOption}
         options={options}
