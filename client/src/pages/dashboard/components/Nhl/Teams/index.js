@@ -59,8 +59,6 @@ Teams.propTypes = {
 };
 
 const mapDispatchToProps = (state) => {
-  console.log("teams", state.enterCabinetReducer.userId);
-
   return {
     id: state.enterCabinetReducer.userId,
   };

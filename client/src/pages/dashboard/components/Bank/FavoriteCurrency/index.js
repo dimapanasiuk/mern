@@ -3,10 +3,14 @@ import makeAnimated from "react-select/animated";
 import { Card, CardTitle } from "reactstrap";
 import Select from "react-select";
 import axios from "axios";
+import { connect, useDispatch } from "react-redux";
+
+import choseCurrenciesId from "../../../../../store/chooseCurrenciesId/actions";
 
 let options = [];
 
 const FavoriteCurrency = () => {
+  const dispatch = useDispatch();
   const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
@@ -29,6 +33,10 @@ const FavoriteCurrency = () => {
     options = res;
   }
 
+  const chooseCurrencyClickHandler = (e) => {
+    dispatch(choseCurrenciesId(e));
+  };
+
   return (
     <Card body sm={10}>
       <CardTitle> FavoriteCurrency</CardTitle>
@@ -37,10 +45,10 @@ const FavoriteCurrency = () => {
         components={makeAnimated()}
         isMulti
         options={options}
-        // onChange={choosesItems}
+        onChange={chooseCurrencyClickHandler}
       />
     </Card>
   );
 };
 
-export default FavoriteCurrency;
+export default connect()(FavoriteCurrency);

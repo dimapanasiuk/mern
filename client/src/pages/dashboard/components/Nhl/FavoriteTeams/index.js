@@ -35,7 +35,7 @@ const FavoriteTeams = () => {
     options = res;
   }
 
-  const choosesItems = (a) => {
+  const choosesTeamsClickHandler = (a) => {
     dispatch(choseTeams(a));
   };
 
@@ -47,7 +47,7 @@ const FavoriteTeams = () => {
         components={makeAnimated()}
         isMulti
         options={options}
-        onChange={choosesItems}
+        onChange={choosesTeamsClickHandler}
       />
     </Card>
   );
