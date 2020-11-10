@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import uuid from "react-uuid";
-import { string } from "prop-types";
 import { Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 import TeamCard from "../TeamCard";
 
-const Teams = ({ id }) => {
+const Teams = () => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    console.log("user id", id);
-
     const fetchMyAPI = async () => {
       const response = await axios.get("/home");
       const user = await response.data;
 
-      const { nhlTeams } = user.user;
-      const t = nhlTeams.map((team) => team.id);
+      if (Object.keys(user).length) {
+        const { nhlTeams } = user.user;
+        const t = nhlTeams.map((team) => team.id);
 
-      const responseNhl = await axios.get(
-        `http://statsapi.web.nhl.com/api/v1/teams/?teamId=${t}`
-      );
-      const teamsData = await responseNhl.data;
-      setTeams(teamsData.teams);
+        const responseNhl = await axios.get(
+          `http://statsapi.web.nhl.com/api/v1/teams/?teamId=${t}`
+        );
+        const teamsData = await responseNhl.data;
+        setTeams(teamsData.teams);
+      }
     };
 
     fetchMyAPI();
@@ -54,14 +53,4 @@ const Teams = ({ id }) => {
   );
 };
 
-Teams.propTypes = {
-  id: string,
-};
-
-const mapDispatchToProps = (state) => {
-  return {
-    id: state.enterCabinetReducer.userId,
-  };
-};
-
-export default connect(mapDispatchToProps)(Teams);
+export default connect()(Teams);
