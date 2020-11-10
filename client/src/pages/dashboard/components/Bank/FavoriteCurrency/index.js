@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import makeAnimated from "react-select/animated";
-import { Card, CardTitle } from "reactstrap";
+import { Card, CardTitle, FormGroup, Label } from "reactstrap";
 import Select from "react-select";
 import axios from "axios";
 import { connect, useDispatch } from "react-redux";
+import DatePicker from "reactstrap-date-picker";
 
 import choseCurrenciesId from "../../../../../store/chooseCurrenciesId/actions";
 
@@ -47,6 +48,14 @@ const FavoriteCurrency = () => {
         options={options}
         onChange={chooseCurrencyClickHandler}
       />
+      <FormGroup>
+        <Label>Please choose date</Label>
+        <DatePicker
+          id="example-datepicker"
+          //   value={new Date}
+          // onChange= {(v,f) => this.handleChange(v, f)}
+        />
+      </FormGroup>
     </Card>
   );
 };

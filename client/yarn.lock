@@ -9363,6 +9363,11 @@ react@^16.14.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
 
+reactstrap-date-picker@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/reactstrap-date-picker/-/reactstrap-date-picker-0.0.11.tgz#333328abcff2333e98c7c8d81df5bc4b0999c16c"
+  integrity sha512-9yuxNhMq4xFyn3BlNRYuZTM8kVixnWih7aIMMdWhdlHGfH9gPAPnrEGNswET+PUGu7t3T9VGh6z3VU4IsgcE/w==
+
 reactstrap@^8.7.0:
   version "8.7.0"
   resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-8.7.0.tgz#6e9c3e7f6ed0c0e48f75722b904ace51cd1aaf48"

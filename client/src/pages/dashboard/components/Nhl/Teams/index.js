@@ -29,7 +29,7 @@ const Teams = ({ id }) => {
     fetchMyAPI();
   }, []);
 
-  let cards = <p>please choose favorite teams</p>;
+  let cards;
 
   if (teams.length > 0) {
     cards = teams.map((team) => (
