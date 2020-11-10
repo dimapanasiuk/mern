@@ -4,17 +4,20 @@ import { array } from "prop-types";
 import { connect } from "react-redux";
 import Chart from "./Chart";
 
+const START = "2020-1-5";
+const END = "2020-1-20";
+
 const Bank = ({ ids }) => {
   useEffect(() => {
-    const fetchMyAPI = async () => {
-      const res = await axios.get(
-        "https://www.nbrb.by/API/ExRates/Rates/Dynamics/190?startDate=2016-6-1&endDate=2016-6-30"
-      );
-      const curInfo = await res.data;
-      console.log(curInfo);
-    };
+    if (ids.length) {
+      const cur = ids[0];
 
-    fetchMyAPI();
+      axios
+        .get(
+          `https://www.nbrb.by/api/exrates/rates/dynamics/${cur}?startDate=${START}&endDate=${END}`
+        )
+        .then((data) => console.log("bank", data.data));
+    }
   }, [ids]);
 
   return <Chart />;
@@ -25,9 +28,11 @@ Bank.propTypes = {
 };
 
 const mapDispatchToProps = (state) => {
-  // console.log("state", state.choseCurrenciesIdReduce);
+  const { currencies } = state.choseCurrenciesIdReducer;
+  const curs = currencies.map((currency) => currency.id);
+  console.log("curs", curs);
   return {
-    ids: state.choseCurrenciesIdReducer.currencies,
+    ids: curs,
   };
 };
 

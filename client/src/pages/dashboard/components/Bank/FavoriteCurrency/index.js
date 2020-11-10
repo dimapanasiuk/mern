@@ -16,9 +16,10 @@ const FavoriteCurrency = () => {
   const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
-    axios("https://www.nbrb.by/api/exrates/currencies").then((res) =>
-      setCurrencies(res.data)
-    );
+    axios.get("https://www.nbrb.by/api/exrates/currencies").then((res) => {
+      console.log("res data", res.data);
+      setCurrencies(res.data);
+    });
   }, []);
 
   if (currencies.length) {
