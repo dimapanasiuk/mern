@@ -9,7 +9,7 @@ const Menu = (props) => {
       {optionSelectedLength < 2 ? (
         props.children
       ) : (
-        <div>Max limit achieved</div>
+        <div style={{ padding: "10px" }}>Max limit achieved</div>
       )}
     </components.Menu>
   );

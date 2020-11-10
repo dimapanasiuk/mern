@@ -4,6 +4,7 @@ import { Card, CardTitle, FormGroup, Label } from "reactstrap";
 import { connect, useDispatch } from "react-redux";
 import DatePicker from "reactstrap-date-picker";
 import axios from "axios";
+import makeAnimated from "react-select/animated";
 
 import Menu from "./Menu";
 import choseCurrenciesId from "../../../../../store/chooseCurrenciesId/actions";
@@ -38,10 +39,10 @@ const FavoriteCurrency = () => {
 
   return (
     <Card body sm={10}>
-      <CardTitle> FavoriteCurrency</CardTitle>
+      <CardTitle> Favorite currency</CardTitle>
 
       <Creatable
-        components={{ Menu }}
+        components={makeAnimated({ Menu })}
         isMulti
         isValidNewOption={isValidNewOption}
         options={options}
@@ -50,11 +51,7 @@ const FavoriteCurrency = () => {
 
       <FormGroup>
         <Label>Please choose date</Label>
-        <DatePicker
-          id="example-datepicker"
-          //   value={new Date}
-          // onChange= {(v,f) => this.handleChange(v, f)}
-        />
+        <DatePicker id="example-datepicker" />
       </FormGroup>
     </Card>
   );
