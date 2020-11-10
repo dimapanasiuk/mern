@@ -1,14 +1,14 @@
 import { CHOSECURRENCIES } from "./actions";
 
 const initialState = {
-  curriencies: [],
+  currencies: [],
 };
 
 function choseCurrenciesIdReducer(state = initialState, action) {
   switch (action.type) {
     case CHOSECURRENCIES:
       return {
-        curriencies: action.data,
+        currencies: action.data,
       };
     default:
       return state;

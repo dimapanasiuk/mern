@@ -1,38 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { any } from "prop-types";
-
+import React, { useEffect } from "react";
 import axios from "axios";
+import { array } from "prop-types";
+import { connect } from "react-redux";
 import Chart from "./Chart";
 
-const Bank = ({ id }) => {
-  const [dataCur, setDataCur] = useState([]);
-
+const Bank = ({ ids }) => {
   useEffect(() => {
-    const fetchMyAPI = async (cur) => {
-      const response = await axios.get(
-        `https://www.nbrb.by/api/exrates/currencies/${cur}`
+    const fetchMyAPI = async () => {
+      const res = await axios.get(
+        "https://www.nbrb.by/API/ExRates/Rates/Dynamics/190?startDate=2016-6-1&endDate=2016-6-30"
       );
-      const cs = await response.data;
-
-      setDataCur([...dataCur, cs]);
+      const curInfo = await res.data;
+      console.log(curInfo);
     };
 
-    fetchMyAPI(192);
-  }, []);
+    fetchMyAPI();
+  }, [ids]);
 
-  console.log("Bank ids", id, dataCur);
   return <Chart />;
 };
 
 Bank.propTypes = {
-  id: any,
+  ids: array,
 };
 
 const mapDispatchToProps = (state) => {
   // console.log("state", state.choseCurrenciesIdReduce);
   return {
-    id: state.choseCurrenciesIdReducer.curriencies,
+    ids: state.choseCurrenciesIdReducer.currencies,
   };
 };
 
