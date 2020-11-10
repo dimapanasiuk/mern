@@ -1,15 +1,11 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useEffect, useState } from "react";
-
 import Creatable from "react-select/creatable";
-
 import { components } from "react-select";
-
 import { Card, CardTitle, FormGroup, Label } from "reactstrap";
-
-import axios from "axios";
 import { connect, useDispatch } from "react-redux";
 import DatePicker from "reactstrap-date-picker";
+import axios from "axios";
 
 import choseCurrenciesId from "../../../../../store/chooseCurrenciesId/actions";
 
@@ -33,20 +29,12 @@ const Menu = (props) => {
 
 const FavoriteCurrency = () => {
   const dispatch = useDispatch();
-  const [
-    currencies,
-    //  setCurrencies
-  ] = useState([]);
+  const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
-    const fetchMyAPI = async () => {
-      const response = await axios.get(
-        "https://belarusbank.by/api/kursExchange"
-      );
-      const user = await response.data;
-      console.log("user", user);
-    };
-    fetchMyAPI();
+    axios("https://www.nbrb.by/api/exrates/currencies").then((res) =>
+      setCurrencies(res.data)
+    );
   }, []);
 
   if (currencies.length) {
