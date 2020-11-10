@@ -1,10 +1,18 @@
 import React from "react";
-import { any, array } from "prop-types";
-import { Button } from "reactstrap";
+import { array } from "prop-types";
+import { Button, Col } from "reactstrap";
 import { connect } from "react-redux";
 import axios from "axios";
+import styled from "styled-components";
 
-const DashSettings = ({ child, saveTeams }) => {
+import FavoriteCurrency from "../Bank/FavoriteCurrency";
+import FavoriteTeams from "../Nhl/FavoriteTeams";
+
+const Column = styled(Col)`
+  padding: 0px 20px 0 0;
+`;
+
+const DashSettings = ({ saveTeams }) => {
   const saveClickHandler = async () => {
     axios
       .put("/save", { teams: saveTeams })
@@ -19,7 +27,14 @@ const DashSettings = ({ child, saveTeams }) => {
   return (
     <>
       <h1>DashSettings</h1>
-      {child[0]()}
+      <div style={{ display: "flex" }}>
+        <Column sm={6}>
+          <FavoriteCurrency />
+        </Column>
+        <Column sm={6}>
+          <FavoriteTeams />
+        </Column>
+      </div>
       <Button color="success" onClick={saveClickHandler}>
         Save Changes
       </Button>{" "}
@@ -28,7 +43,6 @@ const DashSettings = ({ child, saveTeams }) => {
 };
 
 DashSettings.propTypes = {
-  child: any,
   saveTeams: array,
 };
 

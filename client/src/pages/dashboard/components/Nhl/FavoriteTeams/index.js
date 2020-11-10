@@ -6,16 +6,7 @@ import { connect, useDispatch } from "react-redux";
 
 import { Card, CardTitle } from "reactstrap";
 
-import styled from "styled-components";
 import choseTeams from "../../../../../store/choseTeams/actions";
-
-const MultiSelect = styled(Select)`
-  max-width: 50%;
-`;
-
-const DashCard = styled(Card)`
-  margin: 20px 0;
-`;
 
 let options = [];
 
@@ -49,16 +40,16 @@ const FavoriteTeams = () => {
   };
 
   return (
-    <DashCard body>
+    <Card body>
       <CardTitle>Please choose your favorite teams</CardTitle>
-      <MultiSelect
+      <Select
         closeMenuOnSelect={false}
         components={makeAnimated()}
         isMulti
         options={options}
         onChange={choosesItems}
       />
-    </DashCard>
+    </Card>
   );
 };
 
