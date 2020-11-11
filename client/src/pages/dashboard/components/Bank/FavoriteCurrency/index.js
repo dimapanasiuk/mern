@@ -1,32 +1,46 @@
 import React, { useEffect, useState } from "react";
-import Creatable from "react-select/creatable";
-import { Card, CardTitle, FormGroup, Label } from "reactstrap";
+import Select from "react-select";
+import {
+  Card,
+  FormGroup,
+  Button,
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Row,
+  Col,
+} from "reactstrap";
 import { connect, useDispatch } from "react-redux";
 import DatePicker from "reactstrap-date-picker";
 import axios from "axios";
 import makeAnimated from "react-select/animated";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import classnames from "classnames";
 
-import Menu from "./Menu";
 import choseCurrenciesId from "../../../../../store/chooseCurrenciesId/actions";
 
 let options = [];
 
 const FavoriteCurrency = () => {
   const dispatch = useDispatch();
-  const [currencies, setCurrencies] = useState([]);
+  const [activeTab, setActiveTab] = useState("1");
+  const [currencies, setCurrencies] = useState({});
 
   useEffect(() => {
-    axios.get("https://www.nbrb.by/api/exrates/currencies").then((res) => {
-      console.log("res data", res.data);
-      setCurrencies(res.data);
+    axios.get("https://api.exchangeratesapi.io/latest").then((res) => {
+      setCurrencies(res.data.rates);
     });
   }, []);
 
-  if (currencies.length) {
-    const res = currencies.map((cur) => ({
-      value: cur.Cur_Name,
-      label: cur.Cur_Name,
-      id: cur.Cur_ID,
+  const crs = Object.keys(currencies);
+
+  if (crs.length) {
+    const res = crs.map((cur) => ({
+      value: cur,
+      label: cur,
+      id: cur,
     }));
     options = res;
   }
@@ -35,25 +49,127 @@ const FavoriteCurrency = () => {
     dispatch(choseCurrenciesId(e));
   };
 
-  const isValidNewOption = (inputValue, selectValue) =>
-    inputValue.length > 0 && selectValue.length < 5;
-
+  const toggle = (tab) => {
+    if (activeTab !== tab) setActiveTab(tab);
+  };
   return (
     <Card body sm={10}>
-      <CardTitle> Favorite currency</CardTitle>
-
-      <Creatable
-        components={makeAnimated({ Menu })}
-        isMulti
-        isValidNewOption={isValidNewOption}
-        options={options}
-        onChange={chooseCurrencyClickHandler}
-      />
-
-      <FormGroup>
-        <Label>Please choose date</Label>
-        <DatePicker id="example-datepicker" />
-      </FormGroup>
+      <Nav tabs>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === "1" })}
+            onClick={() => {
+              toggle("1");
+            }}
+          >
+            Step 1
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === "2" })}
+            onClick={() => {
+              toggle("2");
+            }}
+          >
+            Step 2
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === "3" })}
+            onClick={() => {
+              toggle("3");
+            }}
+          >
+            Step 3
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <TabContent activeTab={activeTab}>
+        <TabPane tabId="1">
+          <Row>
+            <Col sm="12">
+              <h6> Please choose basic currency</h6>
+              <Select
+                closeMenuOnSelect={false}
+                components={makeAnimated()}
+                isMulti
+                options={options}
+                onChange={chooseCurrencyClickHandler}
+              />
+              <Button
+                outline
+                color="primary"
+                onClick={() => {
+                  toggle("2");
+                }}
+              >
+                Next
+              </Button>
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane tabId="2">
+          <Row>
+            <Col sm="12">
+              <h6>Select the currency you want to see on the chart</h6>
+              <Select
+                closeMenuOnSelect={false}
+                components={makeAnimated()}
+                isMulti
+                options={options}
+                onChange={chooseCurrencyClickHandler}
+              />
+              <Button
+                outline
+                color="primary"
+                onClick={() => {
+                  toggle("1");
+                }}
+              >
+                Back
+              </Button>
+              <Button
+                outline
+                color="primary"
+                onClick={() => {
+                  toggle("3");
+                }}
+              >
+                Next
+              </Button>
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane tabId="3">
+          <Row>
+            <Col sm="6">
+              <h6>start date</h6>
+              <FormGroup>
+                <DatePicker id="example-datepicker" />
+              </FormGroup>
+            </Col>
+            <Col sm="6">
+              <h6>end date</h6>
+              <FormGroup>
+                <DatePicker id="example-datepicker" />
+              </FormGroup>
+            </Col>
+            <Col sm="12">
+              <Button
+                outline
+                color="primary"
+                onClick={() => {
+                  toggle("2");
+                }}
+              >
+                Back
+              </Button>
+            </Col>
+          </Row>
+        </TabPane>
+      </TabContent>
     </Card>
   );
 };
