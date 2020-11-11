@@ -36,7 +36,6 @@ const FavoriteCurrency = () => {
           `https://api.exchangeratesapi.io/history?start_at=${startDate}&end_at=${endDate}&symbols=${curValues}&base=${basicCur}`
         )
         .then((res) => {
-          console.log(res.data);
           dispatch(getCurrenciesData(res.data));
         });
     }

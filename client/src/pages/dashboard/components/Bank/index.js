@@ -1,5 +1,5 @@
 import React from "react";
-import { any } from "prop-types";
+import { oneOfType, object, array } from "prop-types";
 import { connect } from "react-redux";
 import Chart from "./Chart";
 
@@ -8,7 +8,7 @@ const Bank = ({ dataForChart }) => {
 };
 
 Bank.propTypes = {
-  dataForChart: any,
+  dataForChart: oneOfType([object, array]),
 };
 
 const mapDispatchToProps = (state) => {

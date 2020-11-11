@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { connect } from "react-redux";
 import { string } from "prop-types";
 import { Collapse, Navbar, Nav, NavItem } from "reactstrap";
 
@@ -52,12 +51,4 @@ Header.propTypes = {
   id: string,
 };
 
-const mapDispatchToProps = (state) => {
-  console.log(state.enterCabinetReducer);
-
-  return {
-    id: state.enterCabinetReducer.userId,
-  };
-};
-
-export default connect(mapDispatchToProps)(Header);
+export default Header;

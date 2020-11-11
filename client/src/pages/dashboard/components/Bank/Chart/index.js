@@ -6,7 +6,6 @@ import { chartDataPreparation } from "./chartDataPreparation";
 let chartData = "";
 
 const Chart = ({ data }) => {
-  console.log("data", data);
   if (data.rates) {
     chartData = chartDataPreparation(data.rates);
   }
