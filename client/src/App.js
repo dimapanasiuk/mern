@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { Container } from "reactstrap";
 
 import Header from "./components/Header";
@@ -15,6 +15,7 @@ const App = () => {
     <>
       <Header />
       <Container fluid>
+        <Redirect from="/" to="/dashboard" />
         <Switch>
           <Route path="/login">
             <LoginPage />
@@ -22,7 +23,7 @@ const App = () => {
           <Route path="/dashboard/:name">
             <DetailPage />
           </Route>
-          <Route path="/dashboard">
+          <Route exact path="/dashboard">
             <DashBoard />
           </Route>
           <Route path="/cabinet">
