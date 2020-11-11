@@ -12,27 +12,41 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { connect, useDispatch } from "react-redux";
 import DatePicker from "reactstrap-date-picker";
 import axios from "axios";
 import makeAnimated from "react-select/animated";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import classnames from "classnames";
 
-import choseCurrenciesId from "../../../../../store/chooseCurrenciesId/actions";
+import { copyPartOfStr } from "../../../../../utils";
 
 let options = [];
 
 const FavoriteCurrency = () => {
-  const dispatch = useDispatch();
+  const [currencies, setCurrencies] = useState([]);
+  const [basicCur, setBasicCur] = useState("");
+  const [selectCurrencies, setSelectCurrencies] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [activeTab, setActiveTab] = useState("1");
-  const [currencies, setCurrencies] = useState({});
+  const [save, setSave] = useState(false);
 
   useEffect(() => {
     axios.get("https://api.exchangeratesapi.io/latest").then((res) => {
       setCurrencies(res.data.rates);
     });
-  }, []);
+
+    const curValues = selectCurrencies.map((cur) => cur.value).join();
+    if (basicCur && curValues.length && startDate && endDate) {
+      axios
+        .get(
+          `https://api.exchangeratesapi.io/history?start_at=${startDate}&end_at=${endDate}&symbols=${curValues}&base=${basicCur}`
+        )
+        .then((res) => {
+          console.log(res.data);
+        });
+    }
+  }, [save]);
 
   const crs = Object.keys(currencies);
 
@@ -45,12 +59,30 @@ const FavoriteCurrency = () => {
     options = res;
   }
 
-  const chooseCurrencyClickHandler = (e) => {
-    dispatch(choseCurrenciesId(e));
+  const chooseBasicCurrencyClickHandler = (currency) => {
+    setBasicCur(currency.value);
+  };
+
+  const selectCurrenciesClickHandler = (c) => {
+    setSelectCurrencies(c);
   };
 
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
+  };
+
+  const startDateChangeHandler = (date) => {
+    const partStr = copyPartOfStr(date, 0, 10);
+    setStartDate(partStr);
+  };
+
+  const endDateChangeHandler = (date) => {
+    const partStr = copyPartOfStr(date, 0, 10);
+    setEndDate(partStr);
+  };
+
+  const saveClickHandler = () => {
+    setSave(!save);
   };
   return (
     <Card body sm={10}>
@@ -90,16 +122,16 @@ const FavoriteCurrency = () => {
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-              <h6> Please choose basic currency</h6>
-              <Select
-                closeMenuOnSelect={false}
-                components={makeAnimated()}
-                isMulti
-                options={options}
-                onChange={chooseCurrencyClickHandler}
-              />
+              <FormGroup>
+                <h6> Please choose basic currency</h6>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={makeAnimated()}
+                  options={options}
+                  onChange={chooseBasicCurrencyClickHandler}
+                />
+              </FormGroup>
               <Button
-                outline
                 color="primary"
                 onClick={() => {
                   toggle("2");
@@ -113,17 +145,19 @@ const FavoriteCurrency = () => {
         <TabPane tabId="2">
           <Row>
             <Col sm="12">
-              <h6>Select the currency you want to see on the chart</h6>
-              <Select
-                closeMenuOnSelect={false}
-                components={makeAnimated()}
-                isMulti
-                options={options}
-                onChange={chooseCurrencyClickHandler}
-              />
+              <FormGroup>
+                <h6>Select the currencies you want to see on the chart</h6>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={makeAnimated()}
+                  isMulti
+                  options={options}
+                  onChange={selectCurrenciesClickHandler}
+                />
+              </FormGroup>
               <Button
                 outline
-                color="primary"
+                color="info"
                 onClick={() => {
                   toggle("1");
                 }}
@@ -131,7 +165,6 @@ const FavoriteCurrency = () => {
                 Back
               </Button>
               <Button
-                outline
                 color="primary"
                 onClick={() => {
                   toggle("3");
@@ -147,24 +180,36 @@ const FavoriteCurrency = () => {
             <Col sm="6">
               <h6>start date</h6>
               <FormGroup>
-                <DatePicker id="example-datepicker" />
+                <DatePicker
+                  id="start-datepicker"
+                  value={startDate}
+                  onChange={startDateChangeHandler}
+                />
               </FormGroup>
             </Col>
             <Col sm="6">
               <h6>end date</h6>
               <FormGroup>
-                <DatePicker id="example-datepicker" />
+                <DatePicker
+                  id="end-datepicker"
+                  value={endDate}
+                  onChange={endDateChangeHandler}
+                />
               </FormGroup>
             </Col>
             <Col sm="12">
               <Button
                 outline
-                color="primary"
+                color="info"
                 onClick={() => {
                   toggle("2");
                 }}
               >
                 Back
+              </Button>
+
+              <Button outline color="success" onClick={saveClickHandler}>
+                Save
               </Button>
             </Col>
           </Row>
@@ -174,4 +219,4 @@ const FavoriteCurrency = () => {
   );
 };
 
-export default connect()(FavoriteCurrency);
+export default FavoriteCurrency;
