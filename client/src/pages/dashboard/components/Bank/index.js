@@ -4,7 +4,7 @@ import { array } from "prop-types";
 import { connect } from "react-redux";
 import Chart from "./Chart";
 
-const START = "2020-10-1";
+const START = "2020-10-4";
 const END = "2020-10-11";
 
 const Bank = ({ ids }) => {
@@ -20,7 +20,7 @@ const Bank = ({ ids }) => {
         )
         .then((data) => {
           setDataForChart(data.data);
-          console.log('data', data);
+          console.log("data", data);
         });
     }
   }, [ids]);
