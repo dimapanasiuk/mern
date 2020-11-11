@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, TabContent } from "reactstrap";
 import axios from "axios";
+import { connect, useDispatch } from "react-redux";
 
 import Navigation from "./Navigation";
 import BasicCurrency from "./BasicCurrency";
@@ -8,9 +9,13 @@ import SelectCurrencies from "./SelectCurrencies";
 import Date from "./Date";
 import { copyPartOfStr } from "../../../../../utils";
 
+import getCurrenciesData from "../../../../../store/currenciesData/actions";
+
 let options = [];
 
 const FavoriteCurrency = () => {
+  const dispatch = useDispatch();
+
   const [currencies, setCurrencies] = useState([]);
   const [basicCur, setBasicCur] = useState("");
   const [selectCurrencies, setSelectCurrencies] = useState([]);
@@ -32,6 +37,7 @@ const FavoriteCurrency = () => {
         )
         .then((res) => {
           console.log(res.data);
+          dispatch(getCurrenciesData(res.data));
         });
     }
   }, [save]);
@@ -101,4 +107,4 @@ const FavoriteCurrency = () => {
   );
 };
 
-export default FavoriteCurrency;
+export default connect()(FavoriteCurrency);

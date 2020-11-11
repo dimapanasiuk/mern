@@ -1,6 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { array } from "prop-types";
+import { any } from "prop-types";
+import { chartDataPreparation } from "./chartDataPreparation";
 
 const chartData = {
   labels: ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"],
@@ -23,16 +24,20 @@ const chartData = {
 };
 
 const Chart = ({ data }) => {
-  console.log(data);
+  if (data.rates) {
+    console.log("data ready", data.rates);
+    chartDataPreparation(data.rates);
+  }
+
   return (
     <>
-      <Line data={chartData}  height="80"/>
+      <Line data={chartData} height={80} />
     </>
   );
 };
 
 Chart.propTypes = {
-  data: array,
+  data: any,
 };
 
 export default Chart;
