@@ -1,43 +1,31 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { any } from "prop-types";
+import { object, oneOfType, array } from "prop-types";
 import { chartDataPreparation } from "./chartDataPreparation";
 
-const chartData = {
-  labels: ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"],
-  datasets: [
-    {
-      label: "My First dataset",
-      fill: false,
-      lineTension: 0.1,
-      borderColor: "rgba(75,192,192,1)",
-      data: [65, 59, 80, 81, 56, 55, 40],
-    },
-    {
-      label: "National Average",
-      fill: false,
-      lineTension: 0.1,
-      borderColor: "red",
-      data: [65, 20, 30, 10, 56, 56, 46],
-    },
-  ],
-};
+let chartData = "";
 
 const Chart = ({ data }) => {
+  console.log("data", data);
   if (data.rates) {
-    console.log("data ready", data.rates);
-    chartDataPreparation(data.rates);
+    chartData = chartDataPreparation(data.rates);
   }
 
   return (
     <>
-      <Line data={chartData} height={80} />
+      {(() => {
+        if (chartData) {
+          return <Line data={chartData} height={80} />;
+        } else {
+          return <h2>Please setting currency widget </h2>;
+        }
+      })()}
     </>
   );
 };
 
 Chart.propTypes = {
-  data: any,
+  data: oneOfType([array, object]),
 };
 
 export default Chart;
