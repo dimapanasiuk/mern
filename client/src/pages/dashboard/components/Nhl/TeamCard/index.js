@@ -7,15 +7,11 @@ import { Link } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import choseTeamId from "../../../../../store/choseTeamId/actions";
 
-const Content = styled.div`
-  margin-bottom: 20px;
-`;
-
 const CardItem = styled(Card)`
   margin-bottom: 20px;
 `;
 
-const TeamCard = ({ teamId, name, conf, division }) => {
+const TeamCard = ({ teamId, name }) => {
   const dispatch = useDispatch();
 
   const clickHandler = (e) => {
@@ -26,12 +22,6 @@ const TeamCard = ({ teamId, name, conf, division }) => {
   return (
     <CardItem body size="lg">
       <CardTitle tag="h3">{name}</CardTitle>
-      <Content>
-        <b>Conference</b>
-        <p>{conf}</p>
-        <b>Division</b>
-        <p>{division}</p>
-      </Content>
       <Link id={teamId} onClick={clickHandler} to={`/dashboard/${name}`}>
         More information
       </Link>
@@ -42,8 +32,6 @@ const TeamCard = ({ teamId, name, conf, division }) => {
 TeamCard.propTypes = {
   teamId: number,
   name: string,
-  conf: string,
-  division: string,
 };
 
 export default connect()(TeamCard);
