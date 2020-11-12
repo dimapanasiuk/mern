@@ -1,11 +1,11 @@
 import React from "react";
-import Teams from "../Nhl/Teams";
+import Nhl from "../Nhl";
 import Bank from "../Bank";
 
 const Show = () => {
   return (
     <>
-      <Teams />
+      <Nhl />
       <Bank />
     </>
   );

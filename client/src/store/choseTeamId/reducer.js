@@ -1,7 +1,7 @@
 import { CHOSETEAMID } from "./actions";
 
 const initialState = {
-  teams: [],
+  teams: "",
 };
 
 function choseTeamIdReducer(state = initialState, action) {

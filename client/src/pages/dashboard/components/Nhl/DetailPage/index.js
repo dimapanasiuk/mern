@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Row, Card } from "reactstrap";
-import { any } from "prop-types";
+import { string } from "prop-types";
 import axios from "axios";
 import styled from "styled-components";
 
+import Schedule from "../Schedule";
 import Roster from "../Roster";
 import DetailPageModal from "./DetailPageModal";
 
@@ -13,9 +14,10 @@ const CircleButton = styled(Button)`
   border-radius: 1000px;
 `;
 
-const RosterCard = styled(Card)`
+const StyleCard = styled(Card)`
   display: flex;
   padding: 20px;
+  margin-bottom: 20px;
 `;
 
 const DetailPage = ({ teamId }) => {
@@ -55,23 +57,28 @@ const DetailPage = ({ teamId }) => {
       </Link>
       <h1>DetailPage</h1>
 
-      <RosterCard>
+      <StyleCard>
+        <Schedule teamId={teamId} />
+      </StyleCard>
+
+      <StyleCard>
         <Row sm="12">
           <Roster roster={roster} onShowAlert={onShowModal} />
         </Row>
 
         <DetailPageModal
           alertData={alertData}
+          StyleCard
           modal={modal}
           onShowModal={onShowModal}
         />
-      </RosterCard>
+      </StyleCard>
     </>
   );
 };
 
 DetailPage.propTypes = {
-  teamId: any,
+  teamId: string,
 };
 
 const mapDispatchToProps = (state) => ({
