@@ -3,6 +3,7 @@ import { Card, CardTitle } from "reactstrap";
 import { number, string } from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import emoji from "emoji-dictionary";
 
 import { connect, useDispatch } from "react-redux";
 import choseTeamId from "../../../../../store/choseTeamId/actions";
@@ -21,7 +22,10 @@ const TeamCard = ({ teamId, name }) => {
 
   return (
     <CardItem body size="lg">
-      <CardTitle tag="h3">{name}</CardTitle>
+      <CardTitle tag="h3">
+        {name}
+        {` `} {emoji.getUnicode("pouting_cat")}
+      </CardTitle>
       <Link id={teamId} onClick={clickHandler} to={`/dashboard/${name}`}>
         More information
       </Link>

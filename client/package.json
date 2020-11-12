@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
     "chart.js": "^2.9.4",
+    "emoji-dictionary": "^1.0.11",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
