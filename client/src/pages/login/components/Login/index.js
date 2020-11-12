@@ -3,13 +3,8 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
 import { useHistory } from "react-router-dom";
-import { connect, useDispatch } from "react-redux";
-
-import { ID } from "../../../../utils";
-import enterCabinet from "../../../../store/login/action";
 
 const Login = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
 
@@ -18,9 +13,7 @@ const Login = () => {
       .post("/login", requestData)
       .then((response) => {
         if (response.data) {
-          const id = response.data.user[ID];
           history.push("/");
-          dispatch(enterCabinet(id));
         }
       })
       .catch((error) => {
@@ -60,10 +53,4 @@ const Login = () => {
   );
 };
 
-const mapDispatchToProps = (state) => {
-  return {
-    data: state.enterCabinetReducer,
-  };
-};
-
-export default connect(mapDispatchToProps)(Login);
+export default Login;
