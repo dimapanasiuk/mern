@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Button } from "reactstrap";
+import { Button, Row, Card } from "reactstrap";
 import { string } from "prop-types";
 import axios from "axios";
 import styled from "styled-components";
@@ -9,6 +9,11 @@ import Roster from "../Roster";
 
 const CircleButton = styled(Button)`
   border-radius: 1000px;
+`;
+
+const RosterCard = styled(Card)`
+  display: flex;
+  padding: 20px;
 `;
 
 const DetailPage = ({ teamId }) => {
@@ -32,7 +37,12 @@ const DetailPage = ({ teamId }) => {
         <CircleButton color="primary">🠔</CircleButton>
       </Link>
       <h1>DetailPage</h1>
-      <Roster roster={roster} />
+
+      <RosterCard>
+        <Row sm="12">
+          <Roster roster={roster} />
+        </Row>
+      </RosterCard>
     </>
   );
 };
