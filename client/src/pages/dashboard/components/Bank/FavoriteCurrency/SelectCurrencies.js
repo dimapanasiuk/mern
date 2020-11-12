@@ -1,8 +1,9 @@
 import React from "react";
 import Select from "react-select";
-import { FormGroup, Button, TabPane, Row, Col } from "reactstrap";
+import { FormGroup, TabPane, Row, Col } from "reactstrap";
 import makeAnimated from "react-select/animated";
 import { any, func } from "prop-types";
+import { Head6, CustomButton } from "./style";
 
 const SelectCurrencies = ({ options, toggle, chooseCurrencies }) => {
   return (
@@ -10,7 +11,7 @@ const SelectCurrencies = ({ options, toggle, chooseCurrencies }) => {
       <Row>
         <Col sm="12">
           <FormGroup>
-            <h6>Select the currencies you want to see on the chart</h6>
+            <Head6>Select the currencies you want to see on the chart</Head6>
             <Select
               closeMenuOnSelect={false}
               components={makeAnimated()}
@@ -19,7 +20,7 @@ const SelectCurrencies = ({ options, toggle, chooseCurrencies }) => {
               onChange={chooseCurrencies}
             />
           </FormGroup>
-          <Button
+          <CustomButton
             outline
             color="info"
             onClick={() => {
@@ -27,15 +28,15 @@ const SelectCurrencies = ({ options, toggle, chooseCurrencies }) => {
             }}
           >
             Back
-          </Button>
-          <Button
+          </CustomButton>
+          <CustomButton
             color="primary"
             onClick={() => {
               toggle("3");
             }}
           >
             Next
-          </Button>
+          </CustomButton>
         </Col>
       </Row>
     </TabPane>

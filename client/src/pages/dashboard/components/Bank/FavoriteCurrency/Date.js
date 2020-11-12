@@ -1,7 +1,8 @@
 import React from "react";
-import { FormGroup, Button, TabPane, Row, Col } from "reactstrap";
+import { FormGroup, TabPane, Row, Col } from "reactstrap";
 import DatePicker from "reactstrap-date-picker";
 import { func, string } from "prop-types";
+import { CustomButton } from "./style";
 
 const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
   return (
@@ -24,7 +25,7 @@ const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
           </FormGroup>
         </Col>
         <Col sm="12">
-          <Button
+          <CustomButton
             outline
             color="info"
             onClick={() => {
@@ -32,11 +33,11 @@ const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
             }}
           >
             Back
-          </Button>
+          </CustomButton>
 
-          <Button outline color="success" onClick={save}>
+          <CustomButton outline color="success" onClick={save}>
             Save
-          </Button>
+          </CustomButton>
         </Col>
       </Row>
     </TabPane>

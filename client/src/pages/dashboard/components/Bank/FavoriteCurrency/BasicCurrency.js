@@ -3,6 +3,7 @@ import Select from "react-select";
 import { FormGroup, Button, TabPane, Row, Col } from "reactstrap";
 import makeAnimated from "react-select/animated";
 import { any, func } from "prop-types";
+import { Head6 } from "./style";
 
 const BasicCurrency = ({ toggle, options, chooseCurrency }) => {
   return (
@@ -10,7 +11,7 @@ const BasicCurrency = ({ toggle, options, chooseCurrency }) => {
       <Row>
         <Col sm="12">
           <FormGroup>
-            <h6> Please choose basic currency</h6>
+            <Head6> Please choose basic currency</Head6>
             <Select
               closeMenuOnSelect={false}
               components={makeAnimated()}

@@ -8,6 +8,10 @@ import styled from "styled-components";
 import FavoriteCurrency from "../Bank/FavoriteCurrency";
 import FavoriteTeams from "../Nhl/FavoriteTeams";
 
+const SaveButton = styled(Button)`
+  margin-top: 20px;
+`;
+
 const Column = styled(Col)`
   padding: 0px 20px 0 0;
 `;
@@ -35,9 +39,9 @@ const DashSettings = ({ saveTeams }) => {
           <FavoriteTeams />
         </Column>
       </div>
-      <Button color="success" onClick={saveClickHandler}>
+      <SaveButton color="success" onClick={saveClickHandler}>
         Save Changes
-      </Button>{" "}
+      </SaveButton>{" "}
     </>
   );
 };
