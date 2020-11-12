@@ -28,10 +28,26 @@ const DivFlex = styled.div`
 `;
 
 const DetailPage = ({ teamId }) => {
+  const [teamName, setTeamName] = useState("");
   const [roster, setRoster] = useState([]);
-
   const [modal, setModal] = useState(false);
   const [alertData, setAlertData] = useState("");
+  useEffect(() => {
+    axios
+      .get(
+        `https://statsapi.web.nhl.com/api/v1/teams/${teamId}?expand=team.roster`
+      )
+      .then((response) => {
+        setRoster(response.data.teams[0].roster.roster);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .get(`https://statsapi.web.nhl.com/api/v1/teams/${teamId}`)
+      .then((data) => setTeamName(data.data.teams[0].name));
+  }, []);
 
   const onShowModal = (id) => {
     if (!alertData) {
@@ -44,26 +60,13 @@ const DetailPage = ({ teamId }) => {
     setModal(!modal);
   };
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://statsapi.web.nhl.com/api/v1/teams/${teamId}?expand=team.roster`
-      )
-      .then((response) => {
-        setRoster(response.data.teams[0].roster.roster);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   return (
     <>
       <DivFlex>
         <Link to="/dashboard">
           <CircleButton color="primary">🠔</CircleButton>
         </Link>
-        <h1 style={{ marginLeft: "20px" }}>DetailPage</h1>
+        <h1 style={{ marginLeft: "20px" }}>{teamName}</h1>
       </DivFlex>
 
       <StyleCard>
@@ -95,7 +98,7 @@ DetailPage.propTypes = {
 };
 
 const mapDispatchToProps = (state) => ({
-  teamId: state.choseTeamIdReducer.teams,
+  teamId: state.choseTeamIdReducer.id,
 });
 
 export default connect(mapDispatchToProps)(DetailPage);
