@@ -1,7 +1,7 @@
 import React from "react";
 import uuid from "react-uuid";
 import { array, func } from "prop-types";
-import { Card, CardTitle, Col } from "reactstrap";
+import { Card, CardTitle, Button, Col } from "reactstrap";
 import styled from "styled-components";
 import emoji from "emoji-dictionary";
 import theme from "../../../../../style/theme";
@@ -9,6 +9,9 @@ import theme from "../../../../../style/theme";
 const DivFlex = styled.div`
   display: flex;
   align-items: center;
+`;
+const Head = styled.h6`
+  margin-bottom: 20px;
 `;
 
 const CardStyle = styled(Card)`
@@ -32,21 +35,30 @@ const Roster = ({ roster, onShowAlert }) => {
             <h6>Position__</h6>
             <h5 style={{ color: theme.green }}>{player.position.type}</h5>
           </DivFlex>
-          <button
+          <Button
+            style={{ marginTop: "20px" }}
             id={player.person.id}
-            type="button"
-            className="btn btn-primary"
+            color="primary"
             onClick={(e) => {
               onShowAlert(e.target.id);
             }}
           >
-            show Alert
-          </button>
+            more
+          </Button>
         </CardStyle>
       </Col>
     );
   });
-  return <>{ros}</>;
+  return (
+    <>
+      <Col sm="12">
+        <Head>
+          Roster {` `} {emoji.getUnicode(":smirk_cat:")}
+        </Head>
+      </Col>
+      {ros}
+    </>
+  );
 };
 
 Roster.propTypes = {

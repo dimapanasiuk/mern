@@ -7,6 +7,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 import Schedule from "../Schedule";
+import TeamStats from "../TeamStats";
 import Roster from "../Roster";
 import DetailPageModal from "./DetailPageModal";
 
@@ -18,6 +19,12 @@ const StyleCard = styled(Card)`
   display: flex;
   padding: 20px;
   margin-bottom: 20px;
+`;
+
+const DivFlex = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
 `;
 
 const DetailPage = ({ teamId }) => {
@@ -52,13 +59,19 @@ const DetailPage = ({ teamId }) => {
 
   return (
     <>
-      <Link to="/dashboard">
-        <CircleButton color="primary">🠔</CircleButton>
-      </Link>
-      <h1>DetailPage</h1>
+      <DivFlex>
+        <Link to="/dashboard">
+          <CircleButton color="primary">🠔</CircleButton>
+        </Link>
+        <h1 style={{ marginLeft: "20px" }}>DetailPage</h1>
+      </DivFlex>
 
       <StyleCard>
         <Schedule teamId={teamId} />
+      </StyleCard>
+
+      <StyleCard>
+        <TeamStats teamId={teamId} />
       </StyleCard>
 
       <StyleCard>
