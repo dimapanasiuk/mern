@@ -30,7 +30,7 @@ const DashSettings = ({ saveTeams }) => {
 
   return (
     <>
-      <h1>DashSettings</h1>
+      <h1>Settings</h1>
       <div style={{ display: "flex" }}>
         <Column sm={6}>
           <FavoriteCurrency />

@@ -18,7 +18,7 @@ const Teams = ({ teams }) => {
 
   return (
     <>
-      <h1 style={{ paddingBottom: "20px" }}>Teams</h1>
+      <h2>Please setting Nhl widget</h2>
       <Row sm="12">{cards}</Row>
     </>
   );

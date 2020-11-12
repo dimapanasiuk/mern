@@ -1,6 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { object, oneOfType, array } from "prop-types";
+
 import { chartDataPreparation } from "./chartDataPreparation";
 
 let chartData = "";
@@ -14,7 +15,7 @@ const Chart = ({ data }) => {
     <>
       {(() => {
         if (chartData) {
-          return <Line data={chartData} height={80} />;
+          return <Line data={chartData} height={90} />;
         } else {
           return <h2>Please setting currency widget </h2>;
         }
