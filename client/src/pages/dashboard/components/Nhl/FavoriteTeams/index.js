@@ -3,10 +3,14 @@ import axios from "axios";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { connect, useDispatch } from "react-redux";
-
 import { Card, CardTitle } from "reactstrap";
+import styled from "styled-components";
 
 import choseTeams from "../../../../../store/choseTeams/actions";
+
+const CardStyle = styled(Card)`
+  height: 100%;
+`;
 
 let options = [];
 
@@ -40,7 +44,7 @@ const FavoriteTeams = () => {
   };
 
   return (
-    <Card body>
+    <CardStyle body>
       <CardTitle>Please choose your favorite teams</CardTitle>
       <Select
         closeMenuOnSelect={false}
@@ -49,7 +53,7 @@ const FavoriteTeams = () => {
         options={options}
         onChange={choosesTeamsClickHandler}
       />
-    </Card>
+    </CardStyle>
   );
 };
 
