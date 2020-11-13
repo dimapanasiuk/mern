@@ -37,8 +37,10 @@ const DetailPage = ({ teamId }) => {
       .get(
         `https://statsapi.web.nhl.com/api/v1/teams/${teamId}?expand=team.roster`
       )
-      .then((response) => {
-        setRoster(response.data.teams[0].roster.roster);
+      .then((res) => {
+        if (res.data.teams[0]) {
+          setRoster(res.data.teams[0].roster.roster);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -46,7 +48,11 @@ const DetailPage = ({ teamId }) => {
 
     axios
       .get(`https://statsapi.web.nhl.com/api/v1/teams/${teamId}`)
-      .then((data) => setTeamName(data.data.teams[0].name));
+      .then((res) => {
+        if (res.data.teams[0]) {
+          setTeamName(res.data.teams[0].name);
+        }
+      });
   }, []);
 
   const onShowModal = (id) => {
