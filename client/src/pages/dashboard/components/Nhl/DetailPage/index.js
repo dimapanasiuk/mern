@@ -1,31 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Button, Row, Card } from "reactstrap";
+import { Row } from "reactstrap";
 import { string } from "prop-types";
 import axios from "axios";
-import styled from "styled-components";
 
+import { CircleButton, StyleCard, DivFlex, Head1 } from "./style";
 import Schedule from "../Schedule";
 import TeamStats from "../TeamStats";
 import Roster from "../Roster";
 import DetailPageModal from "./DetailPageModal";
-
-const CircleButton = styled(Button)`
-  border-radius: 1000px;
-`;
-
-const StyleCard = styled(Card)`
-  display: flex;
-  padding: 20px;
-  margin-bottom: 20px;
-`;
-
-const DivFlex = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 20px 0;
-`;
 
 const DetailPage = ({ teamId }) => {
   const [teamName, setTeamName] = useState("");
@@ -72,22 +56,18 @@ const DetailPage = ({ teamId }) => {
         <Link to="/dashboard">
           <CircleButton color="primary">🠔</CircleButton>
         </Link>
-        <h1 style={{ marginLeft: "20px" }}>{teamName}</h1>
+        <Head1>{teamName}</Head1>
       </DivFlex>
-
       <StyleCard>
         <Schedule teamId={teamId} />
       </StyleCard>
-
       <StyleCard>
         <TeamStats teamId={teamId} />
       </StyleCard>
-
       <StyleCard>
         <Row sm="12">
           <Roster roster={roster} onShowAlert={onShowModal} />
         </Row>
-
         <DetailPageModal
           alertData={alertData}
           StyleCard
