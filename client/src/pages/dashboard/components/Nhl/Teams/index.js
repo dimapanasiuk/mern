@@ -3,12 +3,13 @@ import uuid from "react-uuid";
 import { Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 import { any } from "prop-types";
+import { size } from "lodash";
 import TeamCard from "../TeamCard";
 
 const Teams = ({ teams }) => {
   let cards;
 
-  if (teams.length > 0) {
+  if (size(teams)) {
     cards = teams.map((team) => (
       <Col key={uuid()} sm={6}>
         <TeamCard teamId={team.id} name={team.value} />
