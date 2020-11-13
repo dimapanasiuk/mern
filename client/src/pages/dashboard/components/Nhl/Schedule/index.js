@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { string } from "prop-types";
 import axios from "axios";
 import emoji from "emoji-dictionary";
+import { size } from "lodash";
 
 const Schedule = ({ teamId }) => {
   const [dates, setDates] = useState("");
@@ -12,7 +13,7 @@ const Schedule = ({ teamId }) => {
   }, []);
 
   const result = () => {
-    if (!dates.length) {
+    if (!size(dates)) {
       return <h1 className="display-4">Season is over</h1>;
     }
     return <h1 className="display-4">Please update information on frontend</h1>;
