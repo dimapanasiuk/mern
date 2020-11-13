@@ -2,7 +2,6 @@ import { dynamicColors } from "../../../../../utils";
 
 export const chartDataPreparation = (data) => {
   const labels = Object.keys(data);
-  const datasets = [];
 
   const objCurrencies = data[labels[0]];
   const currencies = Object.keys(objCurrencies);
@@ -16,17 +15,15 @@ export const chartDataPreparation = (data) => {
     });
   });
 
-  currencies.forEach((item) => {
+  const datasets = currencies.map((item) => {
     const color = dynamicColors();
-
-    const obj = {
+    return {
       label: item,
       lineTension: 0.1,
       backgroundColor: color,
       borderColor: color,
       data: objData[item],
     };
-    datasets.push(obj);
   });
 
   const dataForChart = {
