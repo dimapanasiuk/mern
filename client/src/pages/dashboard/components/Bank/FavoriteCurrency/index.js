@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, TabContent } from "reactstrap";
 import axios from "axios";
 import { connect, useDispatch } from "react-redux";
+import { size } from "lodash";
 
 import Navigation from "./Navigation";
 import BasicCurrency from "./BasicCurrency";
@@ -30,7 +31,8 @@ const FavoriteCurrency = () => {
     });
 
     const curValues = selectCurrencies.map((cur) => cur.value).join();
-    if (basicCur && curValues.length && startDate && endDate) {
+
+    if (basicCur && size(curValues) && startDate && endDate) {
       axios
         .get(
           `https://api.exchangeratesapi.io/history?start_at=${startDate}&end_at=${endDate}&symbols=${curValues}&base=${basicCur}`
@@ -78,6 +80,7 @@ const FavoriteCurrency = () => {
   const saveClickHandler = () => {
     setSave(!save);
   };
+
   return (
     <Card body sm={10}>
       <Navigation activeTab={activeTab} />
@@ -87,13 +90,11 @@ const FavoriteCurrency = () => {
           options={options}
           chooseCurrency={chooseBasicCurrencyClickHandler}
         />
-
         <SelectCurrencies
           toggle={toggle}
           options={options}
           chooseCurrencies={selectCurrenciesClickHandler}
         />
-
         <Date
           startFoo={startDateChangeHandler}
           endFoo={endDateChangeHandler}
