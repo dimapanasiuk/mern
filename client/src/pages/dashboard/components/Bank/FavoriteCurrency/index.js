@@ -45,7 +45,7 @@ const FavoriteCurrency = () => {
 
   const crs = Object.keys(currencies);
 
-  if (crs.length) {
+  if (size(crs)) {
     const res = crs.map((cur) => ({
       value: cur,
       label: cur,
