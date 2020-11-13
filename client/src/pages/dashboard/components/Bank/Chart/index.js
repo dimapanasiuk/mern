@@ -13,13 +13,11 @@ const Chart = ({ data }) => {
 
   return (
     <>
-      {(() => {
-        if (chartData) {
-          return <Line data={chartData} height={90} />;
-        } else {
-          return <h2>Please setting currency widget </h2>;
-        }
-      })()}
+      {chartData ? (
+        <Line data={chartData} height={90} />
+      ) : (
+        <h2>Please setting currency widget </h2>
+      )}
     </>
   );
 };
