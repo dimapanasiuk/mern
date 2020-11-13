@@ -24,8 +24,10 @@ const TeamStats = ({ teamId }) => {
     axios
       .get(`https://statsapi.web.nhl.com/api/v1/teams/${teamId}/stats`)
       .then((data) => {
-        setRegSeason(data.data.stats[0].splits[0].stat);
-        setPostRegSeason(data.data.stats[0].type.gameType.postseason);
+        if (data.data.stats[0]) {
+          setRegSeason(data.data.stats[0].splits[0].stat);
+          setPostRegSeason(data.data.stats[0].type.gameType.postseason);
+        }
       });
   }, []);
 
