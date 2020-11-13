@@ -25,7 +25,7 @@ const Roster = ({ roster, onShowAlert }) => {
         <CardStyle body>
           <CardTitle tag="h5">
             {player.person.fullName}
-            {` `} {emoji.getUnicode(":boy:")}
+            &nbsp; {emoji.getUnicode(":boy:")}
           </CardTitle>
           <DivFlex>
             <h6>Number__</h6>
@@ -52,9 +52,7 @@ const Roster = ({ roster, onShowAlert }) => {
   return (
     <>
       <Col sm="12">
-        <Head>
-          Roster {` `} {emoji.getUnicode(":smirk_cat:")}
-        </Head>
+        <Head>Roster &nbsp; {emoji.getUnicode(":smirk_cat:")}</Head>
       </Col>
       {ros}
     </>

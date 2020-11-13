@@ -24,7 +24,7 @@ const TeamCard = ({ teamId, name }) => {
     <CardItem body size="lg">
       <CardTitle tag="h3">
         {name}
-        {` `} {emoji.getUnicode("pouting_cat")}
+        &nbsp; {emoji.getUnicode("pouting_cat")}
       </CardTitle>
       <Link id={teamId} onClick={clickHandler} to={`/dashboard/${name}`}>
         More information

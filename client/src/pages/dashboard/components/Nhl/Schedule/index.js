@@ -21,9 +21,7 @@ const Schedule = ({ teamId }) => {
 
   return (
     <>
-      <h6>
-        Schedule {` `} {emoji.getUnicode(":calendar:")}
-      </h6>
+      <h6>Schedule &nbsp; {emoji.getUnicode(":calendar:")}</h6>
 
       {result()}
     </>

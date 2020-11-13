@@ -41,7 +41,7 @@ const TeamStats = ({ teamId }) => {
   return (
     <>
       <h6>
-        Team stats {` `} {emoji.getUnicode(":chart_with_upwards_trend:")}
+        Team stats &nbsp; {emoji.getUnicode(":chart_with_upwards_trend:")}
       </h6>
       <DivFlex>
         <div>
