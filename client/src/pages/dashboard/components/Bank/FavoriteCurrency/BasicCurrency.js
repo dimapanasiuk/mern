@@ -19,12 +19,7 @@ const BasicCurrency = ({ toggle, options, chooseCurrency }) => {
               onChange={chooseCurrency}
             />
           </FormGroup>
-          <Button
-            color="primary"
-            onClick={() => {
-              toggle("2");
-            }}
-          >
+          <Button color="primary" data-position="2" onClick={toggle}>
             Next
           </Button>
         </Col>

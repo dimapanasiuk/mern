@@ -25,13 +25,7 @@ const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
           </FormGroup>
         </Col>
         <Col sm="12">
-          <CustomButton
-            outline
-            color="info"
-            onClick={() => {
-              toggle("2");
-            }}
-          >
+          <CustomButton outline color="info" data-position="2" onClick={toggle}>
             Back
           </CustomButton>
 

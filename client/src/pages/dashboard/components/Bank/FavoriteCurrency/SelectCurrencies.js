@@ -20,21 +20,10 @@ const SelectCurrencies = ({ options, toggle, chooseCurrencies }) => {
               onChange={chooseCurrencies}
             />
           </FormGroup>
-          <CustomButton
-            outline
-            color="info"
-            onClick={() => {
-              toggle("1");
-            }}
-          >
+          <CustomButton outline color="info" data-position="1" onClick={toggle}>
             Back
           </CustomButton>
-          <CustomButton
-            color="primary"
-            onClick={() => {
-              toggle("3");
-            }}
-          >
+          <CustomButton color="primary" data-position="3" onClick={toggle}>
             Next
           </CustomButton>
         </Col>

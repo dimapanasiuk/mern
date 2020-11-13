@@ -60,7 +60,8 @@ const FavoriteCurrency = () => {
     setSelectCurrencies(c);
   };
 
-  const toggle = (tab) => {
+  const toggle = (e) => {
+    const tab = e.target.getAttribute("data-position");
     if (activeTab !== tab) setActiveTab(tab);
   };
 
