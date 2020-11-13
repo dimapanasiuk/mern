@@ -2,19 +2,15 @@ import React, { useEffect, useState } from "react";
 import { string } from "prop-types";
 import axios from "axios";
 import emoji from "emoji-dictionary";
-import styled from "styled-components";
-import theme from "../../../../../style/theme";
-
-const DivFlex = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Head4 = styled.h4`
-  width: 100%;
-  margin-left: 40px;
-`;
+import {
+  HeadGreen,
+  HeadRed,
+  HeadBlue,
+  HeadInfo,
+  HeadGray,
+  DivFlex,
+  Head4,
+} from "./style";
 
 const TeamStats = ({ teamId }) => {
   const [regSeason, setRegSeason] = useState("");
@@ -47,25 +43,23 @@ const TeamStats = ({ teamId }) => {
         <div>
           <DivFlex>
             <h3>Wins</h3>
-            <h3 style={{ color: theme.green }}> {regSeason.wins}</h3>
+            <HeadGreen> {regSeason.wins}</HeadGreen>
           </DivFlex>
           <DivFlex>
             <h3>Losses</h3>
-            <h3 style={{ color: theme.red }}>{regSeason.losses}</h3>
+            <HeadRed>{regSeason.losses}</HeadRed>
           </DivFlex>
           <DivFlex>
             <h3>Goals</h3>
-            <h3 style={{ color: theme.blue }}> {regSeason.goalsPerGame}</h3>
+            <HeadBlue> {regSeason.goalsPerGame}</HeadBlue>
           </DivFlex>
           <DivFlex>
             <h3>Penalty</h3>
-            <h3 style={{ color: theme.info }}>
-              {regSeason.penaltyKillPercentage}
-            </h3>
+            <HeadInfo>{regSeason.penaltyKillPercentage}</HeadInfo>
           </DivFlex>
           <DivFlex>
             <h3>Points</h3>
-            <h3 style={{ color: theme.gray }}> {regSeason.pts}</h3>
+            <HeadGray> {regSeason.pts}</HeadGray>
           </DivFlex>
         </div>
         {playoff()}
