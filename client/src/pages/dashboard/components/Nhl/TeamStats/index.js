@@ -31,8 +31,6 @@ const TeamStats = ({ teamId }) => {
       });
   }, []);
 
-  console.log("regSeason", regSeason);
-
   const playoff = () => {
     if (!postSeason) {
       return <Head4 className="display-4">Missed the playoff</Head4>;
