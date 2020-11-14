@@ -12,7 +12,7 @@ import { copyPartOfStr } from "../../../../../utils";
 
 import getCurrenciesData from "../../../../../store/currenciesData/actions";
 
-let options = [];
+let options = []; // TODO: let replace const
 
 const FavoriteCurrency = () => {
   const dispatch = useDispatch();
@@ -68,6 +68,7 @@ const FavoriteCurrency = () => {
   };
 
   const startDateChangeHandler = (date) => {
+    // TODO: write one func for startDateChangeHandler and end
     const partStr = copyPartOfStr(date, 0, 10);
     setStartDate(partStr);
   };
