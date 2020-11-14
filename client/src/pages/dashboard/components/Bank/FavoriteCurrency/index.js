@@ -4,13 +4,14 @@ import axios from "axios";
 import { connect, useDispatch } from "react-redux";
 import { size } from "lodash";
 
+// eslint-disable-next-line import/no-unresolved
+import getCurrenciesData from "store/currenciesData/actions"; // TODO : fix this problem
+
 import Navigation from "./Navigation";
 import BasicCurrency from "./BasicCurrency";
 import SelectCurrencies from "./SelectCurrencies";
 import Date from "./Date";
 import { copyPartOfStr } from "../../../../../utils";
-
-import getCurrenciesData from "../../../../../store/currenciesData/actions";
 
 let options = []; // TODO: let replace const
 
