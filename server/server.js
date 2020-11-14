@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
+const connectEnsureLogin = require("connect-ensure-login");
+const session = require("express-session");
 const db = require("./db");
 
 const User = require("./scheme/user");
@@ -67,10 +69,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
-  require("express-session")({
+  session({
     secret: "keyboard cat",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
   })
 );
 
@@ -94,10 +96,7 @@ app.get("/logout", function (req, res) {
   res.redirect("/home");
 });
 
-app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function (
-  req,
-  res
-) {
+app.get("/profile", connectEnsureLogin.ensureLoggedIn(), function (req, res) {
   res.send({ user: req.user });
 });
 
@@ -119,6 +118,16 @@ app.post("/registration", (req, res) => {
   }
 
   res.send({ data: "err" });
+});
+
+app.put("/save", (req, res) => {
+  const { teams } = req.body;
+
+  User.updateOne({ name: "dima" }, { nhlTeams: teams }, function (err, result) {
+    if (err) return console.log(err);
+  });
+
+  res.send(req.body.teams);
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

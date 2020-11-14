@@ -3,18 +3,13 @@ import axios from "axios";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { connect, useDispatch } from "react-redux";
-
 import { Card, CardTitle } from "reactstrap";
-
 import styled from "styled-components";
-import choseTeams from "../../../../store/choseTeams/actions";
 
-const MultiSelect = styled(Select)`
-  max-width: 50%;
-`;
+import choseTeams from "../../../../../store/choseTeams/actions";
 
-const DashCard = styled(Card)`
-  margin: 20px 0;
+const CardStyle = styled(Card)`
+  height: 100%;
 `;
 
 let options = [];
@@ -36,27 +31,29 @@ const FavoriteTeams = () => {
   }, []);
 
   if (teams.length) {
-    const res = teams.map((i) => ({ value: i.name, label: i.name, id: i.id }));
+    const res = teams.map((team) => ({
+      value: team.name,
+      label: team.name,
+      id: team.id,
+    }));
     options = res;
   }
 
-  const choosesItems = (a) => {
+  const choosesTeamsClickHandler = (a) => {
     dispatch(choseTeams(a));
   };
 
   return (
-    <>
-      <DashCard body>
-        <CardTitle>Please choose your favorite teams</CardTitle>
-        <MultiSelect
-          closeMenuOnSelect={false}
-          components={makeAnimated()}
-          isMulti
-          options={options}
-          onChange={choosesItems}
-        />
-      </DashCard>
-    </>
+    <CardStyle body>
+      <CardTitle>Please choose your favorite teams</CardTitle>
+      <Select
+        closeMenuOnSelect={false}
+        components={makeAnimated()}
+        isMulti
+        options={options}
+        onChange={choosesTeamsClickHandler}
+      />
+    </CardStyle>
   );
 };
 

@@ -1,14 +1,11 @@
 import React from "react";
-import FavoriteTeams from "./components/FavoriteTeams";
-import DashSettings from "./components/Settings";
+import Settings from "./components/Settings";
 import Show from "./components/Show";
 
 const DashBoard = () => {
-  const component = () => <FavoriteTeams />;
-
   return (
     <>
-      <DashSettings child={[component]} />
+      <Settings />
       <Show />
     </>
   );

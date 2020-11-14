@@ -1,8 +1,15 @@
 import React from "react";
-import Teams from "../Teams";
+import Nhl from "../Nhl";
+import Bank from "../Bank";
 
 const Show = () => {
-  return <Teams />;
+  return (
+    <>
+      <h1>Show</h1>
+      <Nhl />
+      <Bank />
+    </>
+  );
 };
 
 export default Show;

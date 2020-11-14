@@ -24,37 +24,32 @@ const Login = () => {
   const STR = "please enter";
 
   return (
-    <>
-      <form onSubmit={handleSubmit(submitHandler)}>
-        <FormGroup>
-          <Label for="login">Login</Label>
-          <StrapInput
-            id="login"
-            placeholder={`${STR} login`}
-            name="username"
-            innerRef={register}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label>Password</Label>
-          <StrapInput
-            placeholder={`${STR} password`}
-            name="password"
-            type="password"
-            innerRef={register({
-              required: true,
-              minLength: {
-                value: 5,
-                message: "error message min", // <p>error message</p>
-              },
-            })}
-          />
+    <form onSubmit={handleSubmit(submitHandler)}>
+      <FormGroup>
+        <Label for="login">Login</Label>
+        <StrapInput
+          id="login"
+          placeholder={`${STR} login`}
+          name="username"
+          innerRef={register}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label>Password</Label>
+        <StrapInput
+          placeholder={`${STR} password`}
+          name="password"
+          type="password"
+          innerRef={register({
+            required: true,
+            minLength: { value: 5 },
+          })}
+        />
 
-          {errors.password && <span>This field is required</span>}
-        </FormGroup>
-        <Button type="submit"> Submit</Button>
-      </form>
-    </>
+        {errors.password && <span>This field is required</span>}
+      </FormGroup>
+      <Button type="submit"> Submit</Button>
+    </form>
   );
 };
 

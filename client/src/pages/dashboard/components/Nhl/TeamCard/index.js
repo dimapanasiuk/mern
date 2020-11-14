@@ -3,19 +3,16 @@ import { Card, CardTitle } from "reactstrap";
 import { number, string } from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import emoji from "emoji-dictionary";
 
 import { connect, useDispatch } from "react-redux";
-import choseTeamId from "../../../../store/choseTeamId/actions";
-
-const Content = styled.div`
-  margin-bottom: 20px;
-`;
+import choseTeamId from "../../../../../store/choseTeamId/actions";
 
 const CardItem = styled(Card)`
   margin-bottom: 20px;
 `;
 
-const TeamCard = ({ teamId, name, conf, division }) => {
+const TeamCard = ({ teamId, name }) => {
   const dispatch = useDispatch();
 
   const clickHandler = (e) => {
@@ -25,13 +22,10 @@ const TeamCard = ({ teamId, name, conf, division }) => {
 
   return (
     <CardItem body size="lg">
-      <CardTitle tag="h3">{name}</CardTitle>
-      <Content>
-        <b>Conference</b>
-        <p>{conf}</p>
-        <b>Division</b>
-        <p>{division}</p>
-      </Content>
+      <CardTitle tag="h3">
+        {name}
+        &nbsp; {emoji.getUnicode("pouting_cat")}
+      </CardTitle>
       <Link id={teamId} onClick={clickHandler} to={`/dashboard/${name}`}>
         More information
       </Link>
@@ -42,8 +36,6 @@ const TeamCard = ({ teamId, name, conf, division }) => {
 TeamCard.propTypes = {
   teamId: number,
   name: string,
-  conf: string,
-  division: string,
 };
 
 export default connect()(TeamCard);

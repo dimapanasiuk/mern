@@ -9,7 +9,7 @@ import combineReducers from "./store/combineReducers";
 import App from "./App";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./normalize.css";
+import "./style/normalize.css";
 
 const store = createStore(combineReducers);
 

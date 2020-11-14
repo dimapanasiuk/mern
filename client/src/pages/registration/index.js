@@ -12,7 +12,6 @@ const Registration = () => {
       axios
         .post("/registration", requestData)
         .then((response) => {
-          console.log("response", response.data);
           if (response.data === "err") {
             console.log("not work validate in the server");
           }
@@ -46,7 +45,6 @@ const Registration = () => {
             required: true,
             minLength: {
               value: 5,
-              message: "error message min", // <p>error message</p>
             },
           })}
         />
@@ -63,7 +61,6 @@ const Registration = () => {
             required: true,
             minLength: {
               value: 5,
-              message: "error message min", // <p>error message</p>
             },
           })}
         />

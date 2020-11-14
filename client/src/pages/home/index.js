@@ -6,9 +6,8 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("home")
+      .get("/home")
       .then((response) => {
-        console.log(response.data.user);
         setUser(response.data.user);
       })
       .catch((error) => {
