@@ -27,11 +27,10 @@ const TeamStats = ({ teamId }) => {
       });
   }, []);
 
+  const head4 = (str) => <Head4 className="display-4">{str}</Head4>;
+
   const playoff = () => {
-    if (!postSeason) {
-      return <Head4 className="display-4">Missed the playoff</Head4>;
-    }
-    return <Head4 className="display-4">Hit the playoff</Head4>;
+    return !postSeason ? head4("Missed the playoff") : head4("Hit the playoff");
   };
 
   return (
