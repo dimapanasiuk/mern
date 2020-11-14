@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { string } from "prop-types";
 import { Collapse, Navbar, Nav, NavItem } from "reactstrap";
 
 const RouterLink = styled(Link)`
@@ -14,7 +13,7 @@ const RouterLink = styled(Link)`
   }
 `;
 
-const Header = ({ id }) => {
+const Header = () => {
   return (
     <div>
       <Navbar color="dark" light expand="md">
@@ -30,25 +29,14 @@ const Header = ({ id }) => {
             <NavItem>
               <RouterLink to="/registration">Registration</RouterLink>
             </NavItem>
-            {(() => {
-              if (id) {
-                return (
-                  <NavItem>
-                    <RouterLink to="/cabinet">Cabinet</RouterLink>
-                  </NavItem>
-                );
-              }
-              return null;
-            })()}
+            <NavItem>
+              <RouterLink to="/cabinet">Cabinet</RouterLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
     </div>
   );
-};
-
-Header.propTypes = {
-  id: string,
 };
 
 export default Header;
