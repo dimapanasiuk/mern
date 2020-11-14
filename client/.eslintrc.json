@@ -11,10 +11,10 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "no-else-return": 0,
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
     "react/destructuring-assignment": "off",
+    "no-else-return": 0,
     "react/require-default-props": 0,
     "react/forbid-prop-types": 0,
     "no-var": 1,
