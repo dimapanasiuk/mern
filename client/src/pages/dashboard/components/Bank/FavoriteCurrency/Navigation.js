@@ -3,6 +3,7 @@ import { Nav, NavItem, NavLink } from "reactstrap";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import classnames from "classnames";
 import { string } from "prop-types";
+import "./style.css";
 
 const Navigation = ({ activeTab }) => {
   return (

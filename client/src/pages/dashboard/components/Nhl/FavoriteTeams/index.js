@@ -3,8 +3,10 @@ import axios from "axios";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { connect, useDispatch } from "react-redux";
-import { Card, CardTitle } from "reactstrap";
+import { Card } from "reactstrap";
 import styled from "styled-components";
+
+import { Head6 } from "../../Bank/FavoriteCurrency/style";
 
 import choseTeams from "../../../../../store/choseTeams/actions";
 
@@ -45,7 +47,7 @@ const FavoriteTeams = () => {
 
   return (
     <CardStyle body>
-      <CardTitle>Please choose your favorite teams</CardTitle>
+      <Head6>Please choose your favorite teams</Head6>
       <Select
         closeMenuOnSelect={false}
         components={makeAnimated()}
