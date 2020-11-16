@@ -12,8 +12,8 @@ const Header = () => {
         <DivFlex>
           <NavItem>
             <NavLink
-              // TODO: not work with default link (to="/")
-              to="/home"
+              exact
+              to="/"
               className="link-nav"
               activeClassName="active-route"
             >
