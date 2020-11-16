@@ -1,0 +1,19 @@
+.navbar-nav {
+    padding: 10px;
+}
+
+.link-nav {
+    padding: 10px;
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.link-nav:hover {
+    color: #aaaaab;
+}
+
+.active-route {
+    color: #aaaaab !important;
+    border-bottom: 0.4rem solid #007bff;
+}
