@@ -5,6 +5,8 @@ import { func, string } from "prop-types";
 import { CustomButton } from "./style";
 
 const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
+  const dis = !(startDate && endDate && startDate < endDate);
+
   return (
     <TabPane tabId="3">
       <Row>
@@ -29,7 +31,7 @@ const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
             Back
           </CustomButton>
 
-          <CustomButton outline color="success" onClick={save}>
+          <CustomButton color="success" onClick={save} disabled={dis}>
             Save
           </CustomButton>
         </Col>
