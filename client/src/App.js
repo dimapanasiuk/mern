@@ -2,6 +2,8 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Container } from "reactstrap";
 
+// eslint-disable-next-line import/no-unresolved
+import TranslateBasic from "components/TranslateBasic";
 import Header from "./components/Header";
 import Home from "./pages/home";
 import DashBoard from "./pages/dashboard";
@@ -14,6 +16,7 @@ const App = () => {
   return (
     <>
       <Header />
+      <TranslateBasic />
       <Container fluid>
         <Redirect from="/" to="/dashboard" />
         <Switch>

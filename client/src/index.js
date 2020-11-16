@@ -5,8 +5,8 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 import combineReducers from "./store/combineReducers";
-
 import App from "./App";
+import "./i18n";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/normalize.css";
