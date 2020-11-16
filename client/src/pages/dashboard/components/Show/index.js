@@ -5,7 +5,6 @@ import Bank from "../Bank";
 const Show = () => {
   return (
     <>
-      <h1>Show</h1>
       <Nhl />
       <Bank />
     </>

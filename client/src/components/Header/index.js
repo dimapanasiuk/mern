@@ -1,41 +1,46 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Collapse, Navbar, Nav, NavItem } from "reactstrap";
+import { NavItem } from "reactstrap";
+import { NavLink } from "react-router-dom";
 
-const RouterLink = styled(Link)`
-  color: white;
-  margin-right: 10px;
-  text-decoration: none;
-
-  :hover {
-    color: red;
-  }
-`;
+import { NavigationBar, DivFlex, NavFlex } from "./style";
+import "./style.css";
 
 const Header = () => {
   return (
-    <div>
-      <Navbar color="dark" light expand="md">
-        <RouterLink to="/">Home</RouterLink>
-        <Collapse navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <RouterLink to="/dashboard">Dashboard</RouterLink>
-            </NavItem>
-            <NavItem>
-              <RouterLink to="/login">Login</RouterLink>
-            </NavItem>
-            <NavItem>
-              <RouterLink to="/registration">Registration</RouterLink>
-            </NavItem>
-            <NavItem>
-              <RouterLink to="/cabinet">Cabinet</RouterLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+    <NavigationBar color="dark" light expand="md">
+      <NavFlex className="mr-auto" navbar>
+        <DivFlex>
+          <NavItem>
+            <NavLink
+              exact
+              to="/"
+              className="link-nav"
+              activeClassName="active-route"
+            >
+              Home
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              to="/dashboard"
+              className="link-nav"
+              activeClassName="active-route"
+            >
+              Dashboard
+            </NavLink>
+          </NavItem>
+        </DivFlex>
+        <NavItem>
+          <NavLink
+            to="/login"
+            className="link-nav"
+            activeClassName="active-route"
+          >
+            Login
+          </NavLink>
+        </NavItem>
+      </NavFlex>
+    </NavigationBar>
   );
 };
 
