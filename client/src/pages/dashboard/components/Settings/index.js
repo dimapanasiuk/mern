@@ -16,6 +16,10 @@ const Column = styled(Col)`
   padding: 0px 20px 0 0;
 `;
 
+const DivFlex = styled.div`
+  display: flex;
+`;
+
 const DashSettings = ({ saveTeams }) => {
   const saveClickHandler = async () => {
     axios
@@ -30,15 +34,14 @@ const DashSettings = ({ saveTeams }) => {
 
   return (
     <>
-      <h1>Settings</h1>
-      <div style={{ display: "flex" }}>
+      <DivFlex>
         <Column sm={6}>
           <FavoriteCurrency />
         </Column>
         <Column sm={6}>
           <FavoriteTeams />
         </Column>
-      </div>
+      </DivFlex>
       <SaveButton color="success" onClick={saveClickHandler}>
         Save Changes
       </SaveButton>{" "}
