@@ -7,7 +7,6 @@ import Login from "./components/Login";
 const LoginPage = () => {
   return (
     <>
-      <Login />
       <Breadcrumb>
         <BreadcrumbItem active>
           <NavLink exact to="/profile">
@@ -20,6 +19,7 @@ const LoginPage = () => {
           </NavLink>
         </BreadcrumbItem>
       </Breadcrumb>
+      <Login />
     </>
   );
 };
