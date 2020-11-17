@@ -16,7 +16,6 @@
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-chartjs-2": "^2.11.1",
-    "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.14.0",
     "react-google-places-autocomplete": "^3.0.0",
     "react-hook-google-maps": "^0.0.3",
