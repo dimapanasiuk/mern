@@ -4,6 +4,9 @@ import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import classnames from "classnames";
 import styled from "styled-components";
 
+// eslint-disable-next-line import/no-unresolved
+import MyMap from "components/Map";
+
 import Settings from "./components/Settings";
 import Show from "./components/Show";
 
@@ -52,6 +55,7 @@ const DashBoard = () => {
         <TabPane tabId="1">
           <Settings />
           <Show />
+          <MyMap />
         </TabPane>
         <TabPane tabId="2">
           <Settings />
