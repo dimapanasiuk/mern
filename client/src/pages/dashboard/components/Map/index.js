@@ -1,8 +1,14 @@
 import React from "react";
 import GoogleMap from "./GoogleMap";
+import LocationSearchInput from "./Places";
 
 const MyMap = () => {
-  return <GoogleMap />;
+  return (
+    <>
+      <LocationSearchInput />
+      <GoogleMap />
+    </>
+  );
 };
 
 export default MyMap;

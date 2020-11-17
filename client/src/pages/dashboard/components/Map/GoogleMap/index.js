@@ -13,7 +13,8 @@ const uluru = { lat: -25.344, lng: 131.036 };
 const MyMap = () => {
   const { ref, map, google } = useGoogleMaps(
     // Use your own API key, you can get one from Google (https://console.cloud.google.com/google/maps-apis/overview)
-    "AIzaSyC4Z5Qz97EWcoCczNn2IcYvaYG0L9pe6Rk",
+    "AIzaSyBeEcwe9MrWGjT8epK_iCCyhAiql-Qvczw", // my key
+    // "AIzaSyC4Z5Qz97EWcoCczNn2IcYvaYG0L9pe6Rk",
     // NOTE: properties for settings your map
     // https://developers.google.com/maps/documentation/javascript/reference
     {
