@@ -2,6 +2,7 @@ import React from "react";
 
 import { useGoogleMaps } from "react-hook-google-maps";
 
+// eslint-disable-next-line import/no-unresolved
 import mapMarker from "content/img/map.svg";
 
 // latitude - широта

@@ -4,9 +4,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import classnames from "classnames";
 import styled from "styled-components";
 
-// eslint-disable-next-line import/no-unresolved
-import MyMap from "components/Map";
-
+import MyMap from "./components/Map";
 import Settings from "./components/Settings";
 import Show from "./components/Show";
 
