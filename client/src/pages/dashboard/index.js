@@ -51,7 +51,6 @@ const DashBoard = () => {
 
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
-          <Settings />
           <Show />
           <MyMap />
         </TabPane>
