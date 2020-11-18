@@ -81,21 +81,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/map-data", function (req, res) {
-  const API_KEY = "AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";
-  const { placeId = "ChIJsSL7FqwLIUcR6Y2X3cpRuBw" } = req.body;
-  console.log("======================placeId", placeId);
-
-  const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,geometry,formatted_phone_number&key=${API_KEY}`;
-
-  axios
-    .get(request)
-    .then((data) => {
-      res.send(data.data);
-    })
-    .catch((e) => console.warn("=====💡🛑=====", e));
-});
-
 app.get("/home", function (req, res) {
   res.send({ user: req.user });
 });
@@ -126,9 +111,8 @@ app.post("/registration", (req, res) => {
       password: req.body.password,
     });
 
-    user.save(function (err) {
-      if (err) return console.log(err);
-      console.log("Saved object", user);
+    user.save(function (e) {
+      if (e) return console.error("=====💡🛑=====", e);
     });
 
     res.send({ data: "work" });
@@ -140,11 +124,24 @@ app.post("/registration", (req, res) => {
 app.put("/save", (req, res) => {
   const { teams } = req.body;
 
-  User.updateOne({ name: "dima" }, { nhlTeams: teams }, function (err, result) {
-    if (err) return console.log(err);
+  User.updateOne({ name: "dima" }, { nhlTeams: teams }, function (e, result) {
+    if (e) return console.error("=====💡🛑=====", e);
   });
 
   res.send(req.body.teams);
+});
+
+app.post("/map", function (req, res) {
+  const { placeId, API_KEY } = req.body;
+
+  const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,geometry,formatted_phone_number&key=${API_KEY}`;
+
+  axios
+    .get(request)
+    .then((data) => {
+      res.send(data.data);
+    })
+    .catch((e) => console.error("=====💡🛑=====", e));
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
