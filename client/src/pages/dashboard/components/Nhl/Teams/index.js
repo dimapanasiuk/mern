@@ -1,6 +1,6 @@
 import React from "react";
 import uuid from "react-uuid";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import { any } from "prop-types";
 import { size } from "lodash";
@@ -19,7 +19,7 @@ const Teams = ({ teams }) => {
 
   return (
     <>
-      <h2>Please setting Nhl widget</h2>
+      <Alert color="info">Please setting nhl widget</Alert>
       <Row sm="12">{cards}</Row>
     </>
   );

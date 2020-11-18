@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "reactstrap";
 import { Line } from "react-chartjs-2";
 import { object, oneOfType, array } from "prop-types";
 
@@ -16,7 +17,7 @@ const Chart = ({ data }) => {
       {chartData ? (
         <Line data={chartData} height={90} />
       ) : (
-        <h2>Please setting currency widget </h2>
+        <Alert color="warning">Please setting currency widget</Alert>
       )}
     </>
   );
