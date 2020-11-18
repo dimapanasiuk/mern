@@ -7,8 +7,10 @@ import LocationSearchInput from "./Places";
 
 const MyMap = ({ id }) => {
   useEffect(() => {
+    const API_KEY = "AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";
+
     axios
-      .post("/map", { palceId: id })
+      .post("/map", { placeId: id, API_KEY })
       .then((data) => console.log(data.data))
       .catch((e) => console.warn("💡🛑", e));
   }, [id]);
