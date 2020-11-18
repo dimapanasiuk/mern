@@ -6,7 +6,7 @@ import GoogleMap from "./GoogleMap";
 import LocationSearchInput from "./Places";
 
 const MyMap = ({ id }) => {
-  const [getData, setGetData] = useState({});
+  const [locationData, setLocationData] = useState({});
   useEffect(() => {
     const API_KEY = "AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";
 
@@ -15,7 +15,7 @@ const MyMap = ({ id }) => {
       .then((data) => {
         if (data.data.status === "OK") {
           const { location } = data.data.result.geometry;
-          setGetData(location);
+          setLocationData(location);
         }
       })
       .catch((e) => console.warn("💡🛑", e));
@@ -24,7 +24,7 @@ const MyMap = ({ id }) => {
   return (
     <>
       <LocationSearchInput />
-      <GoogleMap getData={getData} />
+      <GoogleMap locationData={locationData} />
     </>
   );
 };
