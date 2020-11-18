@@ -2,6 +2,7 @@ import React from "react";
 import { size } from "lodash";
 import { useGoogleMaps } from "react-hook-google-maps";
 import { object } from "prop-types";
+
 // eslint-disable-next-line import/no-unresolved
 import mapMarker from "content/img/map.svg";
 
@@ -15,15 +16,16 @@ const GoogleMap = ({ locationData }) => {
     {
       center: uluru,
       zoom: 2,
-      backgroundColor: "red",
+      backgroundColor: "#d1ecf1",
     }
   );
 
   if (map && locationSize) {
     // eslint-disable-next-line no-new
-    const first = new google.maps.Marker({ center: uluru, map });
-
+    const first = new google.maps.Marker({ position: locationData, map });
     first.setIcon(mapMarker);
+    map.setZoom(4);
+    map.setCenter(locationData);
   }
 
   return <div ref={ref} style={{ width: "auto", height: 500 }} />;
@@ -36,8 +38,4 @@ GoogleMap.propTypes = {
 export default GoogleMap;
 
 // HELP
-
-// Use your own API key, you can get one from Google (https://console.cloud.google.com/google/maps-apis/overview)
 // "AIzaSyC4Z5Qz97EWcoCczNn2IcYvaYG0L9pe6Rk", spare key
-// NOTE: properties for settings your map
-// https://developers.google.com/maps/documentation/javascript/reference
