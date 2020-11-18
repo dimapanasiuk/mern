@@ -81,17 +81,18 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", function (req, res) {
-  const request =
-    "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJk1uS2eG7FkgRqzCcF1iDSMY&fields=name,rating,geometry,formatted_phone_number&key=AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";
+app.get("/map-data", function (req, res) {
+  const API_KEY = "AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";
+  const { placeId = "ChIJsSL7FqwLIUcR6Y2X3cpRuBw" } = req.body;
+
+  const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,geometry,formatted_phone_number&key=${API_KEY}`;
 
   axios
     .get(request)
     .then((data) => {
-      console.log("========================", data.data);
       res.send(data.data);
     })
-    .catch((e) => console.warn("💡🛑", e));
+    .catch((e) => console.warn("=====💡🛑=====", e));
 });
 
 app.get("/home", function (req, res) {
