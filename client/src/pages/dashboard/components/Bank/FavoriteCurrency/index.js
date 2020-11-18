@@ -13,7 +13,16 @@ import SelectCurrencies from "./SelectCurrencies";
 import Date from "./Date";
 import { copyPartOfStr } from "../../../../../utils";
 
-let options = []; // TODO: let replace const
+const getOptions = (crs) => {
+  if (size(crs)) {
+    return crs.map((cur) => ({
+      value: cur,
+      label: cur,
+      id: cur,
+    }));
+  }
+  return [];
+};
 
 const FavoriteCurrency = () => {
   const dispatch = useDispatch();
@@ -46,14 +55,7 @@ const FavoriteCurrency = () => {
 
   const crs = Object.keys(currencies);
 
-  if (size(crs)) {
-    const res = crs.map((cur) => ({
-      value: cur,
-      label: cur,
-      id: cur,
-    }));
-    options = res;
-  }
+  const options = getOptions(crs);
 
   const chooseBasicCurrencyClickHandler = (currency) => {
     setBasicCur(currency.value);
@@ -68,20 +70,17 @@ const FavoriteCurrency = () => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
-  const startDateChangeHandler = (date) => {
-    // TODO: write one func for startDateChangeHandler and end
+  const dateChangeHandler = (date, changeHandler) => {
     const partStr = copyPartOfStr(date, 0, 10);
-    setStartDate(partStr);
+    changeHandler(partStr);
   };
 
-  const endDateChangeHandler = (date) => {
-    const partStr = copyPartOfStr(date, 0, 10);
-    setEndDate(partStr);
-  };
+  const startDateChangeHandler = (date) =>
+    dateChangeHandler(date, setStartDate);
 
-  const saveClickHandler = () => {
-    setSave(!save);
-  };
+  const endDateChangeHandler = (date) => dateChangeHandler(date, setEndDate);
+
+  const saveClickHandler = () => setSave(!save);
 
   return (
     <Card body sm={10}>
