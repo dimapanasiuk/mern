@@ -12,6 +12,8 @@ const connectEnsureLogin = require("connect-ensure-login");
 const session = require("express-session");
 const db = require("./db");
 
+const axios = require("axios").default;
+
 const User = require("./scheme/user");
 
 async function start() {
@@ -78,6 +80,19 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get("/", function (req, res) {
+  const request =
+    "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJk1uS2eG7FkgRqzCcF1iDSMY&fields=name,rating,geometry,formatted_phone_number&key=AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";
+
+  axios
+    .get(request)
+    .then((data) => {
+      console.log("========================", data.data);
+      res.send(data.data);
+    })
+    .catch((e) => console.warn("💡🛑", e));
+});
 
 app.get("/home", function (req, res) {
   res.send({ user: req.user });
