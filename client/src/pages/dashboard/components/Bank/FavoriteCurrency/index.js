@@ -7,11 +7,12 @@ import { size } from "lodash";
 // eslint-disable-next-line import/no-unresolved
 import getCurrenciesData from "store/currenciesData/actions"; // TODO : fix this problem
 
+// eslint-disable-next-line import/no-unresolved
+import { copyPartOfStr } from "utils"; // TODO : fix this problem
 import Navigation from "./Navigation";
 import BasicCurrency from "./BasicCurrency";
 import SelectCurrencies from "./SelectCurrencies";
 import Date from "./Date";
-import { copyPartOfStr } from "../../../../../utils";
 
 const getOptions = (crs) => {
   if (size(crs)) {
