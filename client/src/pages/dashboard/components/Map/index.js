@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { string } from "prop-types";
 import axios from "axios";
 import GoogleMap from "./GoogleMap";
-import LocationSearchInput from "./Places";
+import SendFeedback from "./SendFeedback";
+import { Div } from "./style";
 
 const MyMap = ({ id }) => {
   const [locationData, setLocationData] = useState({});
@@ -24,8 +25,10 @@ const MyMap = ({ id }) => {
 
   return (
     <>
-      <LocationSearchInput />
-      <GoogleMap locationData={locationData} />
+      <Div>
+        <GoogleMap locationData={locationData} />
+        <SendFeedback />
+      </Div>
     </>
   );
 };
