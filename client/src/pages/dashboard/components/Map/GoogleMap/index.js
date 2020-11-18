@@ -5,8 +5,9 @@ import { object } from "prop-types";
 
 // eslint-disable-next-line import/no-unresolved
 import mapMarker from "content/img/map.svg";
+import { Div } from "./style";
 
-const uluru = { lat: 48.019573, lng: 66.923684 };
+const UKRAINE = { lat: 48.379433, lng: 31.16558 };
 
 const GoogleMap = ({ locationData }) => {
   const locationSize = size(Object.keys(locationData));
@@ -14,8 +15,8 @@ const GoogleMap = ({ locationData }) => {
   const { ref, map, google } = useGoogleMaps(
     "AIzaSyBeEcwe9MrWGjT8epK_iCCyhAiql-Qvczw", // my key
     {
-      center: uluru,
-      zoom: 2,
+      center: UKRAINE,
+      zoom: 3,
       backgroundColor: "#d1ecf1",
     }
   );
@@ -24,11 +25,11 @@ const GoogleMap = ({ locationData }) => {
     // eslint-disable-next-line no-new
     const first = new google.maps.Marker({ position: locationData, map });
     first.setIcon(mapMarker);
-    map.setZoom(4);
+    map.setZoom(6);
     map.setCenter(locationData);
   }
 
-  return <div ref={ref} style={{ width: "auto", height: 500 }} />;
+  return <Div ref={ref} />;
 };
 
 GoogleMap.propTypes = {
