@@ -1,7 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 import { array } from "prop-types";
-import { Alert, CardGroup, CardTitle, CardText } from "reactstrap";
+import { CardGroup, CardTitle, CardText } from "reactstrap";
 import { size } from "lodash";
 
 import { CardStyle } from "./style";
@@ -16,26 +15,11 @@ const Feedbacks = ({ feedbacks }) => {
     );
   });
 
-  return (
-    <>
-      {size(cards) ? (
-        <CardGroup>{cards}</CardGroup>
-      ) : (
-        <Alert color="success">Please choose your favorite place </Alert>
-      )}
-    </>
-  );
+  return <>{size(feedbacks) ? <CardGroup>{cards}</CardGroup> : null}</>;
 };
 
 Feedbacks.propTypes = {
   feedbacks: array,
 };
 
-const mapStateToProps = (state) => {
-  const allPlaces = state.sendMapFeedbackReducer;
-  const placesInfo = allPlaces.filter((i) => i.id !== "");
-
-  return { feedbacks: placesInfo };
-};
-
-export default connect(mapStateToProps)(Feedbacks);
+export default Feedbacks;
