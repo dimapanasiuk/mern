@@ -1,27 +1,17 @@
 import React from "react";
 import { array } from "prop-types";
-import { Button, Col } from "reactstrap";
 import { connect } from "react-redux";
 import axios from "axios";
-import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
+import { SaveButton, Column, DivFlex } from "./style";
 import FavoriteCurrency from "../Bank/FavoriteCurrency";
 import FavoriteTeams from "../Nhl/FavoriteTeams";
 import FavoritePlaces from "../Map/FavoritePlaces";
 
-const SaveButton = styled(Button)`
-  margin-top: 20px;
-`;
-
-const Column = styled(Col)`
-  padding: 0px 20px 0 0;
-`;
-
-const DivFlex = styled.div`
-  display: flex;
-`;
-
 const DashSettings = ({ saveTeams }) => {
+  const { t } = useTranslation();
+
   const saveClickHandler = async () => {
     axios
       .put("/save", { teams: saveTeams })
@@ -47,8 +37,8 @@ const DashSettings = ({ saveTeams }) => {
         <FavoritePlaces />
       </Column>
       <SaveButton color="success" onClick={saveClickHandler}>
-        Save Changes
-      </SaveButton>{" "}
+        {t("Save")}
+      </SaveButton>
     </>
   );
 };

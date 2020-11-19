@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { connect, useDispatch } from "react-redux";
 import { object, string } from "prop-types";
 import { size } from "lodash";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line import/no-unresolved
 import senMapFeedback from "store/sendMapFeedback/actions";
@@ -11,6 +12,8 @@ import Places from "../Places";
 import { FormStyle } from "./style";
 
 const SendFeedback = ({ id, label, locationData }) => {
+  const { t } = useTranslation();
+
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
@@ -31,14 +34,14 @@ const SendFeedback = ({ id, label, locationData }) => {
   return (
     <FormStyle onSubmit={handleSubmit(submitHandler)}>
       <FormGroup>
-        <Label>Please enter place</Label>
+        <Label>{t("Please enter place")}</Label>
         <Places innerRef={register} />
       </FormGroup>
       <FormGroup style={{ height: "100%" }}>
-        <Label>Write description</Label>
+        <Label>{t("Write description")}</Label>
         <Input type="textarea" name="description" innerRef={register} />
       </FormGroup>
-      <Button>Submit</Button>
+      <Button color="success">{t("Save")}</Button>
     </FormStyle>
   );
 };

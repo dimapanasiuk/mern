@@ -3,6 +3,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import classnames from "classnames";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 import MyMap from "./components/Map";
 import Settings from "./components/Settings";
@@ -17,6 +18,7 @@ const NavContent = styled(Nav)`
 `;
 
 const DashBoard = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("1");
 
   const toggle = (e) => {
@@ -34,7 +36,7 @@ const DashBoard = () => {
               className={classnames({ active: activeTab === "1" })}
               onClick={toggle}
             >
-              Widgets
+              {t("Widgets")}
             </NavLink>
           </NavItem>
           <NavItem>
@@ -43,7 +45,7 @@ const DashBoard = () => {
               className={classnames({ active: activeTab === "2" })}
               onClick={toggle}
             >
-              Settings
+              {t("Settings")}
             </NavLink>
           </NavItem>
         </Nav>

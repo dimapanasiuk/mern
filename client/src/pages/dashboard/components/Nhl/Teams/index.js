@@ -4,9 +4,13 @@ import { Row, Col, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import { any } from "prop-types";
 import { size } from "lodash";
+import { useTranslation } from "react-i18next";
+
 import TeamCard from "../TeamCard";
 
 const Teams = ({ teams }) => {
+  const { t } = useTranslation();
+
   let cards;
 
   if (size(teams)) {
@@ -19,7 +23,9 @@ const Teams = ({ teams }) => {
 
   return (
     <>
-      <Alert color="info">Please setting nhl widget</Alert>
+      <Alert color="info">
+        {t("Please setting NHL widget")} {t("Widget")}
+      </Alert>
       <Row sm="12">{cards}</Row>
     </>
   );
