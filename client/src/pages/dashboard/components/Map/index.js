@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import { string } from "prop-types";
 import axios from "axios";
 import { size } from "lodash";
+
 import GoogleMap from "./GoogleMap";
 import SendFeedback from "./SendFeedback";
+import Feedbacks from "./Feedbacks";
+
 import { Div, CardStyle } from "./style";
 
 const MyMap = ({ id }) => {
@@ -25,12 +28,15 @@ const MyMap = ({ id }) => {
   }, [id]);
 
   return (
-    <CardStyle>
-      <Div>
-        <GoogleMap locationData={locationData} />
-        <SendFeedback />
-      </Div>
-    </CardStyle>
+    <>
+      <CardStyle>
+        <Div>
+          <GoogleMap locationData={locationData} />
+          <SendFeedback />
+        </Div>
+      </CardStyle>
+      <Feedbacks />
+    </>
   );
 };
 

@@ -34,7 +34,11 @@ const SendFeedback = ({ id, label }) => {
       </FormGroup>
       <FormGroup style={{ height: "100%" }}>
         <Label>Write description</Label>
-        <Input type="textarea" name="description" innerRef={register} />
+        <Input
+          type="textarea"
+          name="description"
+          innerRef={register}
+        />
       </FormGroup>
       <Button>Submit</Button>
     </FormStyle>
