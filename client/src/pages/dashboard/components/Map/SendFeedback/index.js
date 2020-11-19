@@ -7,11 +7,12 @@ import { string } from "prop-types";
 import Places from "../Places";
 import { FormStyle } from "./style";
 
-const SendFeedback = ({ id }) => {
+const SendFeedback = ({ id, city }) => {
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     console.log("id", id);
+    console.log("city", city);
   }, [id]);
 
   const submitHandler = (requestData) => {
@@ -35,9 +36,11 @@ const SendFeedback = ({ id }) => {
 
 SendFeedback.propTypes = {
   id: string,
+  city: string,
 };
 
 const mapStateToProps = (state) => {
+  console.log("state", state);
   return state.getPlaceIdReducer;
 };
 

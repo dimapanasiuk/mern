@@ -6,11 +6,6 @@ import getPlaceId from "store/getPlaceId/actions"; // TODO : fix this problem
 
 import { Div } from "./style";
 
-// work with this key
-// https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJk1uS2eG7FkgRqzCcF1iDSMY&fields=name,rating,geometry,formatted_phone_number&key=AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE
-
-//  "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJk1uS2eG7FkgRqzCcF1iDSMY&fields=name,rating,geometry,formatted_phone_number&key=AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";
-
 const Places = () => {
   const dispatch = useDispatch();
 
@@ -18,9 +13,13 @@ const Places = () => {
 
   useEffect(() => {
     if (value) {
-      // eslint-disable-next-line camelcase
-      const { place_id = "" } = value.value;
-      dispatch(getPlaceId(place_id));
+      const {
+        label,
+        // eslint-disable-next-line camelcase
+        value: { place_id },
+      } = value;
+
+      dispatch(getPlaceId(place_id, label));
     }
   }, [value]);
 
@@ -45,3 +44,8 @@ const Places = () => {
 };
 
 export default connect()(Places);
+
+// MB HELP IN FUTURE
+// work with this key
+// https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJk1uS2eG7FkgRqzCcF1iDSMY&fields=name,rating,geometry,formatted_phone_number&key=AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE
+// "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJk1uS2eG7FkgRqzCcF1iDSMY&fields=name,rating,geometry,formatted_phone_number&key=AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";
