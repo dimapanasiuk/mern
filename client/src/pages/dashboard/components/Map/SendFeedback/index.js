@@ -1,23 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, FormGroup, Label, Input } from "reactstrap";
 import { useForm } from "react-hook-form";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { string } from "prop-types";
 import { size } from "lodash";
 
+// eslint-disable-next-line import/no-unresolved
+import senMapFeedback from "store/sendMapFeedback/actions";
 import Places from "../Places";
 import { FormStyle } from "./style";
 
 const SendFeedback = ({ id, label }) => {
   const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
+
+  const [desc, setDesc] = useState("");
 
   useEffect(() => {
-    console.log("id", id);
-    console.log("city", label);
-  }, [id]);
+    const dataFeedback = { id, label, desc };
+    dispatch(senMapFeedback(dataFeedback));
+  }, [desc]);
 
   const submitHandler = (requestData) => {
-    console.log("requestData", requestData);
+    const { description } = requestData;
+    setDesc(description);
   };
 
   return (
