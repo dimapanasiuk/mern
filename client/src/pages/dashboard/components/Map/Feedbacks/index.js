@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { array } from "prop-types";
-import { CardGroup, CardTitle, CardText } from "reactstrap";
+import { Alert, CardGroup, CardTitle, CardText } from "reactstrap";
+import { size } from "lodash";
+
 import { CardStyle } from "./style";
 
 const Feedbacks = ({ feedbacks }) => {
@@ -14,7 +16,15 @@ const Feedbacks = ({ feedbacks }) => {
     );
   });
 
-  return <CardGroup>{cards}</CardGroup>;
+  return (
+    <>
+      {size(cards) ? (
+        <CardGroup>{cards}</CardGroup>
+      ) : (
+        <Alert color="success">Please choose your favorite place </Alert>
+      )}
+    </>
+  );
 };
 
 Feedbacks.propTypes = {
