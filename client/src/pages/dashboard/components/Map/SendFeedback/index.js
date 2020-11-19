@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, FormGroup, Label, Input } from "reactstrap";
 import { useForm } from "react-hook-form";
+import { connect } from "react-redux";
+import { string } from "prop-types";
 
 import Places from "../Places";
 import { FormStyle } from "./style";
 
-const SendFeedback = () => {
+const SendFeedback = ({ id }) => {
   const { register, handleSubmit } = useForm();
+
+  useEffect(() => {
+    console.log("id", id);
+  }, [id]);
 
   const submitHandler = (requestData) => {
     console.log("requestData", requestData);
@@ -27,4 +33,12 @@ const SendFeedback = () => {
   );
 };
 
-export default SendFeedback;
+SendFeedback.propTypes = {
+  id: string,
+};
+
+const mapStateToProps = (state) => {
+  return state.getPlaceIdReducer;
+};
+
+export default connect(mapStateToProps)(SendFeedback);
