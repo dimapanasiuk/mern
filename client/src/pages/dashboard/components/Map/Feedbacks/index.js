@@ -1,6 +1,6 @@
 import React from "react";
 import { array } from "prop-types";
-import { CardGroup, CardTitle, CardText } from "reactstrap";
+import { Col, CardTitle, CardText } from "reactstrap";
 import { size } from "lodash";
 
 import { CardStyle } from "./style";
@@ -8,14 +8,16 @@ import { CardStyle } from "./style";
 const Feedbacks = ({ feedbacks }) => {
   const cards = feedbacks.map((i) => {
     return (
-      <CardStyle key={i.id}>
-        <CardTitle>{i.label} </CardTitle>
-        <CardText>{i.desc}</CardText>
-      </CardStyle>
+      <Col key={i.id} sm={6}>
+        <CardStyle>
+          <CardTitle>{i.label} </CardTitle>
+          <CardText>{i.desc}</CardText>
+        </CardStyle>
+      </Col>
     );
   });
 
-  return <>{size(feedbacks) ? <CardGroup>{cards}</CardGroup> : null}</>;
+  return <>{size(feedbacks) ? <div>{cards}</div> : null}</>;
 };
 
 Feedbacks.propTypes = {
