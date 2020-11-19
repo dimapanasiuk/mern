@@ -37,6 +37,6 @@ MyMap.propTypes = {
   id: string,
 };
 
-const mapStateToProps = (state) => state.getPlaceIdReducer;
+const mapStateToProps = (state) => state.getPlaceDataReducer;
 
 export default connect(mapStateToProps)(MyMap);
