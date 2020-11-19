@@ -9,4 +9,5 @@ export const Div = styled.div`
 
 export const CardStyle = styled(Card)`
   padding: 10px;
+  margin: 20px 0;
 `;

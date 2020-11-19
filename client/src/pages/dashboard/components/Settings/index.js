@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 import FavoriteCurrency from "../Bank/FavoriteCurrency";
 import FavoriteTeams from "../Nhl/FavoriteTeams";
+import FavoritePlaces from "../Map/FavoritePlaces";
 
 const SaveButton = styled(Button)`
   margin-top: 20px;
@@ -42,6 +43,9 @@ const DashSettings = ({ saveTeams }) => {
           <FavoriteTeams />
         </Column>
       </DivFlex>
+      <Column sm={12}>
+        <FavoritePlaces />
+      </Column>
       <SaveButton color="success" onClick={saveClickHandler}>
         Save Changes
       </SaveButton>{" "}
