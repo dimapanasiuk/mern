@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, FormGroup, Label, Input } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { connect, useDispatch } from "react-redux";
-import { string } from "prop-types";
+import { object, string } from "prop-types";
 import { size } from "lodash";
 
 // eslint-disable-next-line import/no-unresolved
@@ -10,7 +10,7 @@ import senMapFeedback from "store/sendMapFeedback/actions";
 import Places from "../Places";
 import { FormStyle } from "./style";
 
-const SendFeedback = ({ id, label }) => {
+const SendFeedback = ({ id, label, locationData }) => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
@@ -18,6 +18,8 @@ const SendFeedback = ({ id, label }) => {
 
   useEffect(() => {
     const dataFeedback = { id, label, desc };
+
+    dataFeedback.location = locationData;
     dispatch(senMapFeedback(dataFeedback));
   }, [desc]);
 
@@ -34,11 +36,7 @@ const SendFeedback = ({ id, label }) => {
       </FormGroup>
       <FormGroup style={{ height: "100%" }}>
         <Label>Write description</Label>
-        <Input
-          type="textarea"
-          name="description"
-          innerRef={register}
-        />
+        <Input type="textarea" name="description" innerRef={register} />
       </FormGroup>
       <Button>Submit</Button>
     </FormStyle>
@@ -48,6 +46,7 @@ const SendFeedback = ({ id, label }) => {
 SendFeedback.propTypes = {
   id: string,
   label: string,
+  locationData: object,
 };
 
 const mapStateToProps = (state) => {

@@ -14,8 +14,8 @@ const MyMap = ({ data }) => {
         <Alert color="success">Please choose your favorite paces</Alert>
       ) : (
         <>
-          <Feedbacks feedbacks={data} />
           <ShowMap locationData={data} />
+          <Feedbacks feedbacks={data} />
         </>
       )}
     </>

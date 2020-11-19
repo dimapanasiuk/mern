@@ -30,7 +30,7 @@ const FavoritePlaces = ({ id }) => {
     <CardStyle>
       <Div>
         <FavoriteGoogleMap locationData={locationData} />
-        <SendFeedback />
+        <SendFeedback locationData={locationData} />
       </Div>
     </CardStyle>
   );

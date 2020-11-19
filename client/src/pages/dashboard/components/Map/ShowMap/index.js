@@ -10,8 +10,6 @@ import { Div } from "./style";
 const UKRAINE = { lat: 48.379433, lng: 31.16558 };
 
 const ShowMap = ({ locationData }) => {
-  console.log("location data", locationData);
-
   const { ref, map, google } = useGoogleMaps(
     "AIzaSyBeEcwe9MrWGjT8epK_iCCyhAiql-Qvczw", // my key
     {
@@ -23,12 +21,12 @@ const ShowMap = ({ locationData }) => {
 
   if (map && size(locationData)) {
     // eslint-disable-next-line no-new
-
-    const first = new google.maps.Marker({ position: UKRAINE, map });
-
-    first.setIcon(mapMarker);
-    map.setZoom(6);
-    map.setCenter(locationData);
+    locationData.forEach((item) => {
+      new google.maps.Marker({ position: item.location, map }).setIcon(
+        mapMarker
+      );
+      map.setZoom(2);
+    });
   }
 
   return <Div ref={ref} />;
