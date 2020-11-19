@@ -9,7 +9,7 @@ import { Div } from "./style";
 
 const UKRAINE = { lat: 48.379433, lng: 31.16558 };
 
-const GoogleMap = ({ locationData }) => {
+const FavoriteGoogleMap = ({ locationData }) => {
   const locationSize = size(Object.keys(locationData));
 
   const { ref, map, google } = useGoogleMaps(
@@ -32,11 +32,11 @@ const GoogleMap = ({ locationData }) => {
   return <Div ref={ref} />;
 };
 
-GoogleMap.propTypes = {
+FavoriteGoogleMap.propTypes = {
   locationData: object,
 };
 
-export default GoogleMap;
+export default FavoriteGoogleMap;
 
 // HELP
 // "AIzaSyC4Z5Qz97EWcoCczNn2IcYvaYG0L9pe6Rk", spare key

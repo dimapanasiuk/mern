@@ -1,8 +1,15 @@
 import React from "react";
 import Feedbacks from "./Feedbacks";
+import ShowMap from "./ShowMap";
 
 const MyMap = () => {
-  return <Feedbacks />;
+  const locationData = {};
+  return (
+    <>
+      <Feedbacks />
+      <ShowMap locationData={locationData} />
+    </>
+  );
 };
 
 export default MyMap;

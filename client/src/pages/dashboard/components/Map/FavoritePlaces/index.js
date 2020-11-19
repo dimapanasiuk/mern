@@ -4,7 +4,7 @@ import { string } from "prop-types";
 import axios from "axios";
 import { size } from "lodash";
 
-import GoogleMap from "../GoogleMap";
+import FavoriteGoogleMap from "../FavoriteGoogleMap";
 import SendFeedback from "../SendFeedback";
 
 import { Div, CardStyle } from "./style";
@@ -29,7 +29,7 @@ const FavoritePlaces = ({ id }) => {
   return (
     <CardStyle>
       <Div>
-        <GoogleMap locationData={locationData} />
+        <FavoriteGoogleMap locationData={locationData} />
         <SendFeedback />
       </Div>
     </CardStyle>
