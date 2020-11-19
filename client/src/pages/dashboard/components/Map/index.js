@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { string } from "prop-types";
 import axios from "axios";
+import { size } from "lodash";
 import GoogleMap from "./GoogleMap";
 import SendFeedback from "./SendFeedback";
 import { Div } from "./style";
@@ -37,6 +38,9 @@ MyMap.propTypes = {
   id: string,
 };
 
-const mapStateToProps = (state) => state.getPlaceDataReducer;
-
+const mapStateToProps = (state) => {
+  const len = size(state.getPlaceDataReducer) - 1;
+  const result = state.getPlaceDataReducer[len];
+  return result || { id: "" };
+};
 export default connect(mapStateToProps)(MyMap);

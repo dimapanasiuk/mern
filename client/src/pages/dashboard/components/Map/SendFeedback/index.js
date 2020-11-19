@@ -3,6 +3,7 @@ import { Button, FormGroup, Label, Input } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { string } from "prop-types";
+import { size } from "lodash";
 
 import Places from "../Places";
 import { FormStyle } from "./style";
@@ -39,6 +40,12 @@ SendFeedback.propTypes = {
   label: string,
 };
 
-const mapStateToProps = (state) => state.getPlaceDataReducer;
+const mapStateToProps = (state) => {
+  const len = size(state.getPlaceDataReducer) - 1;
+
+  const result = state.getPlaceDataReducer[len];
+
+  return result || { id: "", label: "" };
+};
 
 export default connect(mapStateToProps)(SendFeedback);
