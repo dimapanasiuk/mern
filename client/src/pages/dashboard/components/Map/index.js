@@ -5,7 +5,7 @@ import axios from "axios";
 import { size } from "lodash";
 import GoogleMap from "./GoogleMap";
 import SendFeedback from "./SendFeedback";
-import { Div } from "./style";
+import { Div, CardStyle } from "./style";
 
 const MyMap = ({ id }) => {
   const [locationData, setLocationData] = useState({});
@@ -25,12 +25,12 @@ const MyMap = ({ id }) => {
   }, [id]);
 
   return (
-    <>
+    <CardStyle>
       <Div>
         <GoogleMap locationData={locationData} />
         <SendFeedback />
       </Div>
-    </>
+    </CardStyle>
   );
 };
 
