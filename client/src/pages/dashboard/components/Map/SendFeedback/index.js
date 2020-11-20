@@ -17,18 +17,27 @@ const SendFeedback = ({ id, label, locationData }) => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
+  const [isTexVal, setIsTextVal] = useState(true);
+  const [isButton, setIsButton] = useState(true);
   const [desc, setDesc] = useState("");
 
   useEffect(() => {
-    const dataFeedback = { id, label, desc };
+    if (id) setIsTextVal(false);
+    if (desc) {
+      const dataFeedback = { id, label, desc };
 
-    dataFeedback.location = locationData;
-    dispatch(senMapFeedback(dataFeedback));
-  }, [desc]);
+      dataFeedback.location = locationData;
+      dispatch(senMapFeedback(dataFeedback));
+    }
+  }, [desc, id]);
 
   const submitHandler = (requestData) => {
     const { description } = requestData;
     setDesc(description);
+  };
+
+  const textAriaHandler = (e) => {
+    return e.target.value && id ? setIsButton(false) : setIsButton(true);
   };
 
   return (
@@ -39,9 +48,17 @@ const SendFeedback = ({ id, label, locationData }) => {
       </FormGroup>
       <FormGroup style={{ height: "100%" }}>
         <Label>{t("Write description")}</Label>
-        <Input type="textarea" name="description" innerRef={register} />
+        <Input
+          disabled={isTexVal}
+          type="textarea"
+          name="description"
+          innerRef={register}
+          onChange={textAriaHandler}
+        />
       </FormGroup>
-      <Button color="success">{t("Save")}</Button>
+      <Button disabled={isButton} color="success">
+        {t("Save")}
+      </Button>
     </FormStyle>
   );
 };
