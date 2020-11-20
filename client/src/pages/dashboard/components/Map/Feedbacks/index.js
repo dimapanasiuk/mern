@@ -22,7 +22,7 @@ const Feedbacks = ({ feedbacks }) => {
               &nbsp;{i.label}
             </h5>
             &nbsp;
-            <ButtonS id={i.id} outline>
+            <ButtonS outline id={i.id}>
               {emoji.getUnicode(":pencil2:")}
             </ButtonS>
             <Tooltip

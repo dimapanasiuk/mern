@@ -17,31 +17,34 @@ const SendFeedback = ({ id, label, locationData }) => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
+  const [texVal, setTextVal] = useState("");
   const [isTexVal, setIsTextVal] = useState(true);
   const [isButton, setIsButton] = useState(true);
-  const [desc, setDesc] = useState("");
 
   useEffect(() => {
     if (id) setIsTextVal(false);
-    if (desc) {
-      const dataFeedback = { id, label, desc };
+  }, [id]);
 
+  const textAriaHandler = (e) => {
+    const { value } = e.target;
+    setTextVal(value);
+    return value && id ? setIsButton(false) : setIsButton(true);
+  };
+
+  const saveHandler = () => {
+    const dataFeedback = { id, label, desc: texVal };
+
+    if (locationData && id) {
       dataFeedback.location = locationData;
       dispatch(senMapFeedback(dataFeedback));
     }
-  }, [desc, id]);
-
-  const submitHandler = (requestData) => {
-    const { description } = requestData;
-    setDesc(description);
-  };
-
-  const textAriaHandler = (e) => {
-    return e.target.value && id ? setIsButton(false) : setIsButton(true);
+    setTextVal("");
+    setIsTextVal(true);
+    setIsButton(true);
   };
 
   return (
-    <FormStyle onSubmit={handleSubmit(submitHandler)}>
+    <FormStyle onSubmit={handleSubmit()}>
       <FormGroup>
         <Label>{t("Please enter place")}</Label>
         <Places innerRef={register} />
@@ -51,12 +54,12 @@ const SendFeedback = ({ id, label, locationData }) => {
         <Input
           disabled={isTexVal}
           type="textarea"
-          name="description"
+          value={texVal}
           innerRef={register}
           onChange={textAriaHandler}
         />
       </FormGroup>
-      <Button disabled={isButton} color="success">
+      <Button disabled={isButton} color="success" onClick={saveHandler}>
         {t("Save")}
       </Button>
     </FormStyle>
