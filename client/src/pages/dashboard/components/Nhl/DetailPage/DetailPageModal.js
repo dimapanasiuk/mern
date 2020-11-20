@@ -12,7 +12,7 @@ const DetailPageModal = ({ alertData, modal, onShowModal }) => {
   return (
     <ModalStyle isOpen={modal} toggle={onShowModal}>
       <ModalHeader toggle={onShowModal}>
-        {alertData.fullName} {` `} {emoji.getUnicode(":boy:")}
+        {alertData.fullName} &nbsp; {emoji.getUnicode(":boy:")}
       </ModalHeader>
       <ModalBody>
         <h5>home country, {alertData.birthCountry}</h5>

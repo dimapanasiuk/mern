@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { array } from "prop-types";
-import { CardTitle, CardText } from "reactstrap";
+import { CardText, Tooltip } from "reactstrap";
 import { size } from "lodash";
+import emoji from "emoji-dictionary";
 
-import { CardStyle, ColStyle } from "./style";
+import { CardS, ColS, ButtonS, CardTitleS } from "./style";
 
 const Feedbacks = ({ feedbacks }) => {
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  const toggle = () => setTooltipOpen(!tooltipOpen);
+
   const cards = feedbacks.map((i) => {
     return (
-      <ColStyle key={i.id} sm={6}>
-        <CardStyle>
-          <CardTitle>{i.label} </CardTitle>
+      <ColS key={i.id} sm={6}>
+        <CardS>
+          <CardTitleS>
+            <h5>
+              {" "}
+              {emoji.getUnicode(":round_pushpin:")}
+              &nbsp;{i.label}
+            </h5>
+            &nbsp;
+            <ButtonS id={i.id} outline>
+              {emoji.getUnicode(":pencil2:")}
+            </ButtonS>
+          </CardTitleS>
           <CardText>{i.desc}</CardText>
-        </CardStyle>
-      </ColStyle>
+
+          <span href="#">tooltip</span>
+
+          <Tooltip
+            placement="top"
+            isOpen={tooltipOpen}
+            target={i.id}
+            toggle={toggle}
+          >
+            Edit
+          </Tooltip>
+        </CardS>
+      </ColS>
     );
   });
 
