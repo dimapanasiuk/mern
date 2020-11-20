@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { array } from "prop-types";
-import { CardText, Tooltip } from "reactstrap";
+import { CardText, Col, Row, Tooltip } from "reactstrap";
 import { size } from "lodash";
 import emoji from "emoji-dictionary";
 
-import { CardS, ColS, ButtonS, CardTitleS } from "./style";
+import { CardS, ButtonS, CardTitleS } from "./style";
 
 const Feedbacks = ({ feedbacks }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
@@ -13,7 +13,7 @@ const Feedbacks = ({ feedbacks }) => {
 
   const cards = feedbacks.map((i) => {
     return (
-      <ColS key={i.id} sm={6}>
+      <Col key={i.id} sm={4}>
         <CardS>
           <CardTitleS>
             <h5>
@@ -25,25 +25,22 @@ const Feedbacks = ({ feedbacks }) => {
             <ButtonS id={i.id} outline>
               {emoji.getUnicode(":pencil2:")}
             </ButtonS>
+            <Tooltip
+              placement="top"
+              isOpen={tooltipOpen}
+              target={i.id}
+              toggle={toggle}
+            >
+              Edit
+            </Tooltip>
           </CardTitleS>
           <CardText>{i.desc}</CardText>
-
-          <span href="#">tooltip</span>
-
-          <Tooltip
-            placement="top"
-            isOpen={tooltipOpen}
-            target={i.id}
-            toggle={toggle}
-          >
-            Edit
-          </Tooltip>
         </CardS>
-      </ColS>
+      </Col>
     );
   });
 
-  return <>{size(feedbacks) ? <div>{cards}</div> : null}</>;
+  return <>{size(feedbacks) ? <Row>{cards}</Row> : null}</>;
 };
 
 Feedbacks.propTypes = {
