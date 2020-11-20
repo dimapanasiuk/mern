@@ -23,10 +23,13 @@ const Teams = ({ teams }) => {
 
   return (
     <>
-      <Alert color="info">
-        {t("Please setting NHL widget")} {t("Widget")}
-      </Alert>
-      <Row sm="12">{cards}</Row>
+      {!size(teams) ? (
+        <Alert color="info">
+          {t("Please setting NHL")} {t("Widget")}
+        </Alert>
+      ) : (
+        <Row sm="12">{cards}</Row>
+      )}
     </>
   );
 };
