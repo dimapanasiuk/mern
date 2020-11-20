@@ -30,7 +30,7 @@ const Feedbacks = ({ feedbacks }) => {
           <ModalsEdit
             isOpen={modal}
             toggle={toggle}
-            placeID={item.id}
+            placeId={item.id}
             place={item.label}
             desc={item.desc}
           />

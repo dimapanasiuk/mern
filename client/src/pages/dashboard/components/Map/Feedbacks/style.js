@@ -1,4 +1,4 @@
-import { Card, Button, CardTitle, Row } from "reactstrap";
+import { Modal, Card, Button, CardTitle, Row } from "reactstrap";
 import styled from "styled-components";
 
 export const CardS = styled(Card)`
@@ -18,4 +18,8 @@ export const CardTitleS = styled(CardTitle)`
 
 export const RowS = styled(Row)`
   padding-bottom: 120px;
+`;
+
+export const ModalS = styled(Modal)`
+  top: 500px;
 `;

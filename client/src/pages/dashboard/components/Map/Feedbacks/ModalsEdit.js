@@ -1,19 +1,44 @@
-import React from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { bool, func, string } from "prop-types";
+import React, { useEffect, useState } from "react";
+import {
+  Input,
+  Modal,
+  Button,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
+import { array, bool, func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
+import { connect } from "react-redux";
 
-const ModalsEdit = ({ isOpen, toggle, place, desc, placeId }) => {
-  console.log("placeId", placeId);
+const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
+  const [descTextAria, setDescTextAria] = useState(desc);
+  const [othPlaces, setOthPlaces] = useState([]);
+
+  useEffect(() => {
+    const otherPlaces = places.filter((item) => item.id !== placeId);
+    setOthPlaces(otherPlaces);
+  }, [placeId]);
 
   const { t } = useTranslation();
+
   const saveHandler = () => {
+    console.log(othPlaces);
     console.log("save handler");
   };
+
+  const changeHandler = (e) => {
+    setDescTextAria(e.target.value);
+  };
+
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={toggle}>{place}</ModalHeader>
-      <ModalBody>{desc}</ModalBody>
+
+      <ModalBody>
+        <Input type="textarea" value={descTextAria} onChange={changeHandler} />
+      </ModalBody>
+
       <ModalFooter>
         <Button outline color="success" onClick={toggle}>
           {t("Save")}
@@ -38,6 +63,11 @@ ModalsEdit.propTypes = {
   placeId: string,
   place: string,
   desc: string,
+  places: array,
 };
 
-export default ModalsEdit;
+const mapStateToProps = (state) => {
+  return { places: state.getPlaceDataReducer };
+};
+
+export default connect(mapStateToProps)(ModalsEdit);
