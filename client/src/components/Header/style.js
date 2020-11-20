@@ -11,8 +11,13 @@ export const NavFlex = styled(Nav)`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding: 0px;
 `;
 
 export const NavigationBar = styled(Navbar)`
   padding: 0 20px;
+`;
+
+export const Logo = styled.a`
+  font-size: 40px;
 `;

@@ -13,7 +13,7 @@ const NavContent = styled(Nav)`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
-  margin: 20px 0;
+  padding: 20px 0;
   border: none;
 `;
 
