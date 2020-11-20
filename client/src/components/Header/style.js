@@ -17,7 +17,3 @@ export const NavFlex = styled(Nav)`
 export const NavigationBar = styled(Navbar)`
   padding: 0 20px;
 `;
-
-export const Logo = styled.a`
-  font-size: 40px;
-`;

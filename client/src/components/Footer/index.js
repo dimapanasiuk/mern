@@ -8,7 +8,7 @@ const DivS = styled.div`
   width: 100%;
   padding: 25px;
   background: #343a40;
-  color: #fff;
+  color: #b2d7ff;
   text-align: center;
 `;
 

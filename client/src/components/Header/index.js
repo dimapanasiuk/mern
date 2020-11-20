@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import emoji from "emoji-dictionary";
 
 import TranslateBasic from "../TranslateBasic";
-import { Logo, NavigationBar, DivFlex, NavFlex } from "./style";
+import { NavigationBar, DivFlex, NavFlex } from "./style";
 import "./style.css";
 
 const Header = () => {
@@ -15,8 +15,8 @@ const Header = () => {
     <NavigationBar color="dark" light expand="md">
       <NavFlex className="mr-auto" navbar>
         <DivFlex>
-          <NavLink to="/">
-            <Logo>{emoji.getUnicode(":stars:")}</Logo>
+          <NavLink to="/" className="logo">
+            {emoji.getUnicode(":stars:")}
           </NavLink>
           <NavItem>
             <NavLink

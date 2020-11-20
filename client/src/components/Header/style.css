@@ -17,3 +17,7 @@
     color: #aaaaab !important;
     border-bottom: 0.4rem solid #007bff;
 }
+
+.logo {
+    font-size: 40px;
+}

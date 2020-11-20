@@ -1,4 +1,4 @@
-import { Card, Button, CardTitle } from "reactstrap";
+import { Card, Button, CardTitle, Row } from "reactstrap";
 import styled from "styled-components";
 
 export const CardS = styled(Card)`
@@ -14,4 +14,8 @@ export const CardTitleS = styled(CardTitle)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const RowS = styled(Row)`
+  padding-bottom: 120px;
 `;
