@@ -34,6 +34,11 @@ const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
     setDescTextAria(e.target.value);
   };
 
+  const saveForAllHandler = () => {
+    toggle();
+    saveHandler();
+  };
+  
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={toggle}>{place}</ModalHeader>
@@ -46,13 +51,7 @@ const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
         <Button outline color={theme.success} onClick={toggle}>
           {t("Save")}
         </Button>{" "}
-        <Button
-          color={theme.secondary}
-          onClick={() => {
-            toggle();
-            saveHandler();
-          }}
-        >
+        <Button color={theme.secondary} onClick={saveForAllHandler}>
           {t("Cancel")}
         </Button>
       </ModalFooter>
