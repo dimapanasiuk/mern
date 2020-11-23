@@ -28,7 +28,7 @@ const SendFeedback = ({ id, label, locationData }) => {
   const textAriaHandler = (e) => {
     const { value } = e.target;
     setTextVal(value);
-    return value && id ? setIsButton(false) : setIsButton(true);
+    return setIsButton(value && id);
   };
 
   const saveHandler = () => {
