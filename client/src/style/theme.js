@@ -9,6 +9,8 @@ const theme = {
   white: "#ffffff",
   light_blue: "#d1ecf1",
   gray_footer: "#343a40",
+  success: "success",
+  secondary: "secondary",
 };
 
 export default theme;

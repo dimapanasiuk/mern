@@ -32,7 +32,7 @@ const resources = {
       "Please enter place": "Please enter place",
       "Write description": "Write description",
       Password: "Password",
-      Cancel: "Отмена",
+      Cancel: "Cancel",
     },
   },
   ru: {
