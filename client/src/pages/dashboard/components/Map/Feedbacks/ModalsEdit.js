@@ -11,6 +11,9 @@ import { array, bool, func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
 
+// eslint-disable-next-line import/no-unresolved
+import theme from "style/theme";
+
 const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
   const [descTextAria, setDescTextAria] = useState(desc);
   const [othPlaces, setOthPlaces] = useState([]);
@@ -31,6 +34,11 @@ const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
     setDescTextAria(e.target.value);
   };
 
+  const saveForAllHandler = () => {
+    toggle();
+    saveHandler();
+  };
+  
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={toggle}>{place}</ModalHeader>
@@ -40,16 +48,10 @@ const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
       </ModalBody>
 
       <ModalFooter>
-        <Button outline color="success" onClick={toggle}>
+        <Button outline color={theme.success} onClick={toggle}>
           {t("Save")}
         </Button>{" "}
-        <Button
-          color="secondary"
-          onClick={() => {
-            toggle();
-            saveHandler();
-          }}
-        >
+        <Button color={theme.secondary} onClick={saveForAllHandler}>
           {t("Cancel")}
         </Button>
       </ModalFooter>

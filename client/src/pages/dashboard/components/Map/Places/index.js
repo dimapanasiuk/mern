@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import { useTranslation } from "react-i18next";
+
 // eslint-disable-next-line import/no-unresolved
 import getPlaceId from "store/getPlaceData/actions"; // TODO : fix this problem
 
 import { Div } from "./style";
 
 const Places = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
   const [value, setValue] = useState("");
+
+  const onLoadFailed = (e) => {
+    console.warn("💡🛑", e);
+  };
 
   useEffect(() => {
     if (value) {
@@ -27,7 +35,7 @@ const Places = () => {
     <>
       <Div>
         <GooglePlacesAutocomplete
-          placeholder="Type in an address"
+          placeholder={t("Type in an address")}
           inputStyle={{
             height: 40,
             fontSize: 28,
@@ -36,7 +44,7 @@ const Places = () => {
             value,
             onChange: setValue,
           }}
-          onLoadFailed={(e) => console.warn("💡🛑", e)}
+          onLoadFailed={onLoadFailed}
         />
       </Div>
     </>
@@ -44,8 +52,3 @@ const Places = () => {
 };
 
 export default connect()(Places);
-
-// MB HELP IN FUTURE
-// work with this key
-// https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJk1uS2eG7FkgRqzCcF1iDSMY&fields=name,rating,geometry,formatted_phone_number&key=AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE
-// "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJk1uS2eG7FkgRqzCcF1iDSMY&fields=name,rating,geometry,formatted_phone_number&key=AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";

@@ -12,7 +12,7 @@ const resources = {
       Dashboard: "Dashboard",
       Login: "Login",
       LANG: "EN",
-      "Please setting nhl widget": "Please setting nhl",
+      "Please setting nhl": "Please setting nhl",
       "Please setting currency widget": "Please setting currency widget",
       Widget: "Widget",
       Widgets: "Widgets",
@@ -32,7 +32,8 @@ const resources = {
       "Please enter place": "Please enter place",
       "Write description": "Write description",
       Password: "Password",
-      Cancel: "Отмена",
+      Cancel: "Cancel",
+      "Type in an address": "Type in an address",
     },
   },
   ru: {
@@ -42,7 +43,7 @@ const resources = {
       Dashboard: "Дашборд",
       Login: "Логин",
       LANG: "RU",
-      "Please setting NHL widget": "Пожалуйста настройте НХЛ",
+      "Please setting NHL": "Пожалуйста настройте НХЛ",
       "Please setting currency widget": "Пожалуйста настройте currency",
       "Please choose your favorite paces in place":
         "Пожалуйста настройте places в place",
@@ -64,6 +65,7 @@ const resources = {
       "Write description": "Напишите описание",
       Password: "Пароль",
       Cancel: "Отмена",
+      "Type in an address": "Введите адрес",
     },
   },
 };

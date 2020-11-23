@@ -12,7 +12,7 @@ function MyComponent() {
 
     setTranslate(!translate);
 
-    return translate ? i18n.changeLanguage(en) : i18n.changeLanguage(ru);
+    return i18n.changeLanguage(translate ? en : ru);
   };
 
   return <Button onClick={translateClickHandler}>{t("LANG")}</Button>;
