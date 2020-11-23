@@ -9,16 +9,22 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
     "chart.js": "^2.9.4",
+    "dotenv": "^8.2.0",
     "emoji-dictionary": "^1.0.11",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "i18next": "^19.8.3",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-chartjs-2": "^2.11.1",
     "react-dom": "^16.14.0",
+    "react-google-places-autocomplete": "^3.0.0",
+    "react-hook-google-maps": "^0.0.3",
+    "react-i18next": "^11.7.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "reactstrap-date-picker": "^0.0.11"
+    "reactstrap-date-picker": "^0.0.11",
+    "use-places-autocomplete": "^1.6.0"
   },
   "scripts": {
     "start": "react-scripts start",

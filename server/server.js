@@ -12,6 +12,8 @@ const connectEnsureLogin = require("connect-ensure-login");
 const session = require("express-session");
 const db = require("./db");
 
+const axios = require("axios").default;
+
 const User = require("./scheme/user");
 
 async function start() {
@@ -109,9 +111,8 @@ app.post("/registration", (req, res) => {
       password: req.body.password,
     });
 
-    user.save(function (err) {
-      if (err) return console.log(err);
-      console.log("Saved object", user);
+    user.save(function (e) {
+      if (e) return console.error("=====💡🛑=====", e);
     });
 
     res.send({ data: "work" });
@@ -123,11 +124,24 @@ app.post("/registration", (req, res) => {
 app.put("/save", (req, res) => {
   const { teams } = req.body;
 
-  User.updateOne({ name: "dima" }, { nhlTeams: teams }, function (err, result) {
-    if (err) return console.log(err);
+  User.updateOne({ name: "dima" }, { nhlTeams: teams }, function (e, result) {
+    if (e) return console.error("=====💡🛑=====", e);
   });
 
   res.send(req.body.teams);
+});
+
+app.post("/map", function (req, res) {
+  const { placeId, API_KEY } = req.body;
+
+  const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,geometry,formatted_phone_number&key=${API_KEY}`;
+
+  axios
+    .get(request)
+    .then((data) => {
+      res.send(data.data);
+    })
+    .catch((e) => console.error("=====💡🛑=====", e));
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

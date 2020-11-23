@@ -11,6 +11,7 @@ export const NavFlex = styled(Nav)`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding: 0px;
 `;
 
 export const NavigationBar = styled(Navbar)`

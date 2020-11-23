@@ -13,6 +13,7 @@ html {
   /* 2 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
+  height: 100%;
 }
 
 /* Sections
@@ -21,7 +22,12 @@ html {
    * Remove the margin in all browsers (opinionated).
    */
 body {
+  height: 100%;
   margin: 0;
+}
+
+#root {
+  height: 100%;
 }
 
 /**

@@ -9,10 +9,12 @@ import LoginPage from "./pages/login";
 import Cabinet from "./pages/cabinet";
 import Registration from "./pages/registration";
 import DetailPage from "./pages/dashboard/components/Nhl/DetailPage";
+import Footer from "./components/Footer";
+import { Div } from "./style";
 
 const App = () => {
   return (
-    <>
+    <Div>
       <Header />
       <Container fluid>
         <Redirect from="/" to="/dashboard" />
@@ -40,7 +42,8 @@ const App = () => {
           </Route>
         </Switch>
       </Container>
-    </>
+      <Footer />
+    </Div>
   );
 };
 

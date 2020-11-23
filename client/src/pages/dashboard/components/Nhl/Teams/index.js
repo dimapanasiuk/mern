@@ -1,12 +1,16 @@
 import React from "react";
 import uuid from "react-uuid";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import { any } from "prop-types";
 import { size } from "lodash";
+import { useTranslation } from "react-i18next";
+
 import TeamCard from "../TeamCard";
 
 const Teams = ({ teams }) => {
+  const { t } = useTranslation();
+
   let cards;
 
   if (size(teams)) {
@@ -19,8 +23,13 @@ const Teams = ({ teams }) => {
 
   return (
     <>
-      <h2>Please setting Nhl widget</h2>
-      <Row sm="12">{cards}</Row>
+      {!size(teams) ? (
+        <Alert color="info">
+          {t("Please setting NHL")} {t("Widget")}
+        </Alert>
+      ) : (
+        <Row sm="12">{cards}</Row>
+      )}
     </>
   );
 };

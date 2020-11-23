@@ -1,13 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import styled from "styled-components";
 
 import Login from "./components/Login";
+
+const BreadcrumbS = styled(Breadcrumb)`
+  margin: 10px 0 0 0;
+`;
 
 const LoginPage = () => {
   return (
     <>
-      <Breadcrumb>
+      <BreadcrumbS>
         <BreadcrumbItem active>
           <NavLink exact to="/profile">
             Profile
@@ -18,7 +23,7 @@ const LoginPage = () => {
             Registration
           </NavLink>
         </BreadcrumbItem>
-      </Breadcrumb>
+      </BreadcrumbS>
       <Login />
     </>
   );

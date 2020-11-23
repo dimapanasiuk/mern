@@ -3,7 +3,7 @@
 }
 
 .link-nav {
-    padding: 10px;
+    padding: 14px;
     color: white;
     margin-right: 10px;
     text-decoration: none;
@@ -16,4 +16,8 @@
 .active-route {
     color: #aaaaab !important;
     border-bottom: 0.4rem solid #007bff;
+}
+
+.logo {
+    font-size: 40px;
 }

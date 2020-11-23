@@ -2,16 +2,20 @@ import React from "react";
 import { FormGroup, TabPane, Row, Col } from "reactstrap";
 import DatePicker from "reactstrap-date-picker";
 import { func, string } from "prop-types";
+import { useTranslation } from "react-i18next";
+
 import { CustomButton } from "./style";
 
 const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
+  const { t } = useTranslation();
+
   const dis = !(startDate && endDate && startDate < endDate);
 
   return (
     <TabPane tabId="3">
       <Row>
         <Col sm="6">
-          <h6>start date</h6>
+          <h6>{t("start date")}</h6>
           <FormGroup>
             <DatePicker
               id="start-datepicker"
@@ -21,18 +25,17 @@ const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
           </FormGroup>
         </Col>
         <Col sm="6">
-          <h6>end date</h6>
+          <h6>{t("end date")}</h6>
           <FormGroup>
             <DatePicker id="end-datepicker" value={endDate} onChange={endFoo} />
           </FormGroup>
         </Col>
         <Col sm="12">
           <CustomButton outline color="info" data-position="2" onClick={toggle}>
-            Back
+            {t("Back")}
           </CustomButton>
-
           <CustomButton color="success" onClick={save} disabled={dis}>
-            Save
+            {t("Save")}
           </CustomButton>
         </Col>
       </Row>

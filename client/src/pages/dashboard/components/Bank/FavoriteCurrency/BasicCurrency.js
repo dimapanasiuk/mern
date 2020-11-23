@@ -3,15 +3,19 @@ import Select from "react-select";
 import { FormGroup, Button, TabPane, Row, Col } from "reactstrap";
 import makeAnimated from "react-select/animated";
 import { any, string, func } from "prop-types";
+import { useTranslation } from "react-i18next";
+
 import { Head6 } from "./style";
 
 const BasicCurrency = ({ toggle, options, chooseCurrency, basicCur }) => {
+  const { t } = useTranslation();
+
   return (
     <TabPane tabId="1">
       <Row>
         <Col sm="12">
           <FormGroup>
-            <Head6> Please choose basic currency</Head6>
+            <Head6> {t("Please choose basic currency")}</Head6>
             <Select
               closeMenuOnSelect={false}
               components={makeAnimated()}
@@ -25,7 +29,7 @@ const BasicCurrency = ({ toggle, options, chooseCurrency, basicCur }) => {
             onClick={toggle}
             disabled={!basicCur}
           >
-            Next
+            {t("Next")}
           </Button>
         </Col>
       </Row>

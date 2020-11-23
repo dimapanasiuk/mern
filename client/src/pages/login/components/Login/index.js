@@ -1,10 +1,13 @@
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
 
 const Login = () => {
+  const { t } = useTranslation();
+
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
 
@@ -26,7 +29,7 @@ const Login = () => {
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
       <FormGroup>
-        <Label for="login">Login</Label>
+        <Label for="login">{t("Login")}</Label>
         <StrapInput
           id="login"
           placeholder={`${STR} login`}
@@ -35,7 +38,7 @@ const Login = () => {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Password</Label>
+        <Label>{t("Password")}</Label>
         <StrapInput
           placeholder={`${STR} password`}
           name="password"
