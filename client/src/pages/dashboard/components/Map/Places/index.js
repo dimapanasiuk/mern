@@ -15,6 +15,10 @@ const Places = () => {
 
   const [value, setValue] = useState("");
 
+  const onLoadFailed = (e) => {
+    console.warn("💡🛑", e);
+  };
+
   useEffect(() => {
     if (value) {
       const {
@@ -40,7 +44,7 @@ const Places = () => {
             value,
             onChange: setValue,
           }}
-          onLoadFailed={(e) => console.warn("💡🛑", e)}
+          onLoadFailed={onLoadFailed}
         />
       </Div>
     </>
