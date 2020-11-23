@@ -33,6 +33,7 @@ const resources = {
       "Write description": "Write description",
       Password: "Password",
       Cancel: "Cancel",
+      "Type in an address": "Type in an address",
     },
   },
   ru: {
@@ -64,6 +65,7 @@ const resources = {
       "Write description": "Напишите описание",
       Password: "Пароль",
       Cancel: "Отмена",
+      "Type in an address": "Введите адрес",
     },
   },
 };
