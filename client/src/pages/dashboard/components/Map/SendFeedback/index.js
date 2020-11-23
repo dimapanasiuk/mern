@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 // eslint-disable-next-line import/no-unresolved
 import senMapFeedback from "store/sendMapFeedback/actions";
 import Places from "../Places";
-import { FormStyle } from "./style";
+import { FormStyle, FormGroupS } from "./style";
 
 const SendFeedback = ({ id, label, locationData }) => {
   const { t } = useTranslation();
@@ -49,7 +49,7 @@ const SendFeedback = ({ id, label, locationData }) => {
         <Label>{t("Please enter place")}</Label>
         <Places innerRef={register} />
       </FormGroup>
-      <FormGroup style={{ height: "100%" }}>
+      <FormGroupS>
         <Label>{t("Write description")}</Label>
         <Input
           disabled={isTexVal}
@@ -58,7 +58,7 @@ const SendFeedback = ({ id, label, locationData }) => {
           innerRef={register}
           onChange={textAriaHandler}
         />
-      </FormGroup>
+      </FormGroupS>
       <Button disabled={isButton} color="success" onClick={saveHandler}>
         {t("Save")}
       </Button>
