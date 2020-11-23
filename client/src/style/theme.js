@@ -8,6 +8,7 @@ const theme = {
   dark: "#343a40",
   white: "#ffffff",
   light_blue: "#d1ecf1",
+  gray_footer: "#343a40",
 };
 
 export default theme;
