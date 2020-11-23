@@ -12,7 +12,7 @@ const resources = {
       Dashboard: "Dashboard",
       Login: "Login",
       LANG: "EN",
-      "Please setting nhl widget": "Please setting nhl",
+      "Please setting nhl": "Please setting nhl",
       "Please setting currency widget": "Please setting currency widget",
       Widget: "Widget",
       Widgets: "Widgets",
@@ -42,7 +42,7 @@ const resources = {
       Dashboard: "Дашборд",
       Login: "Логин",
       LANG: "RU",
-      "Please setting NHL widget": "Пожалуйста настройте НХЛ",
+      "Please setting NHL": "Пожалуйста настройте НХЛ",
       "Please setting currency widget": "Пожалуйста настройте currency",
       "Please choose your favorite paces in place":
         "Пожалуйста настройте places в place",
