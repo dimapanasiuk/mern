@@ -4,23 +4,24 @@ import { useGoogleMaps } from "react-hook-google-maps";
 import { array } from "prop-types";
 
 // eslint-disable-next-line import/no-unresolved
+import theme from "style/theme";
+// eslint-disable-next-line import/no-unresolved
 import mapMarker from "content/img/map.svg";
+// eslint-disable-next-line import/no-unresolved
+import { UKRAINE } from "utils/constants";
 import { Div } from "./style";
-
-const UKRAINE = { lat: 48.379433, lng: 31.16558 };
 
 const ShowMap = ({ locationData }) => {
   const { ref, map, google } = useGoogleMaps(
-    "AIzaSyBeEcwe9MrWGjT8epK_iCCyhAiql-Qvczw", // my key
+    process.env.REACT_APP_MAP_API_KEY,
     {
       center: UKRAINE,
       zoom: 3,
-      backgroundColor: "#d1ecf1",
+      backgroundColor: theme.light_blue,
     }
   );
 
   if (map && size(locationData)) {
-    // eslint-disable-next-line no-new
     locationData.forEach((item) => {
       new google.maps.Marker({ position: item.location, map }).setIcon(
         mapMarker

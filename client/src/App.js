@@ -11,11 +11,7 @@ import Registration from "./pages/registration";
 import DetailPage from "./pages/dashboard/components/Nhl/DetailPage";
 import Footer from "./components/Footer";
 
-require("dotenv").config();
-
 const App = () => {
-  console.log("process.env.SECRET_KEY", process.env.REACT_APP_API_KEY);
-
   return (
     <div
       style={{

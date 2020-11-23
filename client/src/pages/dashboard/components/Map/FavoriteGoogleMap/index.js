@@ -4,25 +4,26 @@ import { useGoogleMaps } from "react-hook-google-maps";
 import { object } from "prop-types";
 
 // eslint-disable-next-line import/no-unresolved
+import theme from "style/theme";
+// eslint-disable-next-line import/no-unresolved
 import mapMarker from "content/img/map.svg";
+// eslint-disable-next-line import/no-unresolved
+import { UKRAINE } from "utils/constants";
 import { Div } from "./style";
-
-const UKRAINE = { lat: 48.379433, lng: 31.16558 };
 
 const FavoriteGoogleMap = ({ locationData }) => {
   const locationSize = size(Object.keys(locationData));
 
   const { ref, map, google } = useGoogleMaps(
-    "AIzaSyBeEcwe9MrWGjT8epK_iCCyhAiql-Qvczw", // my key
+    process.env.REACT_APP_MAP_API_KEY,
     {
       center: UKRAINE,
       zoom: 3,
-      backgroundColor: "#d1ecf1",
+      backgroundColor: theme.light_blue,
     }
   );
 
   if (map && locationSize) {
-    // eslint-disable-next-line no-new
     const first = new google.maps.Marker({ position: locationData, map });
     first.setIcon(mapMarker);
     map.setZoom(6);
@@ -37,6 +38,3 @@ FavoriteGoogleMap.propTypes = {
 };
 
 export default FavoriteGoogleMap;
-
-// HELP
-// "AIzaSyC4Z5Qz97EWcoCczNn2IcYvaYG0L9pe6Rk", spare key
