@@ -5,9 +5,10 @@ import Select from "react-select";
 import { connect, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
+// eslint-disable-next-line import/no-unresolved
+import choseTeams from "store/choseTeams/actions";
 import { Head6 } from "../../Bank/FavoriteCurrency/style";
 import { CardStyle } from "./style";
-import choseTeams from "../../../../../store/choseTeams/actions";
 
 let options = [];
 

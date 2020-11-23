@@ -34,6 +34,9 @@ MyMap.propTypes = {
 
 const mapStateToProps = (state) => {
   const allPlaces = state.sendMapFeedbackReducer;
+
+  console.log("allPlaces", allPlaces);
+
   const placesInfo = allPlaces.filter((i) => i.id !== "");
 
   return { data: placesInfo };

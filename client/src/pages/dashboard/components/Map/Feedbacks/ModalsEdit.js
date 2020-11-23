@@ -26,8 +26,7 @@ const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
   const { t } = useTranslation();
 
   const saveHandler = () => {
-    console.log(othPlaces);
-    console.log("save handler");
+    console.log("save handler", othPlaces);
   };
 
   const changeHandler = (e) => {
@@ -38,7 +37,7 @@ const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
     toggle();
     saveHandler();
   };
-  
+
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={toggle}>{place}</ModalHeader>

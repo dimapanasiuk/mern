@@ -13,7 +13,7 @@ const FavoritePlaces = ({ id }) => {
   const [locationData, setLocationData] = useState({});
 
   useEffect(() => {
-    const API_KEY = "AIzaSyCuMJ3dhADqNoE4tGuWTI3_NlwBihj5BtE";
+    const API_KEY = process.env.REACT_APP_PLACES_API_KEY;
 
     axios
       .post("/map", { placeId: id, API_KEY })

@@ -28,7 +28,10 @@ const SendFeedback = ({ id, label, locationData }) => {
   const textAriaHandler = (e) => {
     const { value } = e.target;
     setTextVal(value);
-    return setIsButton(value && id);
+
+    // eslint-disable-next-line no-unneeded-ternary
+    const isTrue = value && id ? false : true; // TODO: fix this warning
+    return setIsButton(isTrue);
   };
 
   const saveHandler = () => {
