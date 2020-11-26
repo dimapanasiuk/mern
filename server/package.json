@@ -1,9 +1,11 @@
 {
-  "name": "mern",
+  "name": "server",
   "version": "1.0.0",
+  "author": "Dmitry Panasiuk",
+  "email": "email",
+  "license": "MIT",
+  "private": true,
   "scripts": {
-    "client": "cd .. && cd client && yarn run start",
-    "server": "nodemon server.js",
     "dev": "yarn start",
     "lint": "eslint ."
   },
@@ -24,7 +26,8 @@
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "vercel": "^21.0.1"
   },
   "devDependencies": {
     "concurrently": "^4.0.1",

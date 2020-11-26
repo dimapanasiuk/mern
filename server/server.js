@@ -93,7 +93,7 @@ app.post(
   }
 );
 
-app.get("/logout", function (req, res) {
+app.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/home");
 });
@@ -111,7 +111,7 @@ app.post("/registration", (req, res) => {
       password: req.body.password,
     });
 
-    user.save(function (e) {
+    user.save((e) => {
       if (e) return console.error("=====💡🛑=====", e);
     });
 
@@ -131,7 +131,7 @@ app.put("/save", (req, res) => {
   res.send(req.body.teams);
 });
 
-app.post("/map", function (req, res) {
+app.post("/map", (req, res) => {
   const { placeId, API_KEY } = req.body;
 
   const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,geometry,formatted_phone_number&key=${API_KEY}`;
@@ -142,6 +142,10 @@ app.post("/map", function (req, res) {
       res.send(data.data);
     })
     .catch((e) => console.error("=====💡🛑=====", e));
+});
+
+app.get("/", (req, res) => {
+  res.send("<h1>Test</h1>");
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
