@@ -10,11 +10,13 @@ const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 const connectEnsureLogin = require("connect-ensure-login");
 const session = require("express-session");
-const db = require("./db");
-
 const axios = require("axios").default;
 
+const db = require("./db");
 const User = require("./scheme/user");
+const routing = require('./routing');
+
+app.use('/', routing)
 
 async function start() {
   const url = config.get("mongoUri");
@@ -142,10 +144,6 @@ app.post("/map", (req, res) => {
       res.send(data.data);
     })
     .catch((e) => console.error("=====💡🛑=====", e));
-});
-
-app.get("/", (req, res) => {
-  res.send("<h1>Test</h1>");
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
