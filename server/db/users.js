@@ -19,3 +19,5 @@ exports.findByUsername = function (username, cb) {
     return cb(null, docs[0]);
   });
 };
+
+// no sense of extra
