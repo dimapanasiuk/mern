@@ -9,12 +9,14 @@ const Strategy = require("passport-local").Strategy;
 const User = require("../scheme/user");
 const db = require("../db");
 
-express().use(passport.initialize());
-express().use(passport.session());
+// express().use(passport.initialize());
+// app.use(passport.initialize());
+// app.use(passport.session());
+// express().use(passport.session());
 
 passport.use(
 	new Strategy(function (username, password, cb) {
-		db.users.findByUsername(username, function (err, user) {
+		 db.users.findByUsername(username, function (err, user) {
 			if (err) {
 				return cb(err);
 			}

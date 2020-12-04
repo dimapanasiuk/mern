@@ -5,6 +5,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const session = require("express-session");
+const passport = require("passport");
 
 const routing = require('./routing');
 
@@ -41,6 +42,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session({ secret: 'anything' }));
 
 app.use('/', routing);
 
