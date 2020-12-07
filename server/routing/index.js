@@ -40,7 +40,7 @@ passport.deserializeUser((id, cb) => {
 });
 
 router.get("/home", (req, res) => { // try/catch at each endpoint
-  
+
   res.send({ user: req.user });
 
   throw new Error('Something broke! ');
@@ -97,7 +97,7 @@ router.post("/map", (req, res) => { //?
 
   const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,geometry,formatted_phone_number&key=${API_KEY}`;
 
-  axios
+  axios // make with help async await
     .get(request)
     .then((data) => {
       res.send(data.data);
