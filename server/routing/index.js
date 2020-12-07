@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const axios = require("axios").default;
+const mongoose = require("mongoose");
 const connectEnsureLogin = require("connect-ensure-login");
 
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 
 const User = require("../scheme");
+const Currency = require("../scheme");
+
 const db = require("../db");
 
 passport.use(
@@ -39,11 +42,25 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
+router.get("/", (req, res) => {
+
+  console.log('user ++++++++++++++++++++++++', req.user) // i cant get user id
+
+  // const cur = new Currency({
+  //   link: mongoose.Types.ObjectId("5fce86d5b5399c22dc268eab"),
+  //   basicCurrency: 'usd',
+  // });
+
+  // cur.save((e) => {
+  //   if (e) return console.error("=====💡🛑=====", e);
+  // });
+
+  res.send('<h1>Hello world</h1>');
+});
+
+
 router.get("/home", (req, res) => { // try/catch at each endpoint
-
   res.send({ user: req.user });
-
-  throw new Error('Something broke! ');
 });
 
 router.post(
@@ -65,8 +82,6 @@ router.get("/profile", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 
 router.post("/registration", (req, res) => {
   const { userName, password, password2 } = req.body;
-
-
 
   if (password === password2 && password.length > 4) {
     const user = new User({
