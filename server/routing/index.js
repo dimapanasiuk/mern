@@ -9,12 +9,14 @@ const Strategy = require("passport-local").Strategy;
 const User = require("../scheme/user");
 const db = require("../db");
 
-express().use(passport.initialize());
-express().use(passport.session());
+// express().use(passport.initialize());
+// app.use(passport.initialize());
+// app.use(passport.session());
+// express().use(passport.session());
 
 passport.use(
 	new Strategy(function (username, password, cb) {
-		db.users.findByUsername(username, function (err, user) {
+		 db.users.findByUsername(username, function (err, user) {
 			if (err) {
 				return cb(err);
 			}
@@ -34,7 +36,7 @@ passport.serializeUser(function (user, cb) {
 });
 
 passport.deserializeUser(function (id, cb) {
-	db.users.findById(id, function (err, user) {
+	db.users.findById(id, function (err, user) { // ask this
 		if (err) {
 			return cb(err);
 		}
@@ -46,7 +48,7 @@ router.get("/", (req, res) => {
 	res.send("<h1>Test</h1>");
 });
 
-router.get("/home", function (req, res) {
+router.get("/home", function (req, res) { //to arrow function, try/catch at each endpoint
 	res.send({ user: req.user });
 });
 
@@ -58,7 +60,7 @@ router.post(
 	}
 );
 
-router.get("/logout", (req, res) => {
+router.get("/logout", (req, res) => { // logout must be post
 	req.logout();
 	res.redirect("/home");
 });
@@ -100,7 +102,7 @@ router.put("/save", (req, res) => {
 	res.send(req.body.teams);
 });
 
-router.post("/map", (req, res) => {
+router.post("/map", (req, res) => { //?
 	const { placeId, API_KEY } = req.body;
 
 	const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,geometry,formatted_phone_number&key=${API_KEY}`;
@@ -114,3 +116,4 @@ router.post("/map", (req, res) => {
 });
 
 module.exports = router;
+// always

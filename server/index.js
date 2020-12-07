@@ -1,18 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const config = require("config");
 const app = express();
-const PORT = config.get("port") || 4000;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const session = require("express-session");
+const passport = require("passport");
 
 const routing = require('./routing');
 
+const config = require("./config/default.json"); // describe another way, ask about prev
+const PORT = config.port || 4000;
 
-async function start() {
-  const url = config.get("mongoUri");
+async function start() { // could be simplify
+  const url = config.mongoUri;
   try {
     await mongoose.connect(url, {
       useNewUrlParser: true,
@@ -41,6 +42,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session({ secret: 'anything' }));
 
 app.use('/', routing);
 
