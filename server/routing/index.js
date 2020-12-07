@@ -6,7 +6,7 @@ const connectEnsureLogin = require("connect-ensure-login");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 
-const User = require("../scheme/user");
+const User = require("../scheme");
 const db = require("../db");
 
 passport.use(
@@ -65,6 +65,8 @@ router.get("/profile", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 
 router.post("/registration", (req, res) => {
   const { userName, password, password2 } = req.body;
+
+
 
   if (password === password2 && password.length > 4) {
     const user = new User({
