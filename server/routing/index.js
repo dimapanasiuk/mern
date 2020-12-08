@@ -109,17 +109,16 @@ router.put("/save", (req, res) => {
   res.send(req.body.teams);
 });
 
-router.post("/map", (req, res) => { //?
+router.post("/map", async (req, res) => { //?
   const { placeId, API_KEY } = req.body;
 
   const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,geometry,formatted_phone_number&key=${API_KEY}`;
-
-  axios // make with help async await
-    .get(request)
-    .then((data) => {
-      res.send(data.data);
-    })
-    .catch((e) => console.error("=====💡🛑=====", e));
+  try {
+    const resp = await axios.get(request);
+    res.send(resp.data);
+  } catch (e) {
+    console.error("=====💡🛑===== /map endpoint error", e);
+  }
 });
 
 module.exports = router;
