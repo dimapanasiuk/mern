@@ -44,22 +44,26 @@ passport.deserializeUser((id, cb) => {
 
 router.get("/", (req, res) => {
 
-  console.log('user ++++++++++++++++++++++++', req.user) // i cant get user id
+  const {_id} = req.user;
+   
+  const cur = new Currency({
+    link: _id,
+    basicCurrency: 'usd',
+  });
 
-  // const cur = new Currency({
-  //   link: mongoose.Types.ObjectId("5fce86d5b5399c22dc268eab"),
-  //   basicCurrency: 'usd',
-  // });
+   cur.save((e) => {
+    if (e) return console.error("=====💡🛑=====", e);
+  });
 
-  // cur.save((e) => {
-  //   if (e) return console.error("=====💡🛑=====", e);
-  // });
+  // try { // goog example
+  //   await cur.save();
+  // } catch  
 
   res.send('<h1>Hello world</h1>');
 });
 
 
-router.get("/home", (req, res) => { // try/catch at each endpoint
+router.get("/home", (req, res) => { // at each endpoint
   res.send({ user: req.user });
 });
 
@@ -90,7 +94,7 @@ router.post("/registration", (req, res) => {
     });
 
     user.save((e) => {
-      if (e) return console.error("=====💡🛑=====", e);
+      if (e) return res.send({ data: "error" }); // проверить не идет ли дальше  
     });
 
     res.send({ data: "work" });
