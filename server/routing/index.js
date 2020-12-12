@@ -3,12 +3,14 @@ const router = express.Router();
 const axios = require("axios").default;
 const mongoose = require("mongoose");
 const connectEnsureLogin = require("connect-ensure-login");
+const findOrCreate = require('mongoose-findorcreate');
 
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 
 const User = require("../scheme");
 const Currency = require("../scheme");
+const Cur = require("../scheme");
 
 const db = require("../db");
 
@@ -44,20 +46,16 @@ passport.deserializeUser((id, cb) => {
 
 router.get("/", (req, res) => {
 
-  const {_id} = req.user;
-   
+  const { _id } = req.user;
+
   const cur = new Currency({
     link: _id,
     basicCurrency: 'usd',
   });
 
-   cur.save((e) => {
+  cur.save((e) => {
     if (e) return console.error("=====💡🛑=====", e);
   });
-
-  // try { // goog example
-  //   await cur.save();
-  // } catch  
 
   res.send('<h1>Hello world</h1>');
 });
@@ -94,7 +92,7 @@ router.post("/registration", (req, res) => {
     });
 
     user.save((e) => {
-      if (e) return res.send({ data: "error" }); // проверить не идет ли дальше  
+      if (e) return res.send({ data: "error" }); // [TODO: check does func go to next / because we have return ]
     });
 
     res.send({ data: "work" });
@@ -111,6 +109,25 @@ router.put("/save", (req, res) => {
   });
 
   res.send(req.body.teams);
+});
+
+router.put("/currency", async (req, res) => {
+  const { _id } = req.user;
+  const { currencyData: { basicCur, selectCurrencies, startDate, endDate } } = req.body;
+
+  await Cur.findOrCreate({ _id: _id }, {
+    basicCurrency: basicCur,
+    currencies: selectCurrencies,
+    dateStart: startDate,
+    dateEnd: endDate,
+  }, (err, value) => {
+    console.log('currency is', value);
+    if (err) console.log('WTF', err);
+  });
+
+  console.log('================================== next')
+  
+  // res.send({ currency: 'basic' });
 });
 
 router.post("/map", async (req, res) => { //?

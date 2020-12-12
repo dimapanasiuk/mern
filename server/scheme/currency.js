@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const findOrCreate = require('mongoose-findorcreate')
+
 
 const Schema = mongoose.Schema;
 
@@ -14,5 +16,9 @@ const currencyScheme = new Schema(
 );
 
 const Currency = mongoose.model("Currency", currencyScheme);
+currencyScheme.plugin(findOrCreate);
+
+const Cur = mongoose.model('Cur', currencyScheme);
 
 module.exports = Currency;
+module.exports = Cur;
