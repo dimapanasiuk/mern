@@ -9,16 +9,16 @@ const currencyScheme = new Schema(
         link: { type: Schema.Types.ObjectId, ref: 'User' },
         basicCurrency: String,
         currencies: Array,
-        dateStart: Date,
-        dateEnd: Date,
+        dateStart: String,
+        dateEnd: String,
     },
     { versionKey: false }
 );
 
-const Currency = mongoose.model("Currency", currencyScheme);
+// const Currency = mongoose.model("Currency", currencyScheme);
 currencyScheme.plugin(findOrCreate);
 
-const Cur = mongoose.model('Cur', currencyScheme);
+const Currency = mongoose.model('Currency', currencyScheme);
 
 module.exports = Currency;
-module.exports = Cur;
+// module.exports = Cur;

@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const axios = require("axios").default;
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const connectEnsureLogin = require("connect-ensure-login");
-const findOrCreate = require('mongoose-findorcreate');
+// const findOrCreate = require('mongoose-findorcreate');
+
+const _ = require('lodash');
 
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
@@ -115,18 +117,36 @@ router.put("/currency", async (req, res) => {
   const { _id } = req.user;
   const { currencyData: { basicCur, selectCurrencies, startDate, endDate } } = req.body;
 
-  await Cur.findOrCreate({ _id: _id }, {
+  const data = {
+    _id: _id,
     basicCurrency: basicCur,
     currencies: selectCurrencies,
     dateStart: startDate,
     dateEnd: endDate,
-  }, (err, value) => {
-    console.log('currency is', value);
+  };
+
+  console.log('dateEnd', data.dateEnd);
+
+  await Currency.findOrCreate({ _id: _id }, data, (err, value) => {
+    const isTrue = _.isEqual(data._id, value._id)
+      && _.isEqual(data.basicCurrency, value.basicCurrency)
+      && _.isEqual(data.currencies, value.currencies)
+      && _.isEqual(data.dateStart, value.dateStart)
+      && _.isEqual(data.dateEnd, value.dateEnd);
+    // && _.isEqual(data, value); why doesn't it work
+
+    if (isTrue) {
+      console.log('data', data);
+      console.log('value', value);
+    }
+
+    console.log(value);
+
     if (err) console.log('WTF', err);
   });
 
   console.log('================================== next')
-  
+
   // res.send({ currency: 'basic' });
 });
 
