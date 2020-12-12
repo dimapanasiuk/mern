@@ -37,6 +37,21 @@ const FavoriteCurrency = () => {
   const [save, setSave] = useState(false);
 
   useEffect(() => {
+    if (basicCur && selectCurrencies.length && startDate && endDate) {
+      const currencyData = { basicCur, selectCurrencies, startDate, endDate }
+
+      console.log('currencyData', currencyData)
+
+      axios
+        .put("/currency", { currencyData })
+        .then((response) => {
+          console.log('response', response)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
     axios.get("https://api.exchangeratesapi.io/latest").then((res) => {
       setCurrencies(res.data.rates);
     });
