@@ -99,30 +99,34 @@ router.put("/currency", async (req, res) => {
   const { currencyData: { basicCur, selectCurrencies, startDate, endDate } } = req.body;
 
   const data = {
-    _id: _id,
+    link: _id,
     basicCurrency: basicCur,
     currencies: selectCurrencies,
     dateStart: startDate,
     dateEnd: endDate,
   };
 
-  await Currency.findOrCreate({ _id: _id }, data, (err, value) => {
-    const isTrue = _.isEqual(data._id, value._id)
+  await Currency.findOrCreate({ _id: _id }, data, async (err, value) => {
+    const isTrue = _.isEqual(data.link, value.link)
       && _.isEqual(data.basicCurrency, value.basicCurrency)
       && _.isEqual(data.currencies, value.currencies)
       && _.isEqual(data.dateStart, value.dateStart)
       && _.isEqual(data.dateEnd, value.dateEnd);
-    // && _.isEqual(data, value); why doesn't it work
+
+    console.log('isTruse', isTrue);
 
     if (!isTrue) {
-      Currency.findByIdAndUpdate({ _id }, data, (err, result) => {
+      const cur = await Currency.findOneAndUpdate({ link: _id }, { $set: { basicCurrency: 'govno' } }, (err, result) => {
         if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
         res.send({ currency: result });
       });
+
+      await cur.save();
+
     }
 
     if (err) console.log('WTF', err);
-    res.send({ currency: result });
+    res.send({ currency: value });
   });
 });
 
@@ -141,6 +145,7 @@ router.put('/nhlteams', async (req, res) => {
     if (!isTrue) {
       const nhl = await Nhl.findOneAndUpdate({ link: _id }, { $set: { teams } }, (err, result) => {
         if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
+        res.send({ nhl: result });
       });
       await nhl.save();
     }
