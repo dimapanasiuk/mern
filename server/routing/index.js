@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require("axios").default;
-// const mongoose = require("mongoose");
 const connectEnsureLogin = require("connect-ensure-login");
-// const findOrCreate = require('mongoose-findorcreate');
 
 const _ = require('lodash');
 
@@ -12,7 +10,7 @@ const Strategy = require("passport-local").Strategy;
 
 const User = require("../scheme");
 const Currency = require("../scheme");
-const Cur = require("../scheme");
+const Nhl = require("../scheme");
 
 const db = require("../db");
 
@@ -45,23 +43,6 @@ passport.deserializeUser((id, cb) => {
     cb(null, user);
   });
 });
-
-router.get("/", (req, res) => {
-
-  const { _id } = req.user;
-
-  const cur = new Currency({
-    link: _id,
-    basicCurrency: 'usd',
-  });
-
-  cur.save((e) => {
-    if (e) return console.error("=====💡🛑=====", e);
-  });
-
-  res.send('<h1>Hello world</h1>');
-});
-
 
 router.get("/home", (req, res) => { // at each endpoint
   res.send({ user: req.user });
@@ -134,7 +115,6 @@ router.put("/currency", async (req, res) => {
     // && _.isEqual(data, value); why doesn't it work
 
     if (!isTrue) {
-
       Currency.findByIdAndUpdate({ _id }, data, (err, result) => {
         if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
         res.send({ currency: result });
@@ -146,7 +126,32 @@ router.put("/currency", async (req, res) => {
   });
 });
 
-router.post("/map", async (req, res) => { //?
+router.put('/nhlteams', async (req, res) => {
+  const { _id } = req.user;
+  const { teams } = req.body;
+  const data = { teams, link: _id };
+
+  await Nhl.findOrCreate({ link: _id }, data, async (err, value) => {
+
+    // console.log('data', _.omit(data, ['link'])); work successfully
+    // console.log('value', _.omit(value, ['link']));  not work
+
+    const isTrue = _.isEqual(data.teams, value.teams) && _.isEqual(data.link, value.link);
+
+    if (!isTrue) {
+      const nhl = await Nhl.findOneAndUpdate({ link: _id }, { $set: { teams } }, (err, result) => {
+        if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
+      });
+      await nhl.save();
+    }
+
+    if (err) console.log('WTF', err);
+    res.send({ nhl: value });
+  });
+
+});
+
+router.post("/map", async (req, res) => {
   const { placeId, API_KEY } = req.body;
 
   const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,geometry,formatted_phone_number&key=${API_KEY}`;

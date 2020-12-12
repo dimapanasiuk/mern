@@ -39,9 +39,6 @@ const FavoriteCurrency = () => {
   useEffect(() => {
     if (basicCur && selectCurrencies.length && startDate && endDate) {
       const currencyData = { basicCur, selectCurrencies, startDate, endDate }
-
-      console.log('currencyData', currencyData)
-
       axios
         .put("/currency", { currencyData })
         .then((response) => {

@@ -41,6 +41,15 @@ const FavoriteTeams = () => {
 
   const choosesTeamsClickHandler = (a) => {
     dispatch(choseTeams(a));
+
+    axios
+      .put("/nhlteams", { teams: a })
+      .then((response) => {
+        console.log('response', response)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
