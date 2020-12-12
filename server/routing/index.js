@@ -125,8 +125,6 @@ router.put("/currency", async (req, res) => {
     dateEnd: endDate,
   };
 
-  console.log('dateEnd', data.dateEnd);
-
   await Currency.findOrCreate({ _id: _id }, data, (err, value) => {
     const isTrue = _.isEqual(data._id, value._id)
       && _.isEqual(data.basicCurrency, value.basicCurrency)
@@ -135,19 +133,17 @@ router.put("/currency", async (req, res) => {
       && _.isEqual(data.dateEnd, value.dateEnd);
     // && _.isEqual(data, value); why doesn't it work
 
-    if (isTrue) {
-      console.log('data', data);
-      console.log('value', value);
+    if (!isTrue) {
+
+      Currency.findByIdAndUpdate({ _id }, data, (err, result) => {
+        if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
+        res.send({ currency: result });
+      });
     }
 
-    console.log(value);
-
     if (err) console.log('WTF', err);
+    res.send({ currency: result });
   });
-
-  console.log('================================== next')
-
-  // res.send({ currency: 'basic' });
 });
 
 router.post("/map", async (req, res) => { //?
