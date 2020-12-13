@@ -8,9 +8,7 @@ const _ = require('lodash');
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 
-const User = require("../scheme");
-const Currency = require("../scheme");
-const Nhl = require("../scheme");
+const { User, Currency, Nhl } = require("../scheme");
 
 const db = require("../db");
 
@@ -106,28 +104,27 @@ router.put("/currency", async (req, res) => {
     dateEnd: endDate,
   };
 
-  await Currency.findOrCreate({ _id: _id }, data, async (err, value) => {
+  Currency.findOrCreate({ link: _id }, data, async (err, value) => {
+
     const isTrue = _.isEqual(data.link, value.link)
       && _.isEqual(data.basicCurrency, value.basicCurrency)
       && _.isEqual(data.currencies, value.currencies)
       && _.isEqual(data.dateStart, value.dateStart)
-      && _.isEqual(data.dateEnd, value.dateEnd);
-
-    console.log('isTruse', isTrue);
+      && _.isEqual(data.dateEnd, value.dateEnd)
 
     if (!isTrue) {
-      const cur = await Currency.findOneAndUpdate({ link: _id }, { $set: { basicCurrency: 'govno' } }, (err, result) => {
+      const cur = await Currency.findOneAndUpdate({ link: _id }, { $set: data }, (err, result) => {  // [TODO: we have error  Cannot set headers after they are sent to the client ]
         if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
         res.send({ currency: result });
       });
-
       await cur.save();
-
     }
 
     if (err) console.log('WTF', err);
+    console.log('value', value);
     res.send({ currency: value });
-  });
+  })
+
 });
 
 router.put('/nhlteams', async (req, res) => {
@@ -153,7 +150,6 @@ router.put('/nhlteams', async (req, res) => {
     if (err) console.log('WTF', err);
     res.send({ nhl: value });
   });
-
 });
 
 router.post("/map", async (req, res) => {
