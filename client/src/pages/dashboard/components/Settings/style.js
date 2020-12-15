@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import { Button, Col } from "reactstrap";
-
-export const SaveButton = styled(Button)`
-  margin-top: 20px;
-`;
+import { Col } from "reactstrap";
 
 export const Column = styled(Col)`
   padding: 0px 20px 0 0;
