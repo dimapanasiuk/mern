@@ -2,26 +2,32 @@ const express = require('express');
 const router = express.Router();
 const axios = require("axios").default;
 const connectEnsureLogin = require("connect-ensure-login");
-
+const bcrypt = require('bcrypt');
 const _ = require('lodash');
 
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 
 const { User, Currency, Nhl } = require("../scheme");
-
 const db = require("../db");
+
+const salt = bcrypt.genSaltSync(10);
 
 passport.use(
   new Strategy(function (username, password, cb) {
+    console.log('username', username);
+    console.log('password', password);
+
     db.users.findByUsername(username, function (err, user) {
+      console.log('result', bcrypt.compareSync(password, user.password));
+
       if (err) {
         return cb(err);
       }
       if (!user) {
         return cb(null, false);
       }
-      if (user.password != password) {
+      if (user.password !== password) {
         return cb(null, false);
       }
       return cb(null, user);
@@ -69,7 +75,7 @@ router.post("/registration", (req, res) => {
   if (password === password2 && password.length > 4) {
     const user = new User({
       name: userName,
-      password: password,
+      password: bcrypt.hashSync(password, salt),
     });
 
     user.save((e) => {
@@ -78,8 +84,7 @@ router.post("/registration", (req, res) => {
 
     res.send({ data: "work" });
   }
-
-  res.send({ data: "err" });
+  // res.send({ data: "err" });
 });
 
 router.put("/save", (req, res) => {
