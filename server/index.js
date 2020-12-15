@@ -8,8 +8,8 @@ const session = require("express-session");
 const passport = require("passport");
 
 const routing = require('./routing');
-
 const config = require("./config/default.json"); // describe another way, ask about prev
+
 const PORT = config.port || 4000;
 
 async function start() { // could be simplify
@@ -46,5 +46,18 @@ app.use(passport.initialize());
 app.use(passport.session({ secret: 'anything' }));
 
 app.use('/', routing);
+
+
+
+/*
+test example for bcrypt
+const bcrypt = require('bcrypt');
+
+const pass = '666';
+const salt = bcrypt.genSaltSync(10);
+const passwordToSave = bcrypt.hashSync(pass, salt);
+const result = bcrypt.compareSync(pass, passwordToSave);
+console.log('result', result);
+*/
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
