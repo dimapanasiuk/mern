@@ -24,13 +24,12 @@ passport.use(
       if (err) {
         return cb(err);
       }
-      if (!user) {
+      else if (!user) {
         return cb(null, false);
       }
-      if (user.password !== password) {
-        return cb(null, false);
+      else if (bcrypt.compareSync(password, user.password)) { // [TODO] this implementation has BUG
+        return cb(null, user);
       }
-      return cb(null, user);
     });
   })
 );
