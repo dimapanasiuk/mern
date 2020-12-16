@@ -17,13 +17,13 @@ const Cabinet = () => {
 
   const logOutHandler = () => {
     axios
-      .get("/logout")
+      .post("/logout")
       .then((response) => {
-        console.log(response.data);
+        console.log('response', response.data);
         setUser("");
       })
       .catch((error) => {
-        console.log(error);
+        console.log('errror', error);
       });
   };
 
