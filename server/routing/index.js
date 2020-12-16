@@ -18,16 +18,16 @@ passport.use(
     console.log('username', username);
     console.log('password', password);
 
-    db.users.findByUsername(username, function (err, user) {
+    db.users.findByUsername(username, (err, user) => {
       console.log('result', bcrypt.compareSync(password, user.password));
 
       if (err) {
         return cb(err);
       }
-      else if (!user) {
+      if (!user) {
         return cb(null, false);
       }
-      else if (bcrypt.compareSync(password, user.password)) { // [TODO] this implementation has BUG
+      if (bcrypt.compareSync(password, user.password)) {
         return cb(null, user);
       }
     });
@@ -47,7 +47,7 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
-router.get("/home", (req, res) => { // at each endpoint
+router.get("/home", (req, res) => {
   res.send({ user: req.user });
 });
 
@@ -60,6 +60,7 @@ router.post(
 );
 
 router.post("/logout", (req, res) => {
+  console.log(' req.session', req.session);
   req.logout();
   res.redirect("/home");
 });
@@ -136,24 +137,23 @@ router.put('/nhlteams', async (req, res) => {
   const { teams } = req.body;
   const data = { teams, link: _id };
 
-  await Nhl.findOrCreate({ link: _id }, data, async (err, value) => {
+  const founded = await Nhl.findOrCreate({ link: _id }, data);
 
-    // console.log('data', _.omit(data, ['link'])); work successfully
-    // console.log('value', _.omit(value, ['link']));  not work
+  // console.log('data', _.omit(data, ['link'])); work successfully
+  // console.log('value', _.omit(value, ['link']));  not work
 
-    const isTrue = _.isEqual(data.teams, value.teams) && _.isEqual(data.link, value.link);
+  const isTrue = _.isEqual(data.teams, founded.teams) && _.isEqual(data.link, founded.link);
 
-    if (!isTrue) {
-      const nhl = await Nhl.findOneAndUpdate({ link: _id }, { $set: { teams } }, (err, result) => {
-        if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
-        res.send({ nhl: result });
-      });
-      await nhl.save();
-    }
+  if (!isTrue) {
+    const nhl = await Nhl.findOneAndUpdate({ link: _id }, { $set: { teams } }, (err, result) => {
+      if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
+      res.send({ nhl: result });
+    });
+    await nhl.save();
+  }
 
-    if (err) console.log('WTF', err);
-    res.send({ nhl: value });
-  });
+  if (err) console.log('WTF', err);
+  res.send({ nhl: founded });
 });
 
 router.post("/map", async (req, res) => {
