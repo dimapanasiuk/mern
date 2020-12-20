@@ -181,4 +181,17 @@ router.get("/currency", async (req, res) => {
   }
 })
 
+router.get("/nhl", async (req, res) => {
+  const { _id } = req.user;
+
+  if (_id) {
+    const answer = await Nhl.findOne({ link: _id }, async (err, response) => {
+      if (err) console.error("=====💡🛑===== /currency get endpoint error", err);
+      return response;
+    })
+
+    res.send({ nhl: answer || 'error' });
+  }
+})
+
 module.exports = router;
