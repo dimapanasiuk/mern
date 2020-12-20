@@ -12,6 +12,7 @@ Bank.propTypes = {
 };
 
 const mapDispatchToProps = (state) => {
+  console.log('my state', state);
   const { currenciesData } = state.currenciesDataReducer;
   return {
     dataForChart: currenciesData,

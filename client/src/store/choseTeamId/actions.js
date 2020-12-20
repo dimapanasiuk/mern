@@ -1,7 +1,7 @@
-export const CHOSETEAMID = "CHOSETEAMID";
+export const CHOSE_TEAM_ID = "CHOSE_TEAM_ID";
 
-function choseTeamId(id) {
-  return { type: CHOSETEAMID, data: id };
+const choseTeamId = (id) => {
+  return { type: CHOSE_TEAM_ID, data: id };
 }
 
 export default choseTeamId;

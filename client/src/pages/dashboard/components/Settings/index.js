@@ -8,7 +8,6 @@ import FavoritePlaces from "../Map/FavoritePlaces";
 const DashSettings = () => {
   return (
     <>
-      <h1>test</h1>
       <DivFlex>
         <Column sm={6}>
           <FavoriteCurrency />

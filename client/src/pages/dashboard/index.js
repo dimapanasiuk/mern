@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 import classnames from "classnames";
-import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
 import MyMap from "./components/Map";
 import Settings from "./components/Settings";
 import Show from "./components/Show";
-
-const NavContent = styled(Nav)`
-  display: flex;
-  justify-content: flex-end;
-  cursor: pointer;
-  padding: 20px 0;
-  border: none;
-`;
+import { NavContent } from './style';
 
 const DashBoard = () => {
   const { t } = useTranslation();
@@ -50,7 +43,6 @@ const DashBoard = () => {
           </NavItem>
         </Nav>
       </NavContent>
-
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
           <Show />

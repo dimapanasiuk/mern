@@ -4,7 +4,7 @@ const initialState = {
   currenciesData: [],
 };
 
-function currenciesDataReducer(state = initialState, action) {
+const currenciesDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case CURRENCIES:
       return {

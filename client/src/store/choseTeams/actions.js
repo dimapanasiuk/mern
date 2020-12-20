@@ -1,7 +1,7 @@
-export const CHOSETEAMS = "CHOSETEAMS";
+export const CHOSE_TEAMS = "CHOSE_TEAMS";
 
-function choseTeam(teams) {
-  return { type: CHOSETEAMS, data: teams };
+const choseTeam = (teams) => {
+  return { type: CHOSE_TEAMS, data: teams };
 }
 
 export default choseTeam;

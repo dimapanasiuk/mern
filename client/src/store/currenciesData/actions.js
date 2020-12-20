@@ -1,6 +1,6 @@
 export const CURRENCIES = "CURRENCIES";
 
-function getCurrenciesData(info) {
+const getCurrenciesData = (info) => {
   return { type: CURRENCIES, data: info };
 }
 

@@ -1,12 +1,12 @@
-import { CHOSETEAMS } from "./actions";
+import { CHOSE_TEAMS } from "./actions";
 
 const initialState = {
   teams: [],
 };
 
-function choseTeamsReducer(state = initialState, action) {
+const choseTeamsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHOSETEAMS:
+    case CHOSE_TEAMS:
       return {
         teams: action.data,
       };

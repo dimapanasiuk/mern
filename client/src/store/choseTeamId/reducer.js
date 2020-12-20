@@ -1,4 +1,4 @@
-import { CHOSETEAMID } from "./actions";
+import { CHOSE_TEAM_ID } from "./actions";
 
 const initialState = {
   id: "",
@@ -6,7 +6,7 @@ const initialState = {
 
 function choseTeamIdReducer(state = initialState, action) {
   switch (action.type) {
-    case CHOSETEAMID:
+    case CHOSE_TEAM_ID:
       return {
         id: action.data,
       };

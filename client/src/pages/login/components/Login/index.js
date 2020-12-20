@@ -3,10 +3,16 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { connect, useDispatch } from "react-redux";
 import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
+
+// eslint-disable-next-line import/no-unresolved
+import getUserData from "store/login/actions";
+
 
 const Login = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
@@ -15,7 +21,9 @@ const Login = () => {
     axios
       .post("/login", requestData)
       .then((response) => {
-        if (response.data) {
+        const { data } = response;
+        if (data) {
+          dispatch(getUserData(data.user));
           history.push("/");
         }
       })
@@ -56,4 +64,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect()(Login);

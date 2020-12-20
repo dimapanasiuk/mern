@@ -2,7 +2,7 @@ import { GET_PLACE_DATA } from "./actions";
 
 const initialState = [];
 
-function getPlaceDataReducer(state = initialState, action) {
+const getPlaceDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PLACE_DATA:
       return [
