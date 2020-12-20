@@ -168,4 +168,17 @@ router.post("/map", async (req, res) => {
   }
 });
 
+router.post("/currency", async (req, res) => {
+  const { id } = req.body;
+
+  if (id) {
+    const answer = await Currency.findOne({ link: id }, async (err, response) => {
+      if (err) console.error("=====💡🛑===== /currency get endpoint error", err);
+      return response;
+    })
+
+    res.send({ currency: answer || 'error' });
+  }
+})
+
 module.exports = router;

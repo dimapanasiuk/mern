@@ -47,17 +47,4 @@ app.use(passport.session({ secret: 'anything' }));
 
 app.use('/', routing);
 
-
-
-/*
-test example for bcrypt
-const bcrypt = require('bcrypt');
-
-const pass = '666';
-const salt = bcrypt.genSaltSync(10);
-const passwordToSave = bcrypt.hashSync(pass, salt);
-const result = bcrypt.compareSync(pass, passwordToSave);
-console.log('result', result);
-*/
-
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
