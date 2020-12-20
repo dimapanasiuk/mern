@@ -39,7 +39,7 @@ passport.serializeUser((user, cb) => {
 });
 
 passport.deserializeUser((id, cb) => {
-  db.users.findById(id, (err, user) => { // ask this
+  db.users.findById(id, (err, user) => {
     if (err) {
       return cb(err);
     }
