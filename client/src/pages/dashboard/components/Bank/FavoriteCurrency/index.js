@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, TabContent } from "reactstrap";
 import axios from "axios";
-import { connect, useDispatch } from "react-redux";
 import { size } from "lodash";
-
-// eslint-disable-next-line import/no-unresolved
-import getCurrenciesData from "store/currenciesData/actions"; // TODO : fix this problem
 
 // eslint-disable-next-line import/no-unresolved
 import { copyPartOfStr } from "utils"; // TODO : fix this problem
@@ -26,8 +22,6 @@ const getOptions = (crs) => {
 };
 
 const FavoriteCurrency = () => {
-  const dispatch = useDispatch();
-
   const [currencies, setCurrencies] = useState([]);
   const [basicCur, setBasicCur] = useState("");
   const [selectCurrencies, setSelectCurrencies] = useState([]);
@@ -41,9 +35,6 @@ const FavoriteCurrency = () => {
       const currencyData = { basicCur, selectCurrencies, startDate, endDate }
       axios
         .put("/currency", { currencyData })
-        .then((response) => {
-          console.log('response', response)
-        })
         .catch((error) => {
           console.log(error);
         });
@@ -52,18 +43,6 @@ const FavoriteCurrency = () => {
     axios.get("https://api.exchangeratesapi.io/latest").then((res) => {
       setCurrencies(res.data.rates);
     });
-
-    const curValues = selectCurrencies.map((cur) => cur.value).join();
-
-    if (basicCur && size(curValues) && startDate && endDate) {
-      axios
-        .get(
-          `https://api.exchangeratesapi.io/history?start_at=${startDate}&end_at=${endDate}&symbols=${curValues}&base=${basicCur}`
-        )
-        .then((res) => {
-          dispatch(getCurrenciesData(res.data));
-        });
-    }
   }, [save]);
 
   const crs = Object.keys(currencies);
@@ -124,4 +103,4 @@ const FavoriteCurrency = () => {
   );
 };
 
-export default connect()(FavoriteCurrency);
+export default FavoriteCurrency;

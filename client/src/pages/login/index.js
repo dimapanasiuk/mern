@@ -1,13 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import styled from "styled-components";
+import { BreadcrumbItem } from "reactstrap";
 
 import Login from "./components/Login";
-
-const BreadcrumbS = styled(Breadcrumb)`
-  margin: 10px 0 0 0;
-`;
+import { BreadcrumbS } from './style';
 
 const LoginPage = () => {
   return (

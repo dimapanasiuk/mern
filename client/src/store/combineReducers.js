@@ -4,7 +4,6 @@ import choseTeamIdReducer from "./choseTeamId/reducer";
 import currenciesDataReducer from "./currenciesData/reducer";
 import getPlaceDataReducer from "./getPlaceData/reducer";
 import sendMapFeedbackReducer from "./sendMapFeedback/reducer";
-import getUserDataReducer from './login/reducer';
 
 export default combineReducers({
   choseTeamsReducer,
@@ -12,5 +11,4 @@ export default combineReducers({
   currenciesDataReducer,
   getPlaceDataReducer,
   sendMapFeedbackReducer,
-  getUserDataReducer,
 });
