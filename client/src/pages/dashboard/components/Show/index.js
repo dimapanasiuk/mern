@@ -6,7 +6,7 @@ import axios from 'axios';
 import Nhl from "../Nhl";
 import Bank from "../Bank";
 
-const Show = ({ id }) => {
+const Show = ({ id, switcher }) => {
 
   const [currencyData, serCurrencyData] = useState([]);
 
@@ -21,7 +21,7 @@ const Show = ({ id }) => {
     }
     foo(id);
 
-  }, [id]);
+  }, [id, switcher]);
 
   return (
     <>
@@ -32,7 +32,8 @@ const Show = ({ id }) => {
 };
 
 Show.propTypes = {
-  id: string
+  id: string,
+  switcher: string,
 }
 
 const mapStateToProps = (state) => {

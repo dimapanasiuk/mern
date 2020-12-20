@@ -10,9 +10,12 @@ import Settings from "./components/Settings";
 import Show from "./components/Show";
 import { NavContent } from './style';
 
+const ONE = '1';
+const TWO = '2';
+
 const DashBoard = () => {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState("1");
+  const [activeTab, setActiveTab] = useState(ONE);
 
   const toggle = (e) => {
     const tab = e.target.getAttribute("data-position");
@@ -25,8 +28,8 @@ const DashBoard = () => {
         <Nav tabs>
           <NavItem>
             <NavLink
-              data-position="1"
-              className={classnames({ active: activeTab === "1" })}
+              data-position={ONE}
+              className={classnames({ active: activeTab === ONE })}
               onClick={toggle}
             >
               {t("Widgets")}
@@ -34,8 +37,8 @@ const DashBoard = () => {
           </NavItem>
           <NavItem>
             <NavLink
-              data-position="2"
-              className={classnames({ active: activeTab === "2" })}
+              data-position={TWO}
+              className={classnames({ active: activeTab === TWO })}
               onClick={toggle}
             >
               {t("Settings")}
@@ -44,11 +47,11 @@ const DashBoard = () => {
         </Nav>
       </NavContent>
       <TabContent activeTab={activeTab}>
-        <TabPane tabId="1">
-          <Show />
+        <TabPane tabId={ONE}>
+          <Show switcher={activeTab} />
           <MyMap />
         </TabPane>
-        <TabPane tabId="2">
+        <TabPane tabId={TWO}>
           <Settings />
         </TabPane>
       </TabContent>
