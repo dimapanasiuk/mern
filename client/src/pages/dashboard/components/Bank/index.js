@@ -1,22 +1,28 @@
-import React from "react";
-import { oneOfType, object, array } from "prop-types";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { array } from "prop-types";
+import { size } from 'lodash';
+import axios from 'axios';
 import Chart from "./Chart";
 
-const Bank = ({ dataForChart }) => {
-  return <Chart data={dataForChart} />;
+const Bank = ({ currencyData }) => {
+  const [charCurrencyData, setCharCurrencyData] = useState([]);
+
+  useEffect(() => {
+    const { basicCurrency, currencies, dateStart, dateEnd } = currencyData;
+    if (basicCurrency && size(currencies) && dateStart && dateEnd) {
+      const curs = currencies.map(i => i.label).join();
+
+      axios.get(
+        `https://api.exchangeratesapi.io/history?start_at=${dateStart}&end_at=${dateEnd}&symbols=${curs}&base=${basicCurrency}`)
+        .then((res) => setCharCurrencyData(res.data))
+    }
+  }, [currencyData]);
+
+  return <Chart data={charCurrencyData} />;
 };
 
 Bank.propTypes = {
-  dataForChart: oneOfType([object, array]),
+  currencyData: array,
 };
 
-const mapDispatchToProps = (state) => {
-  console.log('my state', state);
-  const { currenciesData } = state.currenciesDataReducer;
-  return {
-    dataForChart: currenciesData,
-  };
-};
-
-export default connect(mapDispatchToProps)(Bank);
+export default (Bank);
