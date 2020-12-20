@@ -1,8 +1,7 @@
 import React from "react";
 import uuid from "react-uuid";
 import { Row, Col, Alert } from "reactstrap";
-import { connect } from "react-redux";
-import { any } from "prop-types";
+import { array } from "prop-types";
 import { size } from "lodash";
 import { useTranslation } from "react-i18next";
 
@@ -28,20 +27,14 @@ const Teams = ({ teams }) => {
           {t("Please setting NHL")} {t("Widget")}
         </Alert>
       ) : (
-        <Row sm="12">{cards}</Row>
-      )}
+          <Row sm="12">{cards}</Row>
+        )}
     </>
   );
 };
 
 Teams.propTypes = {
-  teams: any,
+  teams: array,
 };
 
-const mapDispatchToProps = (state) => {
-  return {
-    teams: state.choseTeamsReducer.teams,
-  };
-};
-
-export default connect(mapDispatchToProps)(Teams);
+export default Teams;

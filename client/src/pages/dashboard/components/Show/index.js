@@ -6,23 +6,29 @@ import Nhl from "../Nhl";
 import Bank from "../Bank";
 
 const Show = ({ switcher }) => {
-
   const [currencyData, serCurrencyData] = useState([]);
+  const [teams, setTeams] = useState({});
 
   useEffect(() => {
-    const foo = async () => {
-      const response = await axios.get('/currency');
+    const cur = 'currency';
+    const nhl = 'nhl';
+
+    const getData = async (link, setData) => {
+      const response = await axios.get(link);
       const { data } = response
 
-      if (data) serCurrencyData(data.currency);
+      if (data) setData(data[link]);
     }
 
-    foo();
+    getData(cur, serCurrencyData);
+    getData(nhl, setTeams);
   }, [switcher]);
+
+  console.log('teams', teams);
 
   return (
     <>
-      <Nhl />
+      <Nhl teams={teams} />
       <Bank currencyData={currencyData} />
     </>
   );
@@ -31,6 +37,5 @@ const Show = ({ switcher }) => {
 Show.propTypes = {
   switcher: string,
 }
-
 
 export default Show;

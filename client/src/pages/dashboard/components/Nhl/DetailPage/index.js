@@ -16,6 +16,7 @@ const DetailPage = ({ teamId }) => {
   const [roster, setRoster] = useState([]);
   const [modal, setModal] = useState(false);
   const [alertData, setAlertData] = useState("");
+  
   useEffect(() => {
     axios
       .get(
