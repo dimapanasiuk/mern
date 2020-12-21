@@ -24,8 +24,6 @@ const Show = ({ switcher }) => {
     getData(nhl, setTeams);
   }, [switcher]);
 
-  console.log('teams', teams);
-
   return (
     <>
       <Nhl teams={teams} />

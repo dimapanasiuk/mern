@@ -5,6 +5,7 @@ import { connect, useDispatch } from "react-redux";
 import { object, string } from "prop-types";
 import { size } from "lodash";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 // eslint-disable-next-line import/no-unresolved
 import senMapFeedback from "store/sendMapFeedback/actions";
@@ -39,8 +40,17 @@ const SendFeedback = ({ id, label, locationData }) => {
 
     if (locationData && id) {
       dataFeedback.location = locationData;
+
+      axios
+        .put("/saveMap", { mapData: dataFeedback })
+        .then(console.log)
+        .catch((error) => {
+          console.log(error);
+        });
+
       dispatch(senMapFeedback(dataFeedback));
     }
+
     setTextVal("");
     setIsTextVal(true);
     setIsButton(true);
