@@ -8,7 +8,7 @@ const _ = require('lodash');
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 
-const { User, Currency, Nhl } = require("../scheme");
+const { User, Currency, Nhl, Map } = require("../scheme");
 const db = require("../db");
 
 const salt = bcrypt.genSaltSync(10);
@@ -119,14 +119,14 @@ router.put("/currency", async (req, res) => {
 
     if (!isTrue) {
       const cur = await Currency.findOneAndUpdate({ link: _id }, { $set: data }, (err, result) => {  // [TODO: we have error  Cannot set headers after they are sent to the client ]
-        if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
+        if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", err);
         res.send({ currency: result });
       });
       await cur.save();
     }
 
-    if (err) console.log('WTF', err);
-    console.log('value', value);
+    if (err) console.error("=====💡🛑===== /currency put endpoint error", err);
+
     res.send({ currency: value });
   })
 
@@ -152,8 +152,18 @@ router.put('/nhlteams', async (req, res) => {
     await nhl.save();
   }
 
-  if (err) console.log('WTF', err);
+  if (err) console.error("=====💡🛑===== /nhlteams put endpoint error", err);
+
   res.send({ nhl: founded });
+});
+
+router.put('/saveMap', async (req, res) => {
+  const { _id } = req.user;
+  const { mapData } = req.body;
+
+  await Map.findOrCreate({ link: _id }, { places: mapData });
+
+  res.send(mapData);
 });
 
 router.post("/map", async (req, res) => {
