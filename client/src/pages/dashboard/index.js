@@ -5,7 +5,6 @@ import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import classnames from "classnames";
 import { useTranslation } from "react-i18next";
 
-import MyMap from "./components/Map";
 import Settings from "./components/Settings";
 import Show from "./components/Show";
 import { NavContent } from './style';
@@ -49,7 +48,6 @@ const DashBoard = () => {
       <TabContent activeTab={activeTab}>
         <TabPane tabId={ONE}>
           <Show switcher={activeTab} />
-          <MyMap />
         </TabPane>
         <TabPane tabId={TWO}>
           <Settings />
