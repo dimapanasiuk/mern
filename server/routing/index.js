@@ -161,9 +161,21 @@ router.put('/saveMap', async (req, res) => {
   const { _id } = req.user;
   const { mapData } = req.body;
 
-  await Map.findOrCreate({ link: _id }, { places: mapData });
+  const maps = await Map.findOrCreate({ link: _id }, { places: mapData });
 
-  res.send(mapData);
+  const isEqual = _.isEqual(mapData.places, [maps.places]);
+
+  if (!isEqual) {
+    const map = await Map.findOneAndUpdate({ link: _id }, { $set: { places: mapData } }, (err, result) => {
+      if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
+      res.send({ mapData1: result });
+    });
+    await map.save();
+
+    res.send({ mapData1: map });
+  }
+
+  res.send({ mapData2: maps });
 });
 
 router.post("/map", async (req, res) => {
