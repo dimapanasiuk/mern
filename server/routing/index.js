@@ -166,7 +166,7 @@ router.put('/saveMap', async (req, res) => {
   const isEqual = _.isEqual(mapData.places, [maps.places]);
 
   if (!isEqual) {
-    const map = await Map.findOneAndUpdate({ link: _id }, { $set: { places: mapData } }, (err, result) => {
+    const map = await Map.findOneAndUpdate({ link: _id }, { $push: { places: mapData } }, (err, result) => {
       if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
       res.send({ mapData1: result });
     });
