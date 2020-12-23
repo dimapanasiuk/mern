@@ -208,11 +208,23 @@ router.get("/nhl", async (req, res) => {
 
   if (_id) {
     const answer = await Nhl.findOne({ link: _id }, async (err, response) => {
-      if (err) console.error("=====💡🛑===== /currency get endpoint error", err);
+      if (err) console.error("=====💡🛑===== /nhl get endpoint error", err);
       return response;
     })
 
     res.send({ nhl: answer || 'error' });
+  }
+})
+
+router.get("/mapData", async (req, res) => {
+  const { _id } = req.user;
+
+  if (_id) {
+    const answer = await Map.findOne({ link: _id }, async (err, response) => {
+      if (err) console.error("=====💡🛑===== /mapData get endpoint error", err);
+      return response;
+    })
+    res.send({ mapData: answer || 'error' });
   }
 })
 
