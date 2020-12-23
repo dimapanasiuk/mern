@@ -1,15 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
 import { size } from "lodash";
 import { Alert } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import { array } from "prop-types";
+import { object } from "prop-types";
 
 import Feedbacks from "./Feedbacks";
 import ShowMap from "./ShowMap";
 
-const MyMap = ({ data }) => {
+const MyMap = ({ mapData }) => {
   const { t } = useTranslation();
+
+  const data = size(mapData) ? mapData.places : null
 
   return (
     <>
@@ -29,15 +30,7 @@ const MyMap = ({ data }) => {
 };
 
 MyMap.propTypes = {
-  data: array,
+  mapData: object,
 };
 
-const mapStateToProps = (state) => {
-  const allPlaces = state.sendMapFeedbackReducer;
-
-  const placesInfo = allPlaces.filter((i) => i.id !== "");
-
-  return { data: placesInfo };
-};
-
-export default connect(mapStateToProps)(MyMap);
+export default MyMap;

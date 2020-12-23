@@ -8,10 +8,12 @@ import MyMap from "../Map";
 
 const CURRENCY_LINK = 'currency';
 const NHL_LINK = 'nhl';
+const MAP_DATA = 'mapData';
 
 const Show = ({ switcher }) => {
   const [currencyData, serCurrencyData] = useState([]);
   const [teams, setTeams] = useState({});
+  const [mapData, setMapData] = useState({});
 
   useEffect(() => {
     const getData = async (link, setData) => {
@@ -22,14 +24,16 @@ const Show = ({ switcher }) => {
     }
 
     getData(CURRENCY_LINK, serCurrencyData);
+    getData(MAP_DATA, setMapData);
     getData(NHL_LINK, setTeams);
+
   }, [switcher]);
 
   return (
     <>
       <Nhl teams={teams} />
       <Bank currencyData={currencyData} />
-      <MyMap />
+      <MyMap mapData={mapData}/>
     </>
   );
 };
