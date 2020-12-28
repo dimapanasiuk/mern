@@ -214,18 +214,23 @@ router.get("/nhl", async (req, res) => {
   }
 })
 
-
 router.patch("/updateDesc", async (req, res) => {
   const { _id } = req.user;
   if (_id) {
-    const oldDesc = req.body.oldDesc;
-    const newDesc = req.body.newDesc;
-    const place = req.body.place;
+    const { place, oldValue, newValue } = req.body.mapInfo;
 
-    // https://docs.mongodb.com/manual/reference/operator/update/positional/
+    console.log('place, oldValue, newValue ', place, oldValue, newValue);
 
-    const mapUpdate = Map.findOneAndUpdate({ link: _id }, { $set: { places } })
+    // // https://docs.mongodb.com/manual/reference/operator/update/positional/
+    const mapUpdate = await Map.findOneAndUpdate({ link: _id }, { $set: { places } }, (err, result) => {
+      if (err) console.error("=====💡🛑===== /updateDesc Map.findOneAndUpdate error", e);
+      res.send({ mapUpdate: result });
+    });
+    
+    await mapUpdate.save();
   }
+
+  res.send({ test: 'test' });
 });
 
 router.get("/mapData", async (req, res) => {
