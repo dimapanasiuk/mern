@@ -163,7 +163,7 @@ router.put('/saveMap', async (req, res) => {
 
   const maps = await Map.findOrCreate({ link: _id }, { places: mapData });
 
-  const isEqual = _.isEqual(mapData.places, [maps.places]);
+  const isEqual = _.isEqual([mapData], maps.doc.places);
 
   if (!isEqual) {
     const map = await Map.findOneAndUpdate({ link: _id }, { $push: { places: mapData } }, (err, result) => {
@@ -171,8 +171,6 @@ router.put('/saveMap', async (req, res) => {
       res.send({ mapData1: result });
     });
     await map.save();
-
-    res.send({ mapData1: map });
   }
 
   res.send({ mapData2: maps });
@@ -215,6 +213,20 @@ router.get("/nhl", async (req, res) => {
     res.send({ nhl: answer || 'error' });
   }
 })
+
+
+router.patch("/updateDesc", async (req, res) => {
+  const { _id } = req.user;
+  if (_id) {
+    const oldDesc = req.body.oldDesc;
+    const newDesc = req.body.newDesc;
+    const place = req.body.place;
+
+    // https://docs.mongodb.com/manual/reference/operator/update/positional/
+
+    const mapUpdate = Map.findOneAndUpdate({ link: _id }, { $set: { places } })
+  }
+});
 
 router.get("/mapData", async (req, res) => {
   const { _id } = req.user;
