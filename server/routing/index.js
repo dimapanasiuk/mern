@@ -166,11 +166,9 @@ router.put('/saveMap', async (req, res) => {
   const isEqual = _.isEqual([mapData], maps.doc.places);
 
   if (!isEqual) {
-    const map = await Map.findOneAndUpdate({ link: _id }, { $push: { places: mapData } }, (err, result) => {
-      if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", e);
-      res.send({ mapData1: result });
-    });
-    await map.save();
+    const map = await Map.findOneAndUpdate({ link: _id }, { $push: { places: mapData } });
+
+    res.send({ mapData1: map });
   }
 
   res.send({ mapData2: maps });
@@ -192,11 +190,7 @@ router.get("/currency", async (req, res) => {
   const { _id } = req.user;
 
   if (_id) {
-    const answer = await Currency.findOne({ link: _id }, async (err, response) => {
-      if (err) console.error("=====💡🛑===== /currency get endpoint error", err);
-      return response;
-    })
-
+    const answer = await Currency.findOne({ link: _id });
     res.send({ currency: answer || 'error' });
   }
 })
@@ -216,21 +210,25 @@ router.get("/nhl", async (req, res) => {
 
 router.patch("/updateDesc", async (req, res) => {
   const { _id } = req.user;
+
+  const placesUpd = (places, values) => {
+    return places.map(place => {
+      const conditional = place.desc === values.oldValue && place.label === values.place;
+      return conditional ? { ...place, desc: values.newValue } : place;
+    }
+    );
+  }
+
   if (_id) {
     const { place, oldValue, newValue } = req.body.mapInfo;
 
-    console.log('place, oldValue, newValue ', place, oldValue, newValue);
+    const linkId = { link: _id };
 
-    // // https://docs.mongodb.com/manual/reference/operator/update/positional/
-    const mapUpdate = await Map.findOneAndUpdate({ link: _id }, { $set: { places } }, (err, result) => {
-      if (err) console.error("=====💡🛑===== /updateDesc Map.findOneAndUpdate error", e);
-      res.send({ mapUpdate: result });
-    });
-    
-    await mapUpdate.save();
+    const mapFind = await Map.findOne(linkId);
+    const places = placesUpd(mapFind.places, { place, oldValue, newValue });
+    const mapUpdate = await Map.updateOne(linkId, { places });
+    res.send({ mapUpdate: mapUpdate });
   }
-
-  res.send({ test: 'test' });
 });
 
 router.get("/mapData", async (req, res) => {
