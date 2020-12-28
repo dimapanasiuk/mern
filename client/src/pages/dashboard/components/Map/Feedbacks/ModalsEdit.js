@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Input,
   Modal,
@@ -10,32 +10,30 @@ import {
 import { array, bool, func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
+import axios from 'axios';
 
 // eslint-disable-next-line import/no-unresolved
 import theme from "style/theme";
 
 const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
   const [descTextAria, setDescTextAria] = useState(desc);
-  const [othPlaces, setOthPlaces] = useState([]);
-
-  useEffect(() => {
-    const otherPlaces = places.filter((item) => item.id !== placeId);
-    setOthPlaces(otherPlaces);
-  }, [placeId]);
 
   const { t } = useTranslation();
-
-  const saveHandler = () => {
-    console.log("save handler", othPlaces);
-  };
 
   const changeHandler = (e) => {
     setDescTextAria(e.target.value);
   };
 
   const saveForAllHandler = () => {
+    console.log('placeId', placeId);
+    console.log('places', places);
+
     toggle();
-    saveHandler();
+    const mapInfo = { place, oldValue: desc, newValue: descTextAria }
+
+    axios.patch("/updateDesc", { mapInfo })
+      .then(data => console.log('updateDesc data', data))
+      .catch(e => console.log('updateDesc error', e))
   };
 
   return (
@@ -47,7 +45,7 @@ const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
       </ModalBody>
 
       <ModalFooter>
-        <Button outline color={theme.success} onClick={toggle}>
+        <Button outline color={theme.success} onClick={saveForAllHandler}>
           {t("Save")}
         </Button>{" "}
         <Button color={theme.secondary} onClick={saveForAllHandler}>
