@@ -12,7 +12,17 @@ const Feedbacks = ({ feedbacks }) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  const cards = feedbacks.map((item) => {
+  const foo = (e) => {
+    const {num} = e.target.dataset;
+    console.log('feedbacks[num]', feedbacks[num]) ;
+  }
+
+  const clickHandlerForEdit = (e) => {
+    foo(e);
+    toggle();
+  }
+
+  const cards = feedbacks.map((item, i) => {
     return (
       <Col key={uuid()} sm={4}>
         <CardS>
@@ -22,12 +32,12 @@ const Feedbacks = ({ feedbacks }) => {
               &nbsp;{item.label}
             </h5>
             &nbsp;
-            <ButtonS outline title="edit" onClick={toggle}>
+            <ButtonS outline title="edit" onClick={clickHandlerForEdit} data-num={i}>
               {emoji.getUnicode(":pencil2:")}
             </ButtonS>
           </CardTitleS>
           <CardText>{item.desc}</CardText>
-          <ModalsEdit
+          <ModalsEdit // TODO fix modals
             isOpen={modal}
             toggle={toggle}
             placeId={item.id}
