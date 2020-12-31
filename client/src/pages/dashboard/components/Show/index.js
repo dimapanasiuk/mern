@@ -20,8 +20,10 @@ const Show = ({ switcher }) => {
       const response = await axios.get(link);
       const { data } = response
 
-      if (data) setData(data[link]);
+      if (Object.keys(data).length) setData(data[link]);
     }
+
+
 
     getData(CURRENCY_LINK, serCurrencyData);
     getData(MAP_DATA, setMapData);
@@ -33,7 +35,7 @@ const Show = ({ switcher }) => {
     <>
       <Nhl teams={teams} />
       <Bank currencyData={currencyData} />
-      <MyMap mapData={mapData}/>
+      <MyMap mapData={mapData} />
     </>
   );
 };
