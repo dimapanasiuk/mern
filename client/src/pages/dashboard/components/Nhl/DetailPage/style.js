@@ -20,3 +20,7 @@ export const DivFlex = styled.div`
 export const Head1 = styled.h1`
   margin-left: 20px;
 `;
+
+export const ContainerDiv = styled.div`
+  padding-bottom: 100px;
+`

@@ -5,7 +5,7 @@ import { Row } from "reactstrap";
 import { string } from "prop-types";
 import axios from "axios";
 
-import { CircleButton, StyleCard, DivFlex, Head1 } from "./style";
+import { ContainerDiv, CircleButton, StyleCard, DivFlex, Head1 } from "./style";
 import Schedule from "../Schedule";
 import TeamStats from "../TeamStats";
 import Roster from "../Roster";
@@ -16,7 +16,7 @@ const DetailPage = ({ teamId }) => {
   const [roster, setRoster] = useState([]);
   const [modal, setModal] = useState(false);
   const [alertData, setAlertData] = useState("");
-  
+
   useEffect(() => {
     axios
       .get(
@@ -52,7 +52,7 @@ const DetailPage = ({ teamId }) => {
   };
 
   return (
-    <>
+    <ContainerDiv>
       <DivFlex>
         <Link to="/dashboard">
           <CircleButton color="primary">🠔</CircleButton>
@@ -65,18 +65,19 @@ const DetailPage = ({ teamId }) => {
       <StyleCard>
         <TeamStats teamId={teamId} />
       </StyleCard>
-      <StyleCard>
-        <Row sm="12">
+      <br />
+      <StyleCard sm="12" >
+        <Row sm="12" >
           <Roster roster={roster} onShowAlert={onShowModal} />
         </Row>
         <DetailPageModal
           alertData={alertData}
-          StyleCard
+          StyleCardS
           modal={modal}
           onShowModal={onShowModal}
         />
       </StyleCard>
-    </>
+    </ContainerDiv>
   );
 };
 
