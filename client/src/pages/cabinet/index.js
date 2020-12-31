@@ -1,36 +1,33 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Cabinet = () => {
+// eslint-disable-next-line import/no-unresolved
+import LoginHeader from 'components/LoginHeader';
+import { object } from "prop-types";
+
+const Cabinet = ({ userData }) => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
     axios
       .get("/home")
-      .then((response) => {
-        setUser(response.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then((response) => setUser(response.data.user))
+      .catch(console.error);
   }, []);
 
   const logOutHandler = () => {
     axios
       .post("/logout")
-      .then((response) => {
-        console.log('response', response.data);
-        setUser("");
-      })
-      .catch((error) => {
-        console.log('errror', error);
-      });
+      .then(() => setUser(""))
+      .catch(console.error);
   };
 
   const ID = "_id";
 
   return (
     <>
+      <LoginHeader userData={userData} />
+
       <p>
         ID: {user[ID]}
         <br />
@@ -44,5 +41,9 @@ const Cabinet = () => {
     </>
   );
 };
+
+Cabinet.propTypes = {
+  userData: object
+}
 
 export default Cabinet;

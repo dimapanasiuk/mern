@@ -41,7 +41,7 @@ const Header = () => {
         <DivFlex>
           <NavItem>
             <NavLink
-              to="/login"
+              to="/login-page"
               className="link-nav"
               activeClassName="active-route"
             >
