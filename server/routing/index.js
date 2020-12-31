@@ -60,7 +60,6 @@ router.post(
 );
 
 router.post("/logout", (req, res) => {
-  console.log(' req.session', req.session);
   req.logout();
   res.redirect("/home");
 });
