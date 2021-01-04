@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button } from 'reactstrap'
 import axios from "axios";
 import theme from 'style/theme';
-import { A } from './style';
+import { A, DivS, DivFlex, ButtonLogout } from './style';
 
 const Cabinet = () => {
   const [user, setUser] = useState("");
@@ -25,18 +24,23 @@ const Cabinet = () => {
   const ID = "_id";
 
   return (
-    <>
-      <p>
-        ID: {user[ID]}
-        <br />
-        Username: {user.name}
-        <br />
-        Password: {user.password} <br />
-      </p>
-      <Button color={theme.danger}>
+    <DivS>
+      <DivFlex>
+        <h1>ID </h1>
+        <h4>:{user[ID]}</h4>
+      </DivFlex>
+      <DivFlex>
+        <h1>Username </h1>
+        <h4>:{user.name}</h4>
+      </DivFlex>
+      <DivFlex>
+        <h1>Password</h1>
+        <h4>:{user.password}</h4>
+      </DivFlex>
+      <ButtonLogout color={theme.danger}>
         <A href="/" onClick={logOutHandler}>Log out</A>
-      </Button>
-    </>
+      </ButtonLogout>
+    </DivS>
   );
 };
 
