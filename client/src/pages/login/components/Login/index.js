@@ -1,25 +1,29 @@
 import React from "react";
 import axios from "axios";
+import { connect, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
+
+import sendUserData from 'store/userData/actions';
 
 const Login = () => {
   const { t } = useTranslation();
 
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
+  const dispatch = useDispatch();
 
   const submitHandler = (requestData) => {
     axios
       .post("/login", requestData)
       .then((response) => {
-        if (response.data) history.push("/");
+        const { user } = response.data;
+        history.push("/")
+        dispatch(sendUserData(user));
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(console.error);
   };
 
   const STR = "please enter";
@@ -54,4 +58,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect()(Login);

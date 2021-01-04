@@ -12,6 +12,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
     "react/jsx-props-no-spreading": "off",
     "react/destructuring-assignment": "off",
     "no-else-return": 0,

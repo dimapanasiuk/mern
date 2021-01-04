@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Home = () => {
@@ -18,22 +19,22 @@ const Home = () => {
   const userData = () => {
     if (!user) {
       return (
-        <p>
-          Welcome! Please <a href="/login">log in</a>.
-        </p>
+        <h4>
+          Please <Link to="/login-page">log in</Link >.
+        </h4>
       );
     } else {
       return (
-        <p>
-          Hello, <b>{user.name}.</b> View your <a href="/profile">profile</a>.
-        </p>
+        <h4>
+          Hello, <b>{user.name}.</b> View your <Link to="/profile">profile</Link >.
+        </h4>
       );
     }
   };
 
   return (
     <>
-      <h1> Home</h1>
+      <h1>Welcome page</h1>
       {userData()}
     </>
   );
