@@ -10,13 +10,17 @@ import {
 import { bool, func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
-
+import { connect, useDispatch } from 'react-redux'
 // eslint-disable-next-line import/no-unresolved
 import theme from "style/theme";
+// eslint-disable-next-line import/no-unresolved
+import sendMapFeedback from 'store/sendMapFeedback/actions';
 
 const ModalsEdit = ({ isOpen, toggle, place, desc = 10 }) => {
   const { t } = useTranslation();
   const [descTextAria, setDescTextAria] = useState(desc);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setDescTextAria(desc);
@@ -31,7 +35,8 @@ const ModalsEdit = ({ isOpen, toggle, place, desc = 10 }) => {
     const mapInfo = { place, oldValue: desc, newValue: descTextAria }
 
     axios.patch("/updateDesc", { mapInfo })
-      .catch(e => console.log('updateDesc error', e))
+      .then(data => data.data ? dispatch(sendMapFeedback(mapInfo)) : null)
+      .catch(console.error);
   };
 
   return (
@@ -61,5 +66,6 @@ ModalsEdit.propTypes = {
   desc: string,
 };
 
-export default ModalsEdit;
+
+export default connect()(ModalsEdit);
 

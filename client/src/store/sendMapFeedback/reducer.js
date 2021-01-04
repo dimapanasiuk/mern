@@ -1,11 +1,11 @@
 import { SEND_MAP_FEEDBACK } from "./actions";
 
-const initialState = [];
+const initialState = {};
 
 const sendMapFeedbackReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_MAP_FEEDBACK:
-      return [...state, action.data];
+      return action.data;
     default:
       return state;
   }
