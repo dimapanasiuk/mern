@@ -37,9 +37,11 @@ const Home = () => {
       );
     } else {
       return (
-        <h4>
-          Hello, <b>{user.name}.</b> View your <Link to="/profile">profile</Link >.
-        </h4>
+        <AlertS color="secondary">
+          <h4>
+            Hello, <b>{user.name}</b>
+          </h4>
+        </AlertS>
       );
     }
   };
