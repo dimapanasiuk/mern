@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Button } from 'reactstrap'
 import axios from "axios";
-import { object } from "prop-types";
+import theme from 'style/theme';
+import { A } from './style';
 
-import LoginHeader from 'components/LoginHeader';
-
-const Cabinet = ({ userData }) => {
+const Cabinet = () => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -17,7 +17,8 @@ const Cabinet = ({ userData }) => {
   const logOutHandler = () => {
     axios
       .post("/logout")
-      .then(() => setUser(""))
+      .then(() => { setUser(""); }
+      )
       .catch(console.error);
   };
 
@@ -25,8 +26,6 @@ const Cabinet = ({ userData }) => {
 
   return (
     <>
-      <LoginHeader userData={userData} />
-
       <p>
         ID: {user[ID]}
         <br />
@@ -34,15 +33,11 @@ const Cabinet = ({ userData }) => {
         <br />
         Password: {user.password} <br />
       </p>
-      <a href="/logout" onClick={logOutHandler}>
-        Log out
-      </a>
+      <Button color={theme.danger}>
+        <A href="/" onClick={logOutHandler}>Log out</A>
+      </Button>
     </>
   );
 };
-
-Cabinet.propTypes = {
-  userData: object
-}
 
 export default Cabinet;

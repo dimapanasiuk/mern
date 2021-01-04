@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Alert } from 'reactstrap';
 import { useTranslation } from "react-i18next";
+import theme from 'style/theme';
 import { ContainerS, H1, H2, AlertS, DivFLex, DivContainer } from './style';
 
 const Home = () => {
@@ -26,7 +27,7 @@ const Home = () => {
     if (!user) {
       return (
 
-        <AlertS color="secondary">
+        <AlertS color={theme.secondary}>
           <h4>
             Please <Link to="/login-page">log in</Link >
             &#160;
@@ -37,7 +38,7 @@ const Home = () => {
       );
     } else {
       return (
-        <AlertS color="secondary">
+        <AlertS color={theme.secondary}>
           <h4>
             Hello, <b>{user.name}</b>
           </h4>
@@ -59,7 +60,7 @@ const Home = () => {
       <DivFLex>
         <DivContainer>
           <H2>{t("DescriptionAppGeneralHead")} &#160; {emoji.getUnicode(":memo:")}</H2>
-          <Alert color="info">
+          <Alert color={theme.infoText}>
             <p>{t("DescriptionAppGeneral")}</p>
           </Alert>
         </DivContainer>

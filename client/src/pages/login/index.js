@@ -7,9 +7,8 @@ import LoginHeader from 'components/LoginHeader';
 import Login from "./components/Login";
 
 const LoginPage = ({ userData }) => {
-
+  
   const userLoggedIn = has(userData, 'name');
-
   return (
     <>
       {!userLoggedIn && <LoginHeader userData={userData} />}

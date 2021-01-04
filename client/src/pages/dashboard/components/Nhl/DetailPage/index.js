@@ -5,6 +5,7 @@ import { Row } from "reactstrap";
 import { string } from "prop-types";
 import axios from "axios";
 
+import theme from 'style/theme';
 import { ContainerDiv, CircleButton, StyleCard, DivFlex, Head1 } from "./style";
 import Schedule from "../Schedule";
 import TeamStats from "../TeamStats";
@@ -23,9 +24,8 @@ const DetailPage = ({ teamId }) => {
         `https://statsapi.web.nhl.com/api/v1/teams/${teamId}?expand=team.roster`
       )
       .then((res) => {
-        if (res.data.teams[0]) {
-          setRoster(res.data.teams[0].roster.roster);
-        }
+        const data = res.data.teams[0]
+        if (data) setRoster(data.roster.roster);
       })
       .catch((error) => {
         console.log(error);
@@ -34,9 +34,8 @@ const DetailPage = ({ teamId }) => {
     axios
       .get(`https://statsapi.web.nhl.com/api/v1/teams/${teamId}`)
       .then((res) => {
-        if (res.data.teams[0]) {
-          setTeamName(res.data.teams[0].name);
-        }
+        const data = res.data.teams[0]
+        if (data) setTeamName(data.name);
       });
   }, []);
 
@@ -55,7 +54,7 @@ const DetailPage = ({ teamId }) => {
     <ContainerDiv>
       <DivFlex>
         <Link to="/dashboard">
-          <CircleButton color="primary">🠔</CircleButton>
+          <CircleButton color={theme.primary}>🠔</CircleButton>
         </Link>
         <Head1>{teamName}</Head1>
       </DivFlex>
