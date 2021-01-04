@@ -3,7 +3,6 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
 
-// eslint-disable-next-line import/no-unresolved
 import LoginHeader from 'components/LoginHeader';
 import { object } from "prop-types";
 

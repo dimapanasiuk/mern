@@ -6,9 +6,7 @@ import { connect } from 'react-redux';
 import { object } from "prop-types";
 import axios from "axios";
 
-// eslint-disable-next-line import/no-unresolved
 import { AuthContext } from "context/auth";
-// eslint-disable-next-line import/no-unresolved
 import PrivateRoute from 'routes/PrivateRoute';
 import Header from "./components/Header";
 import Home from "./pages/home";
@@ -27,7 +25,6 @@ const App = ({ userDataLogin }) => {
   useEffect(() => {
     axios.get('/home')
       .then(data => {
-
         if (data.status === 200 && has(data.data, 'user')) {
           const { user } = data.data;
           setUserData(user);

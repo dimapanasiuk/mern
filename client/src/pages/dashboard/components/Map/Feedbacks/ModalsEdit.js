@@ -11,9 +11,8 @@ import { bool, func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 import { connect, useDispatch } from 'react-redux'
-// eslint-disable-next-line import/no-unresolved
+
 import theme from "style/theme";
-// eslint-disable-next-line import/no-unresolved
 import sendMapFeedback from 'store/sendMapFeedback/actions';
 
 const ModalsEdit = ({ isOpen, toggle, place, desc = 10 }) => {

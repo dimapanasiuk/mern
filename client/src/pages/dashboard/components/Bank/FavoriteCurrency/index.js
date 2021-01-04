@@ -3,8 +3,7 @@ import { Card, TabContent } from "reactstrap";
 import axios from "axios";
 import { size } from "lodash";
 
-// eslint-disable-next-line import/no-unresolved
-import { copyPartOfStr } from "utils"; // TODO : fix this problem
+import { copyPartOfStr } from "utils";
 import Navigation from "./Navigation";
 import BasicCurrency from "./BasicCurrency";
 import SelectCurrencies from "./SelectCurrencies";

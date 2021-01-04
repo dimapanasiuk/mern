@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-// eslint-disable-next-line import/no-unresolved
-import LoginHeader from 'components/LoginHeader';
 import { object } from "prop-types";
+
+import LoginHeader from 'components/LoginHeader';
 
 const Cabinet = ({ userData }) => {
   const [user, setUser] = useState("");
