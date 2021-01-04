@@ -50,7 +50,7 @@ const Home = () => {
   return (
     <ContainerS fluid>
       <H1>
-        Welcome to my <a href="https://www.mongodb.com/mern-stack">MERN stack</a> app
+        Welcome to my <a href="https://www.mongodb.com/mern-stack" target="blank">MERN stack</a> app
         &#160; {emoji.getUnicode(":rocket:")}
         {emoji.getUnicode(":rocket:")}
         {emoji.getUnicode(":rocket:")}
