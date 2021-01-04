@@ -5,7 +5,7 @@ import axios from "axios";
 import { Alert } from 'reactstrap';
 import { useTranslation } from "react-i18next";
 import theme from 'style/theme';
-import { ContainerS, H1, H2, AlertS, DivFLex, DivContainer } from './style';
+import { AlertMentors, DivFLexMentors, ContainerS, H1, H2, AlertS, DivFLex, DivContainer } from './style';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -27,7 +27,7 @@ const Home = () => {
     if (!user) {
       return (
 
-        <AlertS color={theme.secondary}>
+        <AlertS color={theme.infoText}>
           <h4>
             Please <Link to="/login-page">log in</Link >
             &#160;
@@ -38,7 +38,7 @@ const Home = () => {
       );
     } else {
       return (
-        <AlertS color={theme.secondary}>
+        <AlertS color={theme.infoText}>
           <h4>
             Hello, <b>{user.name}</b>
           </h4>
@@ -99,6 +99,16 @@ const Home = () => {
           <h4>- eslint</h4>
         </DivContainer>
       </DivFLex>
+
+      <AlertMentors color={theme.success}>
+        <DivFLexMentors>
+          <h4>{t("Mentors")}</h4>
+           &nbsp;&nbsp;
+          <a href='https://github.com/Blackcate9' target='blank'>Olga Trishkina</a>
+          &nbsp;&nbsp;
+          <a href='https://github.com/morpharc' target='blank'>Stanislav Yakubuk</a>
+        </DivFLexMentors>
+      </AlertMentors>
     </ContainerS>
   );
 };

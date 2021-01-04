@@ -26,15 +26,15 @@ const Cabinet = () => {
   return (
     <DivS>
       <DivFlex>
-        <h1>ID </h1>
+        <h1>ID </h1>&nbsp;
         <h4>:{user[ID]}</h4>
       </DivFlex>
       <DivFlex>
-        <h1>Username </h1>
+        <h1>Username </h1>&nbsp;
         <h4>:{user.name}</h4>
       </DivFlex>
       <DivFlex>
-        <h1>Password</h1>
+        <h1>Password</h1>&nbsp;
         <h4>:{user.password}</h4>
       </DivFlex>
       <ButtonLogout color={theme.danger}>

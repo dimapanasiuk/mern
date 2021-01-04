@@ -15,19 +15,26 @@ export const DivFLex = styled.div`
   width: 100%;  
   display:flex;
   justify-content: space-between;
-  `
+`
 
 export const DivContainer = styled.div`
-    width: 48%;
-  `
+  width: 48%;
+`
 
 export const H2 = styled.h2`
-    text-align: center;
-    padding: 0 0 20px 0;
-    color: #343a40;
-  `
-
+  text-align: center;
+  padding: 0 0 20px 0;
+  color: #343a40;
+`
 
 export const ContainerS = styled(Container)`
-    padding: 0 0 125px 0;
-  `
+  padding: 0 0 125px 0;
+`
+export const DivFLexMentors = styled.div`
+  display: flex;
+  align-items:center;
+`
+
+export const AlertMentors = styled(Alert)`
+  margin: 40px 0 0 0;
+`
