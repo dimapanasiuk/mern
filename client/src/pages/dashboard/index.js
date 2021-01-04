@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line
 import classnames from "classnames";
 import { useTranslation } from "react-i18next";
 
