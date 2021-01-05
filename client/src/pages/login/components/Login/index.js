@@ -18,8 +18,8 @@ const Login = () => {
   const submitHandler = (requestData) => {
     axios
       .post("/login", requestData)
-      .then((response) => {
-        const { user } = response.data;
+      .then((res) => {
+        const { user } = res.data;
         history.push("/");
         dispatch(sendUserData(user));
       })
