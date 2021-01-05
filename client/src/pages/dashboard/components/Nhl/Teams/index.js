@@ -27,8 +27,8 @@ const Teams = ({ teams }) => {
           {t("Please setting NHL")} {t("Widget")}
         </Alert>
       ) : (
-          <Row sm="12">{cards}</Row>
-        )}
+        <Row sm="12">{cards}</Row>
+      )}
     </>
   );
 };

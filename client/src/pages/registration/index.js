@@ -18,7 +18,6 @@ const Registration = ({ userData }) => {
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [registrationText, setRegistrationText] = useState(registrationTextSuccess);
 
-
   const submitHandler = (requestData) => {
     const { password, password2 } = requestData;
     if (password === password2) {
@@ -35,7 +34,7 @@ const Registration = ({ userData }) => {
             setRegistrationSuccess(false);
             setRegistrationText(registrationTextUnSuccess);
           } 
-      });
+        });
     }
   };
 

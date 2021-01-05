@@ -20,12 +20,12 @@ const Chart = ({ data }) => {
       {chartData ? (
         <Line data={chartData} height={90} />
       ) : (
-          <Alert color={theme.warning}>
-            {t("Please setting currency widget")}
+        <Alert color={theme.warning}>
+          {t("Please setting currency widget")}
           &nbsp;
-            {t("Widget")}
-          </Alert>
-        )}
+          {t("Widget")}
+        </Alert>
+      )}
     </>
   );
 };

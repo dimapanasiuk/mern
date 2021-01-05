@@ -14,17 +14,17 @@ const LoginHeader = ({ userData }) => {
       <BreadcrumbItem >
         <NavLink exact to="/login-page">
           Login
-      </NavLink>
+        </NavLink>
       </BreadcrumbItem>
       <BreadcrumbItem active>
         <NavLink exact to="/registration">
           Registration
-      </NavLink>
+        </NavLink>
       </BreadcrumbItem>
       <BreadcrumbItem active>
         {userLoggedIn && <NavLink exact to="/profile">
           Profile
-      </NavLink>}
+        </NavLink>}
       </BreadcrumbItem>
     </BreadcrumbS>
   );

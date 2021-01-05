@@ -18,7 +18,6 @@ export const H4 = styled.h4`
   color: ${theme.red};
 `;
 
-
 export const H5 = styled.h5`
   color: ${theme.green};
 `;

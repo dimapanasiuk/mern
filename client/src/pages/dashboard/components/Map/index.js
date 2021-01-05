@@ -20,11 +20,11 @@ const MyMap = ({ mapData }) => {
           {t("Widget")}
         </Alert>
       ) : (
-          <>
-            <ShowMap locationData={data} />
-            <Feedbacks feedbacks={data} />
-          </>
-        )}
+        <>
+          <ShowMap locationData={data} />
+          <Feedbacks feedbacks={data} />
+        </>
+      )}
     </>
   );
 };

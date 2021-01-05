@@ -28,7 +28,6 @@ const Show = ({ switcher, updateDesc }) => {
     getData(MAP_DATA, setMapData);
     getData(NHL_LINK, setTeams);
 
-
   }, [switcher, updateDesc]);
 
   return (

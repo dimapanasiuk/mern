@@ -18,7 +18,6 @@ import DetailPage from "./pages/dashboard/components/Nhl/DetailPage";
 import Footer from "./components/Footer";
 import { Div } from "./style";
 
-
 const App = ({ userDataLogin }) => {
   const [userData, setUserData] = useState({});
 

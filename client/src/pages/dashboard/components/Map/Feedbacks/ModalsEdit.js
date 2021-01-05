@@ -65,6 +65,4 @@ ModalsEdit.propTypes = {
   desc: string,
 };
 
-
 export default connect()(ModalsEdit);
-
