@@ -13,5 +13,6 @@ const currenciesDataReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
+
 export default currenciesDataReducer;

@@ -14,7 +14,7 @@ const Bank = ({ currencyData }) => {
 
       axios.get(
         `https://api.exchangeratesapi.io/history?start_at=${dateStart}&end_at=${dateEnd}&symbols=${curs}&base=${basicCurrency}`)
-        .then((res) => setCharCurrencyData(res.data))
+        .then((res) => setCharCurrencyData(res.data));
     }
   }, [currencyData]);
 

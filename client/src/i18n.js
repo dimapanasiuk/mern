@@ -43,6 +43,8 @@ const resources = {
       DescriptionAppTech: `The application uses different APIs for each widget, as well as it has its own API for the application
       to remember the settings of the widgets and which user these settings belong to..`,
       Mentors: "Thanks a lot to my mentors",
+      Registration: "You have successfully registered, now log into the application",
+      RegistrationUnSuccess: "Something went wrong",
     },
   },
   ru: {
@@ -83,6 +85,8 @@ const resources = {
       DescriptionAppTech: `В приложении используются разные API для каждого виджета, а так же написан свой собственный API для приложения чтобы запоминать
       настройки виджетов и какому пользователю данные настройки принадлежат. `,
       Mentors: "Большое спасибо моим менторам",
+      Registration: "Вы успешно зарегистрированы, теперь войдите в приложение",
+      RegistrationUnSuccess: "Что-то пошло не так",
     },
   },
 };

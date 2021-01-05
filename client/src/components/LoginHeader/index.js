@@ -27,11 +27,11 @@ const LoginHeader = ({ userData }) => {
       </NavLink>}
       </BreadcrumbItem>
     </BreadcrumbS>
-  )
-}
+  );
+};
 
 LoginHeader.propTypes = {
   userData: object
-}
+};
 
 export default LoginHeader;

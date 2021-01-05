@@ -20,7 +20,7 @@ const Login = () => {
       .post("/login", requestData)
       .then((response) => {
         const { user } = response.data;
-        history.push("/")
+        history.push("/");
         dispatch(sendUserData(user));
       })
       .catch(console.error);

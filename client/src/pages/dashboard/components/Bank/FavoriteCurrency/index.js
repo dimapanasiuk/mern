@@ -31,7 +31,7 @@ const FavoriteCurrency = () => {
 
   useEffect(() => {
     if (basicCur && selectCurrencies.length && startDate && endDate) {
-      const currencyData = { basicCur, selectCurrencies, startDate, endDate }
+      const currencyData = { basicCur, selectCurrencies, startDate, endDate };
       axios
         .put("/currency", { currencyData })
         .catch((error) => {

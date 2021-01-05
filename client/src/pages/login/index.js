@@ -22,6 +22,6 @@ const LoginPage = ({ userData }) => {
 
 LoginPage.propTypes = {
   userData: object
-}
+};
 
 export default LoginPage;

@@ -3,7 +3,7 @@ import { NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import emoji from "emoji-dictionary";
-import theme from "style/theme"
+import theme from "style/theme";
 import TranslateBasic from "../TranslateBasic";
 import { NavigationBar, DivFlex, NavFlex } from "./style";
 import "./style.css";

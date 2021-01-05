@@ -23,4 +23,4 @@ export const Head1 = styled.h1`
 
 export const ContainerDiv = styled.div`
   padding-bottom: 100px;
-`
+`;

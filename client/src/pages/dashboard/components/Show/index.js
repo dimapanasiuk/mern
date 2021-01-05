@@ -19,10 +19,10 @@ const Show = ({ switcher, updateDesc }) => {
   useEffect(() => {
     const getData = async (link, setData) => {
       const response = await axios.get(link);
-      const { data } = response
+      const { data } = response;
 
       if (Object.keys(data).length) setData(data[link]);
-    }
+    };
 
     getData(CURRENCY_LINK, serCurrencyData);
     getData(MAP_DATA, setMapData);
@@ -43,7 +43,7 @@ const Show = ({ switcher, updateDesc }) => {
 Show.propTypes = {
   switcher: string,
   updateDesc: object,
-}
+};
 
 const mapStateToProps = (state) => ({ updateDesc: state.sendMapFeedbackReducer });
 

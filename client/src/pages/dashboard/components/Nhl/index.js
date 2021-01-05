@@ -9,6 +9,6 @@ const Nhl = ({ teams }) => {
 
 Nhl.propTypes = {
   teams: object
-}
+};
 
 export default Nhl;

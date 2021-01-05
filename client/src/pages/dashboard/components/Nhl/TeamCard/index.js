@@ -4,7 +4,7 @@ import { number, string } from "prop-types";
 import { Link } from "react-router-dom";
 import emoji from "emoji-dictionary";
 
-import { CardItem } from "./style"
+import { CardItem } from "./style";
 
 const TeamCard = ({ teamId, name }) => {
   return (

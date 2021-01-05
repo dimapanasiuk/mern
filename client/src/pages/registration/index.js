@@ -1,21 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { object } from "prop-types";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
-
 import LoginHeader from "components/LoginHeader";
+import ModalRegistration from "components/Modal";
 import { DivS } from "./style";
 
 const Registration = ({ userData }) => {
+  const { t } = useTranslation();
   const { register, handleSubmit, errors } = useForm();
+
+  const registrationTextSuccess = t("Registration");
+  const  registrationTextUnSuccess = t("RegistrationUnSuccess");
+
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [registrationText, setRegistrationText] = useState(registrationTextSuccess);
+
 
   const submitHandler = (requestData) => {
     const { password, password2 } = requestData;
     if (password === password2) {
       axios
         .post("/registration", requestData)
-        .catch(console.error);
+        .then(data => {
+          if(data) {
+            setRegistrationSuccess(true);
+            registrationText(registrationTextSuccess);
+          }
+        })
+        .catch(err => {
+          if(err) {
+            setRegistrationSuccess(false);
+            setRegistrationText(registrationTextUnSuccess);
+          } 
+      });
     }
   };
 
@@ -66,12 +86,13 @@ const Registration = ({ userData }) => {
         </FormGroup>
         <Button type="submit"> Submit</Button>
       </form>
+      <ModalRegistration isOpen={registrationSuccess}  text={registrationText}/>
     </DivS>
   );
 };
 
 Registration.propTypes = {
   userData: object
-}
+};
 
 export default Registration;

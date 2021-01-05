@@ -10,7 +10,7 @@ import ShowMap from "./ShowMap";
 const MyMap = ({ mapData }) => {
   const { t } = useTranslation();
 
-  const data = size(mapData) ? mapData.places : null
+  const data = size(mapData) ? mapData.places : null;
 
   return (
     <>

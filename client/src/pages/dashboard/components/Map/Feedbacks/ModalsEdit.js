@@ -9,7 +9,7 @@ import {
 import { bool, func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { connect, useDispatch } from "react-redux"
+import { connect, useDispatch } from "react-redux";
 
 import theme from "style/theme";
 import sendMapFeedback from "store/sendMapFeedback/actions";
@@ -31,7 +31,7 @@ const ModalsEdit = ({ isOpen, toggle, place, desc = 10 }) => {
 
   const saveForAllHandler = () => {
     toggle();
-    const mapInfo = { place, oldValue: desc, newValue: descTextAria }
+    const mapInfo = { place, oldValue: desc, newValue: descTextAria };
 
     axios.patch("/updateDesc", { mapInfo })
       .then(data => data.data ? dispatch(sendMapFeedback(mapInfo)) : null)

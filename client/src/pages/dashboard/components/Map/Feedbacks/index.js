@@ -23,12 +23,12 @@ const Feedbacks = ({ feedbacks }) => {
     setIdMap(data.id);
     setLabelMap(data.label);
     setDescriptionMap(data.desc);
-  }
+  };
 
   const clickHandlerForEdit = (e) => {
     foo(e);
     toggle();
-  }
+  };
 
   const cards = feedbacks.map((item, i) => {
     return (

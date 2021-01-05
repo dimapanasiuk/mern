@@ -24,7 +24,7 @@ const DetailPage = ({ teamId }) => {
         `https://statsapi.web.nhl.com/api/v1/teams/${teamId}?expand=team.roster`
       )
       .then((res) => {
-        const data = res.data.teams[0]
+        const data = res.data.teams[0];
         if (data) setRoster(data.roster.roster);
       })
       .catch((error) => {
@@ -34,7 +34,7 @@ const DetailPage = ({ teamId }) => {
     axios
       .get(`https://statsapi.web.nhl.com/api/v1/teams/${teamId}`)
       .then((res) => {
-        const data = res.data.teams[0]
+        const data = res.data.teams[0];
         if (data) setTeamName(data.name);
       });
   }, []);
