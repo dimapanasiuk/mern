@@ -18,4 +18,5 @@ export const NavigationBar = styled(Navbar)`
   position: fixed;
   width: 100%;
   padding: 0 20px;
+  z-index: 999999;
 `;
