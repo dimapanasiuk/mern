@@ -7,7 +7,7 @@ const morgan = require("morgan");
 const session = require("express-session");
 const passport = require("passport");
 
-const routing = require('./routing');
+const routing = require("./routing");
 const config = require("./config/default.json"); // describe another way, ask about prev
 
 const PORT = config.port || 4000;
@@ -43,8 +43,8 @@ app.use(
   })
 );
 app.use(passport.initialize());
-app.use(passport.session({ secret: 'anything' }));
+app.use(passport.session({ secret: "anything" }));
 
-app.use('/', routing);
+app.use("/", routing);
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-const findOrCreate = require('mongoose-findorcreate')
+const findOrCreate = require("mongoose-findorcreate");
 
 const Schema = mongoose.Schema;
 
 const currencyScheme = new Schema(
   {
-    link: { type: Schema.Types.ObjectId, ref: 'User' },
+    link: { type: Schema.Types.ObjectId, ref: "User" },
     basicCurrency: String,
     currencies: Array,
     dateStart: String,
@@ -16,6 +16,6 @@ const currencyScheme = new Schema(
 
 currencyScheme.plugin(findOrCreate);
 
-const Currency = mongoose.model('Currency', currencyScheme);
+const Currency = mongoose.model("Currency", currencyScheme);
 
 module.exports = Currency;
