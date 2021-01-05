@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
-
+import { has } from "lodash";
 import sendUserData from "store/userData/actions";
 
 const Login = () => {
@@ -15,15 +15,17 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm();
   const dispatch = useDispatch();
 
-  const submitHandler = (requestData) => {
-    axios
-      .post("/login", requestData)
-      .then((res) => {
-        const { user } = res.data;
-        history.push("/");
-        dispatch(sendUserData(user));
-      })
-      .catch(console.error);
+  const submitHandler = async (requestData) => {
+    const login = await axios.post("/login", requestData);
+    const isUser =  has(login.data, "user");
+    if(isUser) {
+      const { user } = login.data;
+      history.push("/");
+      dispatch(sendUserData(user));
+    } else {
+      axios.get("/home")
+        .then(data => console.log("home", data)); // :TODO not work (need for show pop up if user enter not correct login data) 
+    }
   };
 
   const STR = "please enter";
