@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Button } from 'reactstrap'
+import styled from "styled-components";
+import { Button } from "reactstrap"
 
 export const A = styled.a`
   color: white;

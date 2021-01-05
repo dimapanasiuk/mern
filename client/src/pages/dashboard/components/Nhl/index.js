@@ -1,5 +1,5 @@
 import React from "react";
-import { object } from 'prop-types';
+import { object } from "prop-types";
 
 import Teams from "./Teams/index";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import emoji from "emoji-dictionary";
-import { DivS } from './style';
+import { DivS } from "./style";
 
 const Footer = () => {
   return (

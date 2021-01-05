@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Alert, Container } from 'reactstrap';
+import styled from "styled-components";
+import { Alert, Container } from "reactstrap";
 
 export const H1 = styled.h1`
   text-align: center;

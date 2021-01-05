@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import theme from 'style/theme';
-import { A, DivS, DivFlex, ButtonLogout } from './style';
+import theme from "style/theme";
+import { A, DivS, DivFlex, ButtonLogout } from "./style";
 
 const Cabinet = () => {
   const [user, setUser] = useState("");

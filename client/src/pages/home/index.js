@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import emoji from "emoji-dictionary";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Alert } from 'reactstrap';
+import { Alert } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import theme from 'style/theme';
-import { AlertMentors, DivFLexMentors, ContainerS, H1, H2, AlertS, DivFLex, DivContainer } from './style';
+import theme from "style/theme";
+import { AlertMentors, DivFLexMentors, ContainerS, H1, H2, AlertS, DivFLex, DivContainer } from "./style";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -65,7 +65,7 @@ const Home = () => {
           </Alert>
         </DivContainer>
         <DivContainer>
-          <H2>{t('DescriptionAppTechHead')} &#160; {emoji.getUnicode(":computer:")}</H2>
+          <H2>{t("DescriptionAppTechHead")} &#160; {emoji.getUnicode(":computer:")}</H2>
           <Alert>
             <p>{t("DescriptionAppTech")}</p>
           </Alert>
@@ -104,9 +104,9 @@ const Home = () => {
         <DivFLexMentors>
           <h4>{t("Mentors")}</h4>
            &nbsp;&nbsp;
-          <a href='https://github.com/Blackcate9' target='blank'>Olga Trishkina</a>,
+          <a href="https://github.com/Blackcate9" target="blank">Olga Trishkina</a>,
           &nbsp;
-          <a href='https://github.com/morpharc' target='blank'>Stanislav Yakubuk</a>
+          <a href="https://github.com/morpharc" target="blank">Stanislav Yakubuk</a>
         </DivFLexMentors>
       </AlertMentors>
     </ContainerS>

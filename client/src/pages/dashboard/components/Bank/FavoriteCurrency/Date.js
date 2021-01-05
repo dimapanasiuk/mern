@@ -3,7 +3,7 @@ import { FormGroup, TabPane, Row, Col } from "reactstrap";
 import DatePicker from "reactstrap-date-picker";
 import { func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
-import theme from 'style/theme';
+import theme from "style/theme";
 import { CustomButton } from "./style";
 
 const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {

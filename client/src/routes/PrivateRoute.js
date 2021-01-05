@@ -1,5 +1,5 @@
-import React from 'react';
-import { any } from 'prop-types';
+import React from "react";
+import { any } from "prop-types";
 import { Route, Redirect } from "react-router-dom";
 
 import { useAuth } from "context/auth";

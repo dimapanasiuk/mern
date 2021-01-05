@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { object, string } from "prop-types";
-import axios from 'axios';
+import axios from "axios";
 import { connect } from "react-redux";
 
 import Nhl from "../Nhl";
 import Bank from "../Bank";
 import MyMap from "../Map";
 
-const CURRENCY_LINK = 'currency';
-const NHL_LINK = 'nhl';
-const MAP_DATA = 'mapData';
+const CURRENCY_LINK = "currency";
+const NHL_LINK = "nhl";
+const MAP_DATA = "mapData";
 
 const Show = ({ switcher, updateDesc }) => {
   const [currencyData, serCurrencyData] = useState([]);

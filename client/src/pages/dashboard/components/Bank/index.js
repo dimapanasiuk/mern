@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { array } from "prop-types";
-import { size } from 'lodash';
-import axios from 'axios';
+import { size } from "lodash";
+import axios from "axios";
 import Chart from "./Chart";
 
 const Bank = ({ currencyData }) => {

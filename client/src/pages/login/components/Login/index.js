@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
 
-import sendUserData from 'store/userData/actions';
+import sendUserData from "store/userData/actions";
 
 const Login = () => {
   const { t } = useTranslation();

@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
+import { object } from "prop-types";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label, Input as StrapInput } from "reactstrap";
 
-import LoginHeader from 'components/LoginHeader';
-import { object } from "prop-types";
+import LoginHeader from "components/LoginHeader";
+import { DivS } from "./style";
 
 const Registration = ({ userData }) => {
   const { register, handleSubmit, errors } = useForm();
@@ -21,7 +22,7 @@ const Registration = ({ userData }) => {
   const STR = "please enter";
 
   return (
-    <>
+    <DivS>
       <LoginHeader userData={userData} />
       <form onSubmit={handleSubmit(submitHandler)}>
         <FormGroup>
@@ -65,7 +66,7 @@ const Registration = ({ userData }) => {
         </FormGroup>
         <Button type="submit"> Submit</Button>
       </form>
-    </>
+    </DivS>
   );
 };
 

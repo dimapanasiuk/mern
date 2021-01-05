@@ -3,7 +3,7 @@ import { Alert } from "reactstrap";
 import { Line } from "react-chartjs-2";
 import { object, oneOfType, array } from "prop-types";
 import { useTranslation } from "react-i18next";
-import theme from 'style/theme';
+import theme from "style/theme";
 import { chartDataPreparation } from "./chartDataPreparation";
 
 let chartData = "";

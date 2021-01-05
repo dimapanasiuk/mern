@@ -3,7 +3,7 @@ import { size } from "lodash";
 import { Alert } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import { object } from "prop-types";
-import theme from 'style/theme';
+import theme from "style/theme";
 import Feedbacks from "./Feedbacks";
 import ShowMap from "./ShowMap";
 

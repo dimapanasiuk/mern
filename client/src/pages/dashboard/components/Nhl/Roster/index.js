@@ -5,7 +5,7 @@ import emoji from "emoji-dictionary";
 import { CardTitle, Button, Col } from "reactstrap";
 
 import theme from "style/theme";
-import { DivFlex, Head, CardStyle, H4, H5 } from './style';
+import { DivFlex, Head, CardStyle, H4, H5 } from "./style";
 
 const Roster = ({ roster, onShowAlert }) => {
   const ros = roster.map((player) => {

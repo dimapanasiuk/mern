@@ -1,14 +1,14 @@
-import React from 'react';
-import { object } from 'prop-types';
+import React from "react";
+import { object } from "prop-types";
 import { has } from "lodash";
 import { BreadcrumbItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
-import { BreadcrumbS } from './style';
+import { BreadcrumbS } from "./style";
 
 const LoginHeader = ({ userData }) => {
 
-  const userLoggedIn = has(userData, 'name');
+  const userLoggedIn = has(userData, "name");
   return (
     <BreadcrumbS>
       <BreadcrumbItem >

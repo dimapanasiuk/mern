@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, } from "react-router-dom";
 import { Container } from "reactstrap";
-import { has, isEmpty } from 'lodash';
-import { connect } from 'react-redux';
+import { has, isEmpty } from "lodash";
+import { connect } from "react-redux";
 import { object } from "prop-types";
 import axios from "axios";
 
 import { AuthContext } from "context/auth";
-import PrivateRoute from 'routes/PrivateRoute';
+import PrivateRoute from "routes/PrivateRoute";
 import Header from "./components/Header";
 import Home from "./pages/home";
 import DashBoard from "./pages/dashboard";
@@ -23,9 +23,9 @@ const App = ({ userDataLogin }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    axios.get('/home')
+    axios.get("/home")
       .then(data => {
-        if (data.status === 200 && has(data.data, 'user')) {
+        if (data.status === 200 && has(data.data, "user")) {
           const { user } = data.data;
           setUserData(user);
         }

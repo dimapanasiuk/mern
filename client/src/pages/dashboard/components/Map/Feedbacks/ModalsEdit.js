@@ -8,12 +8,12 @@ import {
 } from "reactstrap";
 import { bool, func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
-import axios from 'axios';
-import { connect, useDispatch } from 'react-redux'
+import axios from "axios";
+import { connect, useDispatch } from "react-redux"
 
 import theme from "style/theme";
-import sendMapFeedback from 'store/sendMapFeedback/actions';
-import { ModalS } from './style';
+import sendMapFeedback from "store/sendMapFeedback/actions";
+import { ModalS } from "./style";
 
 const ModalsEdit = ({ isOpen, toggle, place, desc = 10 }) => {
   const { t } = useTranslation();

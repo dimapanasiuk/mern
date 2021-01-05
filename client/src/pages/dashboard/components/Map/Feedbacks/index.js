@@ -9,9 +9,9 @@ import ModalsEdit from "./ModalsEdit";
 import { CardS, ButtonS, RowS, CardTitleS } from "./style";
 
 const Feedbacks = ({ feedbacks }) => {
-  const [idMap, setIdMap] = useState('');
-  const [labelMap, setLabelMap] = useState('');
-  const [descriptionMap, setDescriptionMap] = useState('');
+  const [idMap, setIdMap] = useState("");
+  const [labelMap, setLabelMap] = useState("");
+  const [descriptionMap, setDescriptionMap] = useState("");
 
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);

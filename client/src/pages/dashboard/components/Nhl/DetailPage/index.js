@@ -5,7 +5,7 @@ import { Row } from "reactstrap";
 import { string } from "prop-types";
 import axios from "axios";
 
-import theme from 'style/theme';
+import theme from "style/theme";
 import { ContainerDiv, CircleButton, StyleCard, DivFlex, Head1 } from "./style";
 import Schedule from "../Schedule";
 import TeamStats from "../TeamStats";
