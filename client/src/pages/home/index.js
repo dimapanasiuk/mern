@@ -104,8 +104,8 @@ const Home = () => {
         <DivFLexMentors>
           <h4>{t("Mentors")}</h4>
            &nbsp;&nbsp;
-          <a href='https://github.com/Blackcate9' target='blank'>Olga Trishkina</a>
-          &nbsp;&nbsp;
+          <a href='https://github.com/Blackcate9' target='blank'>Olga Trishkina</a>,
+          &nbsp;
           <a href='https://github.com/morpharc' target='blank'>Stanislav Yakubuk</a>
         </DivFLexMentors>
       </AlertMentors>
