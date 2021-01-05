@@ -15,5 +15,7 @@ export const NavFlex = styled(Nav)`
 `;
 
 export const NavigationBar = styled(Navbar)`
+  position: fixed;
+  width: 100%;
   padding: 0 20px;
 `;
