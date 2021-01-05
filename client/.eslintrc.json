@@ -24,7 +24,6 @@
     "semi": [2, "always"],
     "quotes": ["error", "double"],
     "indent": ["error", 2, {"SwitchCase": 1}],
-    "linebreak-style": ["error",  "windows"],
     "no-multiple-empty-lines": "error"
   }
 }
