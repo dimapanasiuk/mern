@@ -9,7 +9,7 @@ export const A = styled.a`
 `
 
 export const DivS = styled.div`
-  padding: 90px 0 0 0;
+  // padding: 90px 0 0 0;
 `
 
 export const DivFlex = styled.div`
