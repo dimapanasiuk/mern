@@ -36,13 +36,13 @@ const resources = {
       "Type in an address": "Type in an address",
       DescriptionAppGeneralHead: `General description`,
       DescriptionAppTechHead: `Technical part`,
-      DescriptionAppGeneral: `Маленькое приложение в рамках испытательного срока в компании instinctools, написанное на MERN  stack с целью погружения
-      в backend и frontend одновременно. В приложение встроены разные виджеты которые помогут следить за курсами валют, любимой хоккейной командой
-      и вашими путешествиями, а так же гибко настраивать их. Так же вы можете зарегистрироваться и вам не придётся каждый раз настраивать виджеты заново.`,
-      DescriptionAppTech: `Маленькое приложение в рамках испытательного срока в компании instinctools., написанное на MERN  stack с целью погружения
-      в backend и frontend одновременно. В приложение встроены разные виджеты которые помогут следить за курсами валют, любимой хоккейной командой
-      и вашими путешествиями, а так же гибко настраивать их. Так же вы можете зарегистрироваться и вам не придётся каждый раз настраивать виджеты заново.`,
-      Mentors: `Big thanks to my mentors`,
+      DescriptionAppGeneral: `A small trial application at the instinctools company. It is written on the MERN stack
+      to dive into backend and frontend at the same time. The application has various built-in widgets that will help
+      you keep track of the exchange rates, your favorite hockey team and your travels, as well as flexibly customize them. 
+      You can also register, so that you don’t need to re-configure the widgets every time.`,
+      DescriptionAppTech: `The application uses different APIs for each widget, as well as it has its own API for the application
+      to remember the settings of the widgets and which user these settings belong to..`,
+      Mentors: `Thanks a lot to my mentors`,
     },
   },
   ru: {
@@ -80,9 +80,8 @@ const resources = {
       DescriptionAppGeneral: `Маленькое приложение в рамках испытательного срока в компании instinctools, написанное на MERN  stack с целью погружения
       в backend и frontend одновременно. В приложение встроены разные виджеты которые помогут следить за курсами валют, любимой хоккейной командой
       и вашими путешествиями, а так же гибко настраивать их. Так же вы можете зарегистрироваться и вам не придётся каждый раз настраивать виджеты заново.`,
-      DescriptionAppTech: `Маленькое приложение в рамках испытательного срока в компании instinctools., написанное на MERN  stack с целью погружения
-      в backend и frontend одновременно. В приложение встроены разные виджеты которые помогут следить за курсами валют, любимой хоккейной командой
-      и вашими путешествиями, а так же гибко настраивать их. Так же вы можете зарегистрироваться и вам не придётся каждый раз настраивать виджеты заново.`,
+      DescriptionAppTech: `В приложении используются разные API для каждого виджета, а так же написан свой собственный API для приложения чтобы запоминать
+      настройки виджетов и какому пользователю данные настройки принадлежат. `,
       Mentors: `Большое спасибо моим менторам`,
     },
   },
