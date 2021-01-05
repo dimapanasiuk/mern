@@ -21,5 +21,5 @@ export const RowS = styled(Row)`
 `;
 
 export const ModalS = styled(Modal)`
-  top: 500px;
+  top: 100px;
 `;

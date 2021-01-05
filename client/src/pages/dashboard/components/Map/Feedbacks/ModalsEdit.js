@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Input,
-  Modal,
   Button,
   ModalHeader,
   ModalBody,
@@ -14,6 +13,7 @@ import { connect, useDispatch } from 'react-redux'
 
 import theme from "style/theme";
 import sendMapFeedback from 'store/sendMapFeedback/actions';
+import { ModalS } from './style';
 
 const ModalsEdit = ({ isOpen, toggle, place, desc = 10 }) => {
   const { t } = useTranslation();
@@ -39,7 +39,7 @@ const ModalsEdit = ({ isOpen, toggle, place, desc = 10 }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} toggle={toggle}>
+    <ModalS isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={toggle}>{place}</ModalHeader>
 
       <ModalBody>
@@ -54,7 +54,7 @@ const ModalsEdit = ({ isOpen, toggle, place, desc = 10 }) => {
           {t("Cancel")}
         </Button>
       </ModalFooter>
-    </Modal>
+    </ModalS>
   );
 };
 
