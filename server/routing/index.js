@@ -18,9 +18,9 @@ passport.use(
     console.log("username", username);
     console.log("password", password);
 
+    console.log("result", bcrypt.compareSync(password, user.password));
+    
     db.users.findByUsername(username, (err, user) => {
-      console.log("result", bcrypt.compareSync(password, user.password));
-
       if (err) {
         return cb(err);
       }
@@ -48,12 +48,15 @@ passport.deserializeUser((id, cb) => {
 });
 
 router.get("/home", (req, res) => {
-  res.send({ user: req.user });
+  if(req.user) {
+    res.send({ user: req.user });
+  } else {
+    res.send( "not found");
+  }
 });
 
 router.post("/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
-  (req, res) => {
+  passport.authenticate("local", { failureRedirect: "/login" }),(req, res) => {
     res.redirect("/home");
   }
 );
