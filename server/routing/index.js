@@ -17,10 +17,9 @@ passport.use(
   new Strategy(function (username, password, cb) {
     console.log("username", username);
     console.log("password", password);
-
-    console.log("result", bcrypt.compareSync(password, user.password));
     
     db.users.findByUsername(username, (err, user) => {
+      console.log("result", bcrypt.compareSync(password, user.password));
       if (err) {
         return cb(err);
       }
@@ -48,11 +47,7 @@ passport.deserializeUser((id, cb) => {
 });
 
 router.get("/home", (req, res) => {
-  if(req.user) {
-    res.send({ user: req.user });
-  } else {
-    res.send( "not found");
-  }
+  res.send({ user: req.user }); 
 });
 
 router.post("/login",
