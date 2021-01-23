@@ -1,6 +1,7 @@
-## MERN stack app
+# MERN stack app
 
-### Simple app witch use MERN stack 
+Simple app witch use MERN stack 
+***
 
 ## Frontend
 - React
@@ -35,6 +36,7 @@
 - Prettier
 
 ## For install u need to go client and server folder and write in command line
+***
 
-> **yarn** or **yarn install**
-> **yarn start** 
+- **yarn** or **yarn install**
+- **yarn start** 
