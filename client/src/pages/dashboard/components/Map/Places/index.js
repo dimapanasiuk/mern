@@ -3,8 +3,7 @@ import { connect, useDispatch } from "react-redux";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { useTranslation } from "react-i18next";
 
-// eslint-disable-next-line import/no-unresolved
-import getPlaceId from "store/getPlaceData/actions"; // TODO : fix this problem
+import getPlaceId from "store/getPlaceData/actions";
 
 import { Div } from "./style";
 

@@ -14,9 +14,13 @@ export const StyleCard = styled(Card)`
 export const DivFlex = styled.div`
   display: flex;
   align-items: center;
-  padding: 20px 0;
+  padding: 90px 0 20px 0;
 `;
 
 export const Head1 = styled.h1`
   margin-left: 20px;
+`;
+
+export const ContainerDiv = styled.div`
+  padding-bottom: 100px;
 `;

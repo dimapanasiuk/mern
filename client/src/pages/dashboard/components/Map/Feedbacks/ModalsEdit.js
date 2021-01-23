@@ -1,43 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Input,
-  Modal,
   Button,
   ModalHeader,
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import { array, bool, func, string } from "prop-types";
+import { bool, func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
-import { connect } from "react-redux";
-import axios from 'axios';
+import axios from "axios";
+import { connect, useDispatch } from "react-redux";
 
-// eslint-disable-next-line import/no-unresolved
 import theme from "style/theme";
+import sendMapFeedback from "store/sendMapFeedback/actions";
+import { ModalS } from "./style";
 
-const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
+const ModalsEdit = ({ isOpen, toggle, place, desc = 10 }) => {
+  const { t } = useTranslation();
   const [descTextAria, setDescTextAria] = useState(desc);
 
-  const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setDescTextAria(desc);
+  }, [desc]);
 
   const changeHandler = (e) => {
     setDescTextAria(e.target.value);
   };
 
   const saveForAllHandler = () => {
-    console.log('placeId', placeId);
-    console.log('places', places);
-
     toggle();
-    const mapInfo = { place, oldValue: desc, newValue: descTextAria }
+    const mapInfo = { place, oldValue: desc, newValue: descTextAria };
 
     axios.patch("/updateDesc", { mapInfo })
-      .then(data => console.log('updateDesc data', data))
-      .catch(e => console.log('updateDesc error', e))
+      .then(data => data.data ? dispatch(sendMapFeedback(mapInfo)) : null)
+      .catch(console.error);
   };
 
   return (
-    <Modal isOpen={isOpen} toggle={toggle}>
+    <ModalS isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={toggle}>{place}</ModalHeader>
 
       <ModalBody>
@@ -48,25 +50,19 @@ const ModalsEdit = ({ isOpen, toggle, place, desc, placeId, places }) => {
         <Button outline color={theme.success} onClick={saveForAllHandler}>
           {t("Save")}
         </Button>{" "}
-        <Button color={theme.secondary} onClick={saveForAllHandler}>
+        <Button color={theme.secondary} onClick={toggle}>
           {t("Cancel")}
         </Button>
       </ModalFooter>
-    </Modal>
+    </ModalS>
   );
 };
 
 ModalsEdit.propTypes = {
   isOpen: bool,
   toggle: func,
-  placeId: string,
   place: string,
   desc: string,
-  places: array,
 };
 
-const mapStateToProps = (state) => {
-  return { places: state.getPlaceDataReducer };
-};
-
-export default connect(mapStateToProps)(ModalsEdit);
+export default connect()(ModalsEdit);

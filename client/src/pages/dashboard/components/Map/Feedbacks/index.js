@@ -9,18 +9,26 @@ import ModalsEdit from "./ModalsEdit";
 import { CardS, ButtonS, RowS, CardTitleS } from "./style";
 
 const Feedbacks = ({ feedbacks }) => {
+  const [idMap, setIdMap] = useState("");
+  const [labelMap, setLabelMap] = useState("");
+  const [descriptionMap, setDescriptionMap] = useState("");
+
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
   const foo = (e) => {
-    const {num} = e.target.dataset;
-    console.log('feedbacks[num]', feedbacks[num]) ;
-  }
+    const { num } = e.target.dataset;
+    const data = feedbacks[num];
+
+    setIdMap(data.id);
+    setLabelMap(data.label);
+    setDescriptionMap(data.desc);
+  };
 
   const clickHandlerForEdit = (e) => {
     foo(e);
     toggle();
-  }
+  };
 
   const cards = feedbacks.map((item, i) => {
     return (
@@ -37,19 +45,21 @@ const Feedbacks = ({ feedbacks }) => {
             </ButtonS>
           </CardTitleS>
           <CardText>{item.desc}</CardText>
-          <ModalsEdit // TODO fix modals
-            isOpen={modal}
-            toggle={toggle}
-            placeId={item.id}
-            place={item.label}
-            desc={item.desc}
-          />
         </CardS>
       </Col>
     );
   });
 
-  return <>{size(feedbacks) ? <RowS>{cards}</RowS> : null}</>;
+  return (<>
+    {size(feedbacks) ? <RowS>{cards}</RowS> : null}
+    <ModalsEdit
+      isOpen={modal}
+      toggle={toggle}
+      placeId={idMap}
+      place={labelMap}
+      desc={descriptionMap}
+    />
+  </>);
 };
 
 Feedbacks.propTypes = {

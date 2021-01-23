@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { array } from "prop-types";
-import { size } from 'lodash';
-import axios from 'axios';
+import { size } from "lodash";
+import axios from "axios";
 import Chart from "./Chart";
 
 const Bank = ({ currencyData }) => {
@@ -14,7 +14,7 @@ const Bank = ({ currencyData }) => {
 
       axios.get(
         `https://api.exchangeratesapi.io/history?start_at=${dateStart}&end_at=${dateEnd}&symbols=${curs}&base=${basicCurrency}`)
-        .then((res) => setCharCurrencyData(res.data))
+        .then((res) => setCharCurrencyData(res.data));
     }
   }, [currencyData]);
 

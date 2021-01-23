@@ -3,7 +3,7 @@ import { FormGroup, TabPane, Row, Col } from "reactstrap";
 import DatePicker from "reactstrap-date-picker";
 import { func, string } from "prop-types";
 import { useTranslation } from "react-i18next";
-
+import theme from "style/theme";
 import { CustomButton } from "./style";
 
 const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
@@ -31,10 +31,10 @@ const Date = ({ startFoo, endFoo, startDate, endDate, save, toggle }) => {
           </FormGroup>
         </Col>
         <Col sm="12">
-          <CustomButton outline color="info" data-position="2" onClick={toggle}>
+          <CustomButton outline color={theme.infoText} data-position="2" onClick={toggle}>
             {t("Back")}
           </CustomButton>
-          <CustomButton color="success" onClick={save} disabled={dis}>
+          <CustomButton color={theme.success} onClick={save} disabled={dis}>
             {t("Save")}
           </CustomButton>
         </Col>

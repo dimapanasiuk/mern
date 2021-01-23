@@ -11,6 +11,11 @@ const theme = {
   gray_footer: "#343a40",
   success: "success",
   secondary: "secondary",
+  danger: "danger",
+  infoText: "info",
+  primary: "primary",
+  warning: "warning",
+  darkText: "dark",
 };
 
 export default theme;

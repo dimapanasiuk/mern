@@ -36,7 +36,7 @@ const FavoriteTeams = () => {
   const choosesTeamsClickHandler = (e) => {
     axios
       .put("/nhlteams", { teams: e })
-      .catch(console.log)
+      .catch(console.log);
   };
 
   return (

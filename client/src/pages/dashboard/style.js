@@ -5,6 +5,6 @@ export const NavContent = styled(Nav)`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
-  padding: 20px 0;
+  padding: 80px 0 20px 0;
   border: none;
 `;

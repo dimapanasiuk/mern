@@ -6,6 +6,7 @@ import { any, array, func } from "prop-types";
 import { size } from "lodash";
 import { useTranslation } from "react-i18next";
 
+import theme from "style/theme";
 import { Head6, CustomButton } from "./style";
 
 const SelectCurrencies = ({ options, toggle, chooseCurrencies, select }) => {
@@ -28,11 +29,11 @@ const SelectCurrencies = ({ options, toggle, chooseCurrencies, select }) => {
               onChange={chooseCurrencies}
             />
           </FormGroup>
-          <CustomButton outline color="info" data-position="1" onClick={toggle}>
+          <CustomButton outline color={theme.infoText} data-position="1" onClick={toggle}>
             {t("Back")}
           </CustomButton>
           <CustomButton
-            color="primary"
+            color={theme.primary}
             data-position="3"
             onClick={toggle}
             disabled={!dis}

@@ -1,28 +1,27 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { BreadcrumbItem } from "reactstrap";
+import { object } from "prop-types";
+import { has } from "lodash";
 
+import Cabinet from "pages/cabinet";
+import LoginHeader from "components/LoginHeader";
 import Login from "./components/Login";
-import { BreadcrumbS } from './style';
+import { DivContainer } from "./style";
 
-const LoginPage = () => {
+const LoginPage = ({ userData }) => {
+  const userLoggedIn = has(userData, "name");
+  
   return (
-    <>
-      <BreadcrumbS>
-        <BreadcrumbItem active>
-          <NavLink exact to="/profile">
-            Profile
-          </NavLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem active>
-          <NavLink exact to="/registration">
-            Registration
-          </NavLink>
-        </BreadcrumbItem>
-      </BreadcrumbS>
-      <Login />
-    </>
+    <DivContainer>
+
+      {!userLoggedIn && <LoginHeader userData={userData} />}
+      {!userLoggedIn && <Login userData={userData} />}
+      {userLoggedIn && <Cabinet userData={userData} />}
+    </DivContainer>
   );
+};
+
+LoginPage.propTypes = {
+  userData: object
 };
 
 export default LoginPage;

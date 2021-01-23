@@ -3,11 +3,8 @@ import { size } from "lodash";
 import { useGoogleMaps } from "react-hook-google-maps";
 import { object } from "prop-types";
 
-// eslint-disable-next-line import/no-unresolved
 import theme from "style/theme";
-// eslint-disable-next-line import/no-unresolved
 import mapMarker from "content/img/map.svg";
-// eslint-disable-next-line import/no-unresolved
 import { UKRAINE } from "utils/constants";
 import { Div } from "./style";
 

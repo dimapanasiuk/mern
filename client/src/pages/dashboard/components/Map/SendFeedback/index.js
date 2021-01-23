@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Button, FormGroup, Label, Input } from "reactstrap";
-import { useForm } from "react-hook-form";
 import { connect, useDispatch } from "react-redux";
-import { object, string } from "prop-types";
-import { size } from "lodash";
 import { useTranslation } from "react-i18next";
+import { object, string } from "prop-types";
+import { useForm } from "react-hook-form";
+import { size } from "lodash";
 import axios from "axios";
 
-// eslint-disable-next-line import/no-unresolved
 import senMapFeedback from "store/sendMapFeedback/actions";
-import Places from "../Places";
 import { FormStyle, FormGroupS } from "./style";
+import Places from "../Places";
 
 const SendFeedback = ({ id, label, locationData }) => {
   const { t } = useTranslation();
@@ -30,8 +29,7 @@ const SendFeedback = ({ id, label, locationData }) => {
     const { value } = e.target;
     setTextVal(value);
 
-    // eslint-disable-next-line no-unneeded-ternary
-    const isTrue = value && id ? false : true; // TODO: fix this warning
+    const isTrue = !value && id;
     return setIsButton(isTrue);
   };
 

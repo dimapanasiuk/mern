@@ -5,6 +5,7 @@ import makeAnimated from "react-select/animated";
 import { any, string, func } from "prop-types";
 import { useTranslation } from "react-i18next";
 
+import theme from "style/theme";
 import { Head6 } from "./style";
 
 const BasicCurrency = ({ toggle, options, chooseCurrency, basicCur }) => {
@@ -24,7 +25,7 @@ const BasicCurrency = ({ toggle, options, chooseCurrency, basicCur }) => {
             />
           </FormGroup>
           <Button
-            color="primary"
+            color={theme.primary}
             data-position="2"
             onClick={toggle}
             disabled={!basicCur}

@@ -4,7 +4,7 @@ import { Row, Col, Alert } from "reactstrap";
 import { array } from "prop-types";
 import { size } from "lodash";
 import { useTranslation } from "react-i18next";
-
+import theme from "style/theme";
 import TeamCard from "../TeamCard";
 
 const Teams = ({ teams }) => {
@@ -23,12 +23,12 @@ const Teams = ({ teams }) => {
   return (
     <>
       {!size(teams) ? (
-        <Alert color="info">
+        <Alert color={theme.infoText}>
           {t("Please setting NHL")} {t("Widget")}
         </Alert>
       ) : (
-          <Row sm="12">{cards}</Row>
-        )}
+        <Row sm="12">{cards}</Row>
+      )}
     </>
   );
 };

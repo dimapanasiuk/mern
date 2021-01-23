@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const axios = require("axios").default;
 const connectEnsureLogin = require("connect-ensure-login");
-const bcrypt = require('bcrypt');
-const _ = require('lodash');
+const bcrypt = require("bcrypt");
+const _ = require("lodash");
 
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
@@ -15,12 +15,11 @@ const salt = bcrypt.genSaltSync(10);
 
 passport.use(
   new Strategy(function (username, password, cb) {
-    console.log('username', username);
-    console.log('password', password);
-
+    console.log("username", username);
+    console.log("password", password);
+    
     db.users.findByUsername(username, (err, user) => {
-      console.log('result', bcrypt.compareSync(password, user.password));
-
+      console.log("result", bcrypt.compareSync(password, user.password));
       if (err) {
         return cb(err);
       }
@@ -48,19 +47,16 @@ passport.deserializeUser((id, cb) => {
 });
 
 router.get("/home", (req, res) => {
-  res.send({ user: req.user });
+  res.send({ user: req.user }); 
 });
 
-router.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
-  (req, res) => {
+router.post("/login",
+  passport.authenticate("local", { failureRedirect: "/login" }),(req, res) => {
     res.redirect("/home");
   }
 );
 
 router.post("/logout", (req, res) => {
-  console.log(' req.session', req.session);
   req.logout();
   res.redirect("/home");
 });
@@ -115,7 +111,7 @@ router.put("/currency", async (req, res) => {
       && _.isEqual(data.basicCurrency, value.basicCurrency)
       && _.isEqual(data.currencies, value.currencies)
       && _.isEqual(data.dateStart, value.dateStart)
-      && _.isEqual(data.dateEnd, value.dateEnd)
+      && _.isEqual(data.dateEnd, value.dateEnd);
 
     if (!isTrue) {
       const cur = await Currency.findOneAndUpdate({ link: _id }, { $set: data }, (err, result) => {  // [TODO: we have error  Cannot set headers after they are sent to the client ]
@@ -128,19 +124,19 @@ router.put("/currency", async (req, res) => {
     if (err) console.error("=====💡🛑===== /currency put endpoint error", err);
 
     res.send({ currency: value });
-  })
+  });
 
 });
 
-router.put('/nhlteams', async (req, res) => {
+router.put("/nhlteams", async (req, res) => {
   const { _id } = req.user;
   const { teams } = req.body;
   const data = { teams, link: _id };
 
   const founded = await Nhl.findOrCreate({ link: _id }, data);
 
-  // console.log('data', _.omit(data, ['link'])); work successfully
-  // console.log('value', _.omit(value, ['link']));  not work
+  // console.log("data", _.omit(data, ["link"])); work successfully
+  // console.log("value", _.omit(value, ["link"]));  not work
 
   const isTrue = _.isEqual(data.teams, founded.teams) && _.isEqual(data.link, founded.link);
 
@@ -157,7 +153,7 @@ router.put('/nhlteams', async (req, res) => {
   res.send({ nhl: founded });
 });
 
-router.put('/saveMap', async (req, res) => {
+router.put("/saveMap", async (req, res) => {
   const { _id } = req.user;
   const { mapData } = req.body;
 
@@ -191,9 +187,9 @@ router.get("/currency", async (req, res) => {
 
   if (_id) {
     const answer = await Currency.findOne({ link: _id });
-    res.send({ currency: answer || 'error' });
+    res.send({ currency: answer || "error" });
   }
-})
+});
 
 router.get("/nhl", async (req, res) => {
   const { _id } = req.user;
@@ -202,11 +198,11 @@ router.get("/nhl", async (req, res) => {
     const answer = await Nhl.findOne({ link: _id }, async (err, response) => {
       if (err) console.error("=====💡🛑===== /nhl get endpoint error", err);
       return response;
-    })
+    });
 
-    res.send({ nhl: answer || 'error' });
+    res.send({ nhl: answer || "error" });
   }
-})
+});
 
 router.patch("/updateDesc", async (req, res) => {
   const { _id } = req.user;
@@ -217,7 +213,7 @@ router.patch("/updateDesc", async (req, res) => {
       return conditional ? { ...place, desc: values.newValue } : place;
     }
     );
-  }
+  };
 
   if (_id) {
     const { place, oldValue, newValue } = req.body.mapInfo;
@@ -238,9 +234,9 @@ router.get("/mapData", async (req, res) => {
     const answer = await Map.findOne({ link: _id }, async (err, response) => {
       if (err) console.error("=====💡🛑===== /mapData get endpoint error", err);
       return response;
-    })
-    res.send({ mapData: answer || 'error' });
+    });
+    res.send({ mapData: answer || "error" });
   }
-})
+});
 
 module.exports = router;

@@ -12,6 +12,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
     "react/jsx-props-no-spreading": "off",
     "react/destructuring-assignment": "off",
     "no-else-return": 0,
@@ -19,6 +20,11 @@
     "react/forbid-prop-types": 0,
     "no-var": 1,
     "no-console": 1,
-    "no-alert": 1
+    "no-alert": 1,
+    "semi": [2, "always"],
+    "quotes": ["error", "double"],
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "no-multiple-empty-lines": "error",
+    "eol-last": ["error", "always"]
   }
 }

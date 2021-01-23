@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line
 import classnames from "classnames";
 import { useTranslation } from "react-i18next";
 
 import Settings from "./components/Settings";
 import Show from "./components/Show";
-import { NavContent } from './style';
+import { NavContent } from "./style";
 
-const ONE = '1';
-const TWO = '2';
+const ONE = "1";
+const TWO = "2";
 
 const DashBoard = () => {
   const { t } = useTranslation();
