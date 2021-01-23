@@ -4,7 +4,7 @@ Simple app which use MERN stack
 ***
 
 ## Frontend
-- React
+- React hooks
 - Redux
 - React-router
 - Axios
@@ -12,7 +12,8 @@ Simple app which use MERN stack
 - i18next
 - Lodash
 - Prop-types
-- Reactstrap":
+- Reactstrap
+- React-hook-form
 - Styled-components
 - Eslint
 - Husky
