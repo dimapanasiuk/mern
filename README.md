@@ -1,6 +1,6 @@
 # MERN stack app
 
-Simple app witch use MERN stack 
+Simple app which use MERN stack 
 ***
 
 ## Frontend
