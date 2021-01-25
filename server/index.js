@@ -31,7 +31,7 @@ async function start() {
 
 start();
 
-app.use(unHandledErrorMiddleware()); //for all endpoints which dosen't have try catch
+app.use(unHandledErrorMiddleware); //for all endpoints which dosen't have try catch
 
 app.use(cors());
 app.use(morgan("combined"));

@@ -1,10 +1,10 @@
 
-module.exports({
+module.exports = ({
   unHandledErrorMiddleware: (req, res, next) => { 
     try {
       next();
     } catch(e) {
-      res.status(500).send("Unhandled error", e.message);
+      return res.status(500).send("Unhandled error", e.message);
     }
   },
   checkId: (req, res, next) => { 
@@ -12,7 +12,7 @@ module.exports({
       if(!req._id) throw new Error("no _id");
       next();
     } catch(e) {
-      res.status(500).send(e.message);
+      return res.status(500).send(e.message);
     }
   },
 });
