@@ -1,13 +1,23 @@
 const mongoose = require("mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 
+const currency = {value: String, label:String, id: String }; 
+
 const Schema = mongoose.Schema;
+
+// const currency2 = new Schema( if u want to get new _id field (change currency)
+//   {
+//     value: String,
+//     label:  String,
+//     id: String,
+//   }
+// );
 
 const currencyScheme = new Schema(
   {
     link: { type: Schema.Types.ObjectId, ref: "User" },
     basicCurrency: String,
-    currencies: Array,
+    currencies: [currency],
     dateStart: String,
     dateEnd: String,
   },

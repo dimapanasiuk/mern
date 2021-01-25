@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const nhlScheme = new Schema(
   {
     link: { type: Schema.Types.ObjectId, ref: "User" },
-    teams: Array,
+    teams: Array, //[TODO: fix this type]
   },
   { versionKey: false }
 );

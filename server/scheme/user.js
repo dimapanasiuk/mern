@@ -6,7 +6,7 @@ const userScheme = new Schema(
   {
     name: String,
     password: String,
-    nhlTeams: Array,
+    nhlTeams: Array, // [TODO: fix this type]
   },
   { versionKey: false }
 );

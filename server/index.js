@@ -8,11 +8,13 @@ const session = require("express-session");
 const passport = require("passport");
 
 const routing = require("./routing");
-const config = require("./config/default.json"); // describe another way, ask about prev
+const config = require("./config/default.json"); 
+
+const {unHandledErrorMiddleware} = require("./middlewares");
 
 const PORT = config.port || 4000;
 
-async function start() { // could be simplify
+async function start() { 
   const url = config.mongoUri;
   try {
     await mongoose.connect(url, {
@@ -28,6 +30,8 @@ async function start() { // could be simplify
 }
 
 start();
+
+app.use(unHandledErrorMiddleware()); //for all endpoints which dosen't have try catch
 
 app.use(cors());
 app.use(morgan("combined"));

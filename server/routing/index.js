@@ -8,6 +8,8 @@ const _ = require("lodash");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 
+const {checkId} = require("../middlewares");
+
 const { User, Currency, Nhl, Map } = require("../scheme");
 const db = require("../db");
 
@@ -15,8 +17,8 @@ const salt = bcrypt.genSaltSync(10);
 
 passport.use(
   new Strategy(function (username, password, cb) {
-    console.log("username", username);
-    console.log("password", password);
+    // console.log("username", username);
+    // console.log("password", password);
     
     db.users.findByUsername(username, (err, user) => {
       console.log("result", bcrypt.compareSync(password, user.password));
@@ -47,7 +49,14 @@ passport.deserializeUser((id, cb) => {
 });
 
 router.get("/home", (req, res) => {
-  res.send({ user: req.user }); 
+  // req.socket.setTimeout(500*1000); // = 5 min because default endpoint timeout has 2min
+  try {
+    // throw new Error("error home endpoint"); for check catch
+    res.send({ user: req.user }); 
+  } catch(e) {
+    console.log("error endpoint get /home");
+    res.status(500).send(e.message);
+  }
 });
 
 router.post("/login",
@@ -86,14 +95,14 @@ router.post("/registration", (req, res) => {
 router.put("/save", (req, res) => {
   const { teams } = req.body;
 
-  User.updateOne({ name: "dima" }, { nhlTeams: teams }, (e, result) => {
+  User.updateOne({ name: "dima" }, { nhlTeams: teams }, (e, result) => { //// [TODO: fix this Dima ]
     if (e) return console.error("=====💡🛑=====", e);
   });
 
   res.send(req.body.teams);
 });
 
-router.put("/currency", async (req, res) => {
+router.put("/currency", async (req, res) => { //[TODO: check this endpoint]
   const { _id } = req.user;
   const { currencyData: { basicCur, selectCurrencies, startDate, endDate } } = req.body;
 
@@ -105,26 +114,23 @@ router.put("/currency", async (req, res) => {
     dateEnd: endDate,
   };
 
-  Currency.findOrCreate({ link: _id }, data, async (err, value) => {
+  const currency =  await Currency.findOrCreate({ link: _id }, data );
+     
+  const isTrue = _.isEqual(data.link, currency.link)
+      && _.isEqual(data.basicCurrency, currency.basicCurrency)
+      && _.isEqual(data.currencies, currency.currencies)
+      && _.isEqual(data.dateStart, currency.dateStart)
+      && _.isEqual(data.dateEnd, currency.dateEnd);
 
-    const isTrue = _.isEqual(data.link, value.link)
-      && _.isEqual(data.basicCurrency, value.basicCurrency)
-      && _.isEqual(data.currencies, value.currencies)
-      && _.isEqual(data.dateStart, value.dateStart)
-      && _.isEqual(data.dateEnd, value.dateEnd);
+  if (!isTrue) { 
+    const cur = await Currency.updateOne({ link: _id }, { $set: data });  // [TODO: we have error  Cannot set headers after they are sent to the client ]
+    await res.send({ currency: result });
+  }
 
-    if (!isTrue) {
-      const cur = await Currency.findOneAndUpdate({ link: _id }, { $set: data }, (err, result) => {  // [TODO: we have error  Cannot set headers after they are sent to the client ]
-        if (err) console.error("=====💡🛑===== /currency Currency.findByIdAndUpdate error", err);
-        res.send({ currency: result });
-      });
-      await cur.save();
-    }
+  if (err) console.error("=====💡🛑===== /currency put endpoint error", err);
 
-    if (err) console.error("=====💡🛑===== /currency put endpoint error", err);
-
-    res.send({ currency: value });
-  });
+  res.send({ currency: value });
+  
 
 });
 
@@ -135,10 +141,7 @@ router.put("/nhlteams", async (req, res) => {
 
   const founded = await Nhl.findOrCreate({ link: _id }, data);
 
-  // console.log("data", _.omit(data, ["link"])); work successfully
-  // console.log("value", _.omit(value, ["link"]));  not work
-
-  const isTrue = _.isEqual(data.teams, founded.teams) && _.isEqual(data.link, founded.link);
+  const isTrue = _.isEqual(teams, founded.teams) && _.isEqual(data.link, founded.link); //[TODO: check this moment  founded.link may be has another type data]
 
   if (!isTrue) {
     const nhl = await Nhl.findOneAndUpdate({ link: _id }, { $set: { teams } }, (err, result) => {
@@ -162,9 +165,9 @@ router.put("/saveMap", async (req, res) => {
   const isEqual = _.isEqual([mapData], maps.doc.places);
 
   if (!isEqual) {
-    const map = await Map.findOneAndUpdate({ link: _id }, { $push: { places: mapData } });
+    const map = await Map.findOneAndUpdate({ link: _id }, { $push: { places: mapData } }); //[TODO: can be change to updateOne]
 
-    res.send({ mapData1: map });
+    return res.send({ mapData1: map });
   }
 
   res.send({ mapData2: maps });
@@ -227,15 +230,12 @@ router.patch("/updateDesc", async (req, res) => {
   }
 });
 
-router.get("/mapData", async (req, res) => {
-  const { _id } = req.user;
-
-  if (_id) {
-    const answer = await Map.findOne({ link: _id }, async (err, response) => {
-      if (err) console.error("=====💡🛑===== /mapData get endpoint error", err);
-      return response;
-    });
-    res.send({ mapData: answer || "error" });
+router.get("/mapData", checkId,  async (req, res) => {
+  try {
+    const answer = await Map.findOne({ link: _id });
+    res.send({ mapData: answer});
+  } catch(e) {
+    res.status(500).send(e.message);
   }
 });
 

@@ -7,7 +7,7 @@ const mapItem = new Schema(
   {
     label: String,
     description: String,
-    location: Schema.Types.Mixed
+    location: Schema.Types.Mixed //[TODO: fix this type]
   },
   { versionKey: false }
 );
@@ -15,7 +15,7 @@ const mapItem = new Schema(
 const mapScheme = new Schema(
   {
     link: { type: Schema.Types.ObjectId, ref: "User" },
-    places: Array // make array of
+    places: Array // [TODO: fix this type] make array of 
   },
   { versionKey: false }
 );
